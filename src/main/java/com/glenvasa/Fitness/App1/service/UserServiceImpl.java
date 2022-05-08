@@ -4,7 +4,11 @@ import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
@@ -25,4 +29,9 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    @Override
+    // abstract method in UserDetailsService that must be overridden
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 }
