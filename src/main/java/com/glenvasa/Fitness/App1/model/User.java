@@ -36,22 +36,22 @@ public class User {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // when we retrieve user, we retrieve all associated roles
-    @JoinTable(
-            name= "user_workout",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name ="workout_id", referencedColumnName = "id"
-            )
-    )    private Set<Workout> workouts;
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // when we retrieve user, we retrieve all associated roles
+//    @JoinTable(
+//            name= "user_workout",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name ="workout_id", referencedColumnName = "id"
+//            )
+//    )    private Set<Workout> workouts;
 
     public User() {
     }
 
     public User(String firstName, String lastName, String streetAddress, String apartment, String city,
                 String state, Integer zipCode, String phone1, String phone2, String email, String password,
-                Float height, Date dateOfBirth, Set<Workout> workouts) {
+                Float height, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -65,7 +65,7 @@ public class User {
         this.password = password;
         this.height = height;
         this.dateOfBirth = dateOfBirth;
-        this.workouts = workouts;
+//        this.workouts = workouts;
     }
 
     public Integer getZipCode() {
@@ -124,13 +124,13 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Set<Workout> getWorkouts() {
-        return workouts;
-    }
-
-    public void setWorkouts(Set<Workout> workouts) {
-        this.workouts = workouts;
-    }
+//    public Set<Workout> getWorkouts() {
+//        return workouts;
+//    }
+//
+//    public void setWorkouts(Set<Workout> workouts) {
+//        this.workouts = workouts;
+//    }
 
     public String getStreetAddress() {
         return streetAddress;
