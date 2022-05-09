@@ -2,6 +2,7 @@ package com.glenvasa.Fitness.App1.model;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -36,22 +37,32 @@ public class User {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // when we retrieve user, we retrieve all associated roles
-//    @JoinTable(
-//            name= "user_workout",
-//            joinColumns = @JoinColumn(
-//                    name = "user_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(
-//                    name ="workout_id", referencedColumnName = "id"
-//            )
-//    )    private Set<Workout> workouts;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // when we retrieve user, we retrieve all associated roles
+    @JoinTable(
+            name= "user_role",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name ="role_id", referencedColumnName = "id"
+            )
+    )
+    private Collection<Role> roles;
 
     public User() {
     }
 
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
     public User(String firstName, String lastName, String streetAddress, String apartment, String city,
                 String state, Integer zipCode, String phone1, String phone2, String email, String password,
-                Float height, Date dateOfBirth) {
+                Float height, Date dateOfBirth, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -65,7 +76,7 @@ public class User {
         this.password = password;
         this.height = height;
         this.dateOfBirth = dateOfBirth;
-//        this.workouts = workouts;
+        this.roles = roles;
     }
 
     public Integer getZipCode() {
@@ -124,13 +135,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-//    public Set<Workout> getWorkouts() {
-//        return workouts;
-//    }
-//
-//    public void setWorkouts(Set<Workout> workouts) {
-//        this.workouts = workouts;
-//    }
+
 
     public String getStreetAddress() {
         return streetAddress;
