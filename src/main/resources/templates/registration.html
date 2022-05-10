@@ -8,16 +8,9 @@
 </head>
 <body>
 
-<!--Create NavBar-->
+<!--Insert NavBar Fragment-->
 
-<nav class="bg-red-600 h-10">
-<div class="">
-    <div class="flex justify-evenly items-center ">
-        <a class="text-white" href="#" th:href="@{/}">Home</a>
-        <a class="text-white" href="#" th:href="@{/login}">Login</a>
-    </div>
-</div>
-</nav>
+<div th:insert="fragments/navbar :: navbar"></div>
 
 
 <!--Create Registration Form-->
