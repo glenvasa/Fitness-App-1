@@ -9,5 +9,6 @@ public interface UserService extends UserDetailsService { // UserDetailsService 
     // protect User credentials
 
     User save(UserRegistrationDto registrationDto);
+    User loadUserByEmail(String email);
 
 }
