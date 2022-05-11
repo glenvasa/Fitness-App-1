@@ -22,20 +22,21 @@ public class User {
 
     @Column(name = "street_address")
     private String streetAddress;
-    private String apartment;
+
     private String city;
     private String state;
 
     @Column(name = "zip_code")
-    private Integer zipCode;
+    private String zipCode;
     private String phone1;
     private String phone2;
     private String email;
     private String password;
     private Float height;
+    private Float weight;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // when we retrieve user, we retrieve all associated roles
@@ -52,6 +53,26 @@ public class User {
     public User() {
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode=" + zipCode +
+                ", phone1='" + phone1 + '\'' +
+                ", phone2='" + phone2 + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", height=" + height +
+                ", dateOfBirth=" + dateOfBirth +
+                ", roles=" + roles +
+                '}';
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -60,13 +81,12 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String firstName, String lastName, String streetAddress, String apartment, String city,
-                String state, Integer zipCode, String phone1, String phone2, String email, String password,
-                Float height, Date dateOfBirth, Collection<Role> roles) {
+    public User(String firstName, String lastName, String streetAddress, String city,
+                String state, String zipCode, String phone1, String phone2, String email, String password,
+                Float height, Float weight, String dateOfBirth, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
-        this.apartment = apartment;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
@@ -75,15 +95,16 @@ public class User {
         this.email = email;
         this.password = password;
         this.height = height;
+        this.weight = weight;
         this.dateOfBirth = dateOfBirth;
         this.roles = roles;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -119,6 +140,14 @@ public class User {
         this.password = password;
     }
 
+    public Float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
+    }
+
     public Float getHeight() {
         return height;
     }
@@ -127,11 +156,11 @@ public class User {
         this.height = height;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -143,14 +172,6 @@ public class User {
 
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
-    }
-
-    public String getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
     }
 
     public String getCity() {
