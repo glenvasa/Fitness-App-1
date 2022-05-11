@@ -8,46 +8,40 @@
 </head>
 <body>
 <div th:insert="fragments/navbar :: navbar"></div>
-<div class="grid place-items-center h-screen">
+<div class="grid place-items-center">
     <div class = "">
         <div class = "">
 
-            <h1> User Login Page </h1>
-            <form th:action="@{/login}" method="post">
-
-                <!-- error message -->
+                <!-- login error message -->
                 <div th:if="${param.error}">
-                    <div class="alert alert-danger">Invalid username or
+                    <div class="mb-5 text-red-600 text-center">Invalid username or
                         password.</div>
                 </div>
 
                 <!-- logout message -->
                 <div th:if="${param.logout}">
-                    <div class="alert alert-info">You have been logged out.</div>
+                    <div class="text-center">You have been logged out.</div>
                 </div>
 
-                <div class = "">
-                    <label for ="username"> Username </label> :
-                    <input type="text" class = "" id ="username" name = "username" placeholder="Enter Email ID" autofocus="autofocus">
-                </div>
+                <h1 class="font-sans mt-40 text-center text-lg"> User Login Page </h1>
 
-                <div class="">
+
+                <div class="grid place-items-center mt-20 text-center border-2 border-black p-3 rounded-md">
+                    <form th:action="@{/login}" method="post" >
+                    <label for ="username"> Username</label>:
+                    <input type="text" class = "mb-3 outline-none" id ="username" name = "username" placeholder="Enter Email" autofocus="autofocus"><br/>
                     <label for="password">Password</label>:
-                    <input type="password" id="password" name="password" class="" placeholder="Enter Password" />
+                    <input type="password" id="password" name="password" class="mb-3 outline-none" placeholder="Enter Password" /><br>
+                        <button type="submit" name="login-submit" id="login-submit" class="border-2 border-blue-500 rounded-md px-2 m-3 hover:text-blue-500 hover:border-black">
+                                LOGIN
+                            </button>
+                    </form>
                 </div>
 
-                <div class="">
-                    <div class="">
-                        <div class="">
-                            <input type="submit" name="login-submit" id="login-submit"
-                                   class="" value="Log In" />
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="">
-						<span>New user? <a href="/" th:href="@{/registration}">Register
-								here</a></span>
+            <div class="text-center mt-4">
+                <span class="mr-1">New user? </span>
+                <a href="/" th:href="@{/registration}" class="text-white bg-[#800000] rounded-md px-2 py-1">Register here</a>
+
             </div>
         </div>
     </div>
