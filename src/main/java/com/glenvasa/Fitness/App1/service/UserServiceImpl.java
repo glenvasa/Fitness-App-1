@@ -30,12 +30,18 @@ public class UserServiceImpl implements UserService{
     public User save(UserRegistrationDto registrationDto) {
         // need to implement BCryptPasswordEncoder later
         User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-                registrationDto.getStreetAddress(), registrationDto.getApartment(), registrationDto.getCity(),
+                registrationDto.getStreetAddress(), registrationDto.getCity(),
                 registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
                 registrationDto.getPhone2(), registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
-                registrationDto.getHeight(), registrationDto.getDateOfBirth(), Arrays.asList(new Role("ROLE_USER")));
+                registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(), Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
+
+    @Override
+    public User loadUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
 
     @Override
     // abstract method in UserDetailsService that must be overridden
