@@ -12,18 +12,24 @@
 
 <div th:insert="fragments/navbar :: navbar"></div>
 
+<!-- success message -->
+<div th:if="${param.success}">
+    <div class="grid place-items-center">
+        <p>
+            You've successfully registered!
+        </p>
+        <h1>Register</h1>
+    </div>
+</div>
+
 
 <!--Create Registration Form-->
 <div class="grid place-items-center h-screen">
-        <div class="">
-            <div class="">
+    <div class="border-2 border-black p-3 rounded-md">
 
-                <!-- success message -->
-                <div th:if="${param.success}">
-                    <div class="">You've successfully registered!</div>
-                </div>
 
-                <h1>Register</h1>
+
+
 
                 <form th:action="@{/registration}" method="post" th:object="${user}">
                     <div class="">
@@ -49,6 +55,57 @@
                             id="password" class="" type="password"
                             th:field="*{password}" required autofocus="autofocus" />
                     </div>
+                    <div class="">
+                        <label class="" for="street_address">Street Address</label> <input
+                            id="street_address" class="" type="text"
+                            th:field="*{streetAddress}" required autofocus="autofocus" />
+                    </div>
+
+                    <div class="">
+                        <label class="" for="city">City</label> <input
+                            id="city" class="" type="text"
+                            th:field="*{city}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="state">State</label> <input
+                            id="state" class="" type="text"
+                            th:field="*{state}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="zip_code">Zip Code</label> <input
+                            id="zip_code" class="" type="text"
+                            th:field="*{zipCode}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="phone1">Phone 1</label> <input
+                            id="phone1" class="" type="text"
+                            th:field="*{phone1}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="phone2">Phone 2</label> <input
+                            id="phone2" class="" type="text"
+                            th:field="*{phone2}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="dateOfBirth">Date of Birth</label> <input
+                            id="dateOfBirth" class="" type="text"
+                            th:field="*{dateOfBirth}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="height">Height</label> <input
+                            id="height" class="" type="text"
+                            th:field="*{height}" required autofocus="autofocus" />
+                    </div>
+                    <div class="">
+                        <label class="" for="weight">Weight</label> <input
+                            id="weight" class="" type="text"
+                            th:field="*{weight}" required autofocus="autofocus" />
+                    </div>
+
+
+
+
+
 
                     <div class="">
                         <button type="submit" class="">Register</button>
@@ -56,8 +113,9 @@
 								here</a></span>
                     </div>
                 </form>
-            </div>
-        </div>
+
+
+
     </div>
 
 </div>
