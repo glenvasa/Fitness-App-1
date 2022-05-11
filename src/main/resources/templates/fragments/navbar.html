@@ -5,12 +5,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<nav th:fragment="navbar" class="bg-red-600 h-10">
-    <div class="">
-        <div class="flex justify-evenly items-center ">
-            <a class="text-white" href="#" th:href="@{/}">Home</a>
-            <a class="text-white" href="#" th:href="@{/login}">Login</a>
-            <span sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></span>
+<nav th:fragment="navbar">
+    <div class="bg-blue-800 h-14">
+        <div class="flex justify-evenly items-center h-full">
+            <a class="text-white hover:scale-[1.2] transition ease-in-out" href="#" th:href="@{/}">Home</a>
+            <a class="text-white hover:scale-[1.2] transition ease-in-out" href="#" th:href="@{/login}">Login</a>
+            <a sec:authorize="isAuthenticated()" class="text-white hover:scale-[1.2] transition ease-in-out" href="#" th:href="@{/user/profile}">Profile</a>
+            <a sec:authorize="isAuthenticated()" class="text-white hover:scale-[1.2] transition ease-in-out hover:cursor:pointer" th:href="@{/logout}">Logout</a>
         </div>
     </div>
 </nav>
