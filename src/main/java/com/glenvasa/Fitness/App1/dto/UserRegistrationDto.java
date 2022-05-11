@@ -10,28 +10,30 @@ public class UserRegistrationDto {
         private String firstName;
         private String lastName;
         private String streetAddress;
-        private String apartment;
+
         private String city;
         private String state;
-        private Integer zipCode;
+        private String zipCode;
         private String phone1;
         private String phone2;
         private String email;
         private String password;
         private Float height;
-        private Date dateOfBirth;
+        private Float weight;
+        private String dateOfBirth;
 
 
         public UserRegistrationDto() {
         }
 
-        public UserRegistrationDto(String firstName, String lastName, String streetAddress, String apartment, String city,
-                    String state, Integer zipCode, String phone1, String phone2, String email, String password,
-                    Float height, Date dateOfBirth) {
+
+    public UserRegistrationDto(String firstName, String lastName, String streetAddress, String city,
+                               String state, String zipCode, String phone1, String phone2, String email, String password,
+                               Float height, Float weight, String dateOfBirth) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.streetAddress = streetAddress;
-            this.apartment = apartment;
+
             this.city = city;
             this.state = state;
             this.zipCode = zipCode;
@@ -40,15 +42,16 @@ public class UserRegistrationDto {
             this.email = email;
             this.password = password;
             this.height = height;
+            this.weight = weight;
             this.dateOfBirth = dateOfBirth;
 
         }
 
-        public Integer getZipCode() {
+        public String getZipCode() {
             return zipCode;
         }
 
-        public void setZipCode(Integer zipCode) {
+        public void setZipCode(String zipCode) {
             this.zipCode = zipCode;
         }
 
@@ -92,11 +95,11 @@ public class UserRegistrationDto {
             this.height = height;
         }
 
-        public Date getDateOfBirth() {
+        public String getDateOfBirth() {
             return dateOfBirth;
         }
 
-        public void setDateOfBirth(Date dateOfBirth) {
+        public void setDateOfBirth(String dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
         }
 
@@ -109,13 +112,6 @@ public class UserRegistrationDto {
             this.streetAddress = streetAddress;
         }
 
-        public String getApartment() {
-            return apartment;
-        }
-
-        public void setApartment(String apartment) {
-            this.apartment = apartment;
-        }
 
         public String getCity() {
             return city;
@@ -149,5 +145,14 @@ public class UserRegistrationDto {
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
+
+    public Float getWeight() {
+        return weight;
     }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
+    }
+
+}
 
