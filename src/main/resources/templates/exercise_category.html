@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Registration Page</title>
+</head>
+<body>
+
+<!--Insert NavBar Fragment-->
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- success message -->
+<div th:if="${param.success}">
+  <div class="grid place-items-center">
+    <p>
+      You've successfully added an Exercise Category!
+    </p>
+  </div>
+</div>
+<h1 class="grid place-items-center mt-5 mb-5">Exercise Categories</h1>
+
+<!-- Show Exercise Categories-->
+<div class="grid place-content-center">
+  <div th:each="category : ${categories}" class="border-2 border-black p-5 rounded-md mb-5 mt-5 text-center w-72">
+<!--  <div th:if="${param.list}">-->
+<!--      <div th:each="category : ${categories}" class="mb-5 mt-5 text-center w-72">-->
+        <p th:text="${category.name}" class="text-purple-800"></p>
+        <div th:text="${category.description}" class="text-black"></div>
+<!--          <h3 class="text-purple-800">Cardiovascular</h3>-->
+<!--        <div class="">-->
+<!--          Cardio exercise, which is sometimes referred to as aerobic exercise, is any rhythmic activity that raises your heart-->
+<!--          rate into your target heart rate zone. This is the zone where you burn the most fat and calories.</div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--  <a href="/" th:href="@{/exercise/category?list}" class="text-white bg-purple-800 border-black rounded-md px-2 py-1.5">Show Categories</a>-->
+<!--    </div>-->
+</div>
+  </div>
+<!--  Add Category Form -->
+<div class="grid place-items-center">
+  <div class="border-2 border-black p-5 rounded-md mt-10">
+    <form th:action="@{/exercise/category}" method="post" th:object="${category}">
+      <h1 class="font-sans text-center text-lg mb-3">Add Exercise Category</h1>
+      <div class="">
+        <label class="" for="name">Category Name</label>:
+        <input id="name" class="mb-3 outline-none" th:field="*{name}"
+               required autofocus="autofocus" />
+      </div>
+      <div class="">
+        <label class="" for="description">Description</label>:
+        <input id="description" class="mb-3 outline-none" th:field="*{description}"
+               required autofocus="autofocus" />
+      </div>
+
+      <div class="text-center mt-5">
+        <button type="submit" class="text-white bg-purple-800 rounded-md px-2 py-1.5">Add Category</button>
+<!--        <div class="mt-3">-->
+<!--          <span class="mr-3">Already registered?</span>-->
+<!--          <a href="/" th:href="@{/login}" class="text-white bg-blue-500 rounded-md px-2 py-1">LOGIN-->
+<!--          </a></div>-->
+      </div>
+    </form>
+
+
+
+  </div>
+
+
+
+<!--Create Footer-->
+
+</body>
+</html>
