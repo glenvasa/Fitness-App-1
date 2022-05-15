@@ -10,7 +10,7 @@
 
 <!--Insert NavBar Fragment-->
 
-<div th:insert="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
 <div th:if="${param.success}">
@@ -18,99 +18,88 @@
         <p>
             You've successfully registered!
         </p>
-        <h1>Register</h1>
     </div>
 </div>
 
 
 <!--Create Registration Form-->
-<div class="grid place-items-center h-screen">
-    <div class="border-2 border-black p-3 rounded-md">
+<div class="grid place-content-center h-screen">
 
-
-
-
-
+    <div class="border-2 border-black p-5 rounded-md">
                 <form th:action="@{/registration}" method="post" th:object="${user}">
+                        <h1 class="font-sans text-center text-lg mb-3">Register</h1>
                     <div class="">
-                        <label class="" for="firstName"> First Name </label>
-                        <input id="firstName" class="" th:field="*{firstName}"
+                        <label class="" for="firstName">First Name</label>:
+                        <input id="firstName" class="mb-3 outline-none" th:field="*{firstName}"
                                required autofocus="autofocus" />
                     </div>
-
                     <div class="">
-                        <label class="" for="lastName"> Last Name </label> <input
-                            id="lastName" class="" th:field="*{lastName}"
+                        <label class="" for="lastName"> Last Name</label>:
+                        <input id="lastName" class="mb-3 outline-none" th:field="*{lastName}"
                             required autofocus="autofocus" />
                     </div>
-
                     <div class="">
-                        <label class="" for="email"> Email </label> <input
-                            id="email" class="" th:field="*{email}" required
+                        <label class="" for="email"> Email </label>:
+                        <input id="email" class="mb-3 outline-none" th:field="*{email}" required
                             autofocus="autofocus" />
                     </div>
-
                     <div class="">
-                        <label class="" for="password"> Password </label> <input
-                            id="password" class="" type="password"
+                        <label class="" for="password"> Password </label>:
+                        <input id="password" class="mb-3 outline-none" type="password"
                             th:field="*{password}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="street_address">Street Address</label> <input
-                            id="street_address" class="" type="text"
+                        <label class="" for="street_address">Street Address</label>:
+                        <input id="street_address" class="mb-3 outline-none" type="text"
                             th:field="*{streetAddress}" required autofocus="autofocus" />
                     </div>
 
                     <div class="">
-                        <label class="" for="city">City</label> <input
-                            id="city" class="" type="text"
+                        <label class="" for="city">City</label>:
+                        <input id="city" class="mb-3 outline-none" type="text"
                             th:field="*{city}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="state">State</label> <input
-                            id="state" class="" type="text"
+                        <label class="" for="state">State</label>:
+                        <input id="state" class="mb-3 outline-none" type="text"
                             th:field="*{state}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="zip_code">Zip Code</label> <input
-                            id="zip_code" class="" type="text"
+                        <label class="" for="zip_code">Zip Code</label>:
+                        <input id="zip_code" class="mb-3 outline-none" type="text"
                             th:field="*{zipCode}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="phone1">Phone 1</label> <input
-                            id="phone1" class="" type="text"
+                        <label class="" for="phone1">Phone 1</label>:
+                        <input id="phone1" class="mb-3 outline-none" type="text"
                             th:field="*{phone1}" required autofocus="autofocus" />
                     </div>
+<!--                    <div class="">-->
+<!--                        <label class="" for="phone2">Phone 2</label>:-->
+<!--                        <input id="phone2" class="mb-3 outline-none" type="text"-->
+<!--                            th:field="*{phone2}" required autofocus="autofocus" />-->
+<!--                    </div>-->
                     <div class="">
-                        <label class="" for="phone2">Phone 2</label> <input
-                            id="phone2" class="" type="text"
-                            th:field="*{phone2}" required autofocus="autofocus" />
-                    </div>
-                    <div class="">
-                        <label class="" for="dateOfBirth">Date of Birth</label> <input
-                            id="dateOfBirth" class="" type="text"
+                        <label class="" for="dateOfBirth">Date of Birth</label>:
+                        <input id="dateOfBirth" class="mb-3 outline-none" type="text"
                             th:field="*{dateOfBirth}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="height">Height</label> <input
-                            id="height" class="" type="text"
+                        <label class="" for="height">Height</label>:
+                        <input id="height" class="mb-3 outline-none" type="text"
                             th:field="*{height}" required autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="weight">Weight</label> <input
-                            id="weight" class="" type="text"
+                        <label class="" for="weight">Weight</label>:
+                        <input id="weight" class="mb-3 outline-none" type="text"
                             th:field="*{weight}" required autofocus="autofocus" />
                     </div>
-
-
-
-
-
-
-                    <div class="">
-                        <button type="submit" class="">Register</button>
-                        <span>Already registered? <a href="/" th:href="@{/login}">Login
-								here</a></span>
+                    <div class="text-center mt-5">
+                        <button type="submit" class="text-white bg-[#800000] rounded-md px-2 py-1">REGISTER</button>
+                        <div class="mt-3">
+                            <span class="mr-3">Already registered?</span>
+                            <a href="/" th:href="@{/login}" class="text-white bg-blue-500 rounded-md px-2 py-1">LOGIN
+								</a></div>
                     </div>
                 </form>
 
