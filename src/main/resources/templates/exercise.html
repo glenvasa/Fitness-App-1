@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Exercise</title>
+</head>
+<body>
+
+<!--Insert NavBar Fragment-->
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- success message -->
+<div th:if="${param.success}">
+  <div class="grid place-items-center">
+    <p>
+      You've successfully added an Exercise!
+    </p>
+  </div>
+</div>
+<h1 class="grid place-items-center mt-5 mb-5">Exercises</h1>
+
+<!-- Show Exercises-->
+<div class="grid place-items-center">
+  <div class="grid grid-cols-4">
+    <div th:each="exercise : ${exercises}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+      <!--  <div th:if="${param.list}">-->
+
+      <p th:text="${exercise.name}" class="text-green-800 font-semibold text-lg"></p>
+      <div th:text="${exercise.description}" class="text-black"></div>
+      <!--          <p class="text-purple-800">Cardiovascular</p>-->
+      <!--        <div class="">-->
+      <!--          Cardio exercise, which is sometimes referred to as aerobic exercise, is any rhythmic activity that raises your heart-->
+      <!--          rate into your target heart rate zone. This is the zone where you burn the most fat and calories.</div>-->
+
+      <!--  </div>-->
+      <!--  <a href="/" th:href="@{/exercise/category?list}" class="text-white bg-purple-800 border-black rounded-md px-2 py-1.5">Show Categories</a>-->
+      <!--    </div>-->
+    </div>
+  </div>
+
+</div>
+
+
+<!--  Add Category Form -->
+<div class="grid place-items-center">
+  <div class="border-2 border-black p-5 rounded-md mt-5">
+    <form th:action="@{/exercise}" method="post" th:object="${exercise}">
+      <h1 class="font-sans text-center text-lg mb-3">Add Exercise</h1>
+      <div class="">
+        <label class="" for="name">Exercise Name</label>:
+        <input id="name" class="mb-3 outline-none" th:field="*{name}"
+               required autofocus="autofocus" />
+      </div>
+      <div class="">
+        <label class="" for="description">Description</label>:
+        <input id="description" class="mb-3 outline-none" th:field="*{description}"
+               required autofocus="autofocus" />
+      </div>
+      <div class="">
+        <label class="" for="exerciseCategory">Category</label>:
+        <select class="exerciseCategory" id="exerciseCategory">
+          <option value="0"></option>
+          <option th:each="category : ${categories}" th:value="${category.getName()}" th:text="${category.getName()}"></option>
+        </select>
+<!--        <input id="exerciseCategory" class="mb-3 outline-none" th:field="*{exerciseCategory}"-->
+<!--               required autofocus="autofocus" />-->
+      </div>
+
+      <div class="text-center mt-5">
+        <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Exercise</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Create Footer-->
+
+</body>
+</html>
