@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-<div th:insert="fragments/navbar :: navbar"></div>
+<div th:replace="fragments/navbar :: navbar"></div>
 <div class="grid place-items-center">
     <div class = "">
         <div class = "">
@@ -23,7 +23,7 @@
                     <div class="text-center">You have been logged out.</div>
                 </div>
 
-                <h1 class="font-sans mt-40 text-center text-lg"> User Login Page </h1>
+                <h1 class="font-sans mt-40 text-center text-lg text-underline">Login Page </h1>
 
 
                 <div class="grid place-items-center mt-20 text-center border-2 border-black p-3 rounded-md">
@@ -32,7 +32,7 @@
                     <input type="text" class = "mb-3 outline-none" id ="username" name = "username" placeholder="Enter Email" autofocus="autofocus"><br/>
                     <label for="password">Password</label>:
                     <input type="password" id="password" name="password" class="mb-3 outline-none" placeholder="Enter Password" /><br>
-                        <button type="submit" name="login-submit" id="login-submit" class="border-2 border-blue-500 rounded-md px-2 m-3 hover:text-blue-500 hover:border-black">
+                        <button type="submit" name="login-submit" id="login-submit" class="bg-blue-500 border-black text-white rounded-md h-8 px-2 m-3 hover:text-blue-500 hover:bg-white">
                                 LOGIN
                             </button>
                     </form>
@@ -40,7 +40,7 @@
 
             <div class="text-center mt-4">
                 <span class="mr-1">New user? </span>
-                <a href="/" th:href="@{/registration}" class="text-white bg-[#800000] rounded-md px-2 py-1">Register here</a>
+                <a href="/" th:href="@{/registration}" class="text-white bg-[#800000] border-black rounded-md px-2 py-1.5">REGISTER</a>
 
             </div>
         </div>
