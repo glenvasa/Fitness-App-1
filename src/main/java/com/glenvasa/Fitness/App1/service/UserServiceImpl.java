@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
-        // need to implement BCryptPasswordEncoder later
+
         User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
                 registrationDto.getStreetAddress(), registrationDto.getCity(),
                 registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
