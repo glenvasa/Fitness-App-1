@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExerciseCategoryRepository extends JpaRepository<ExerciseCategory, Long>{
 
-
+    ExerciseCategory findByName(String s);
 }
