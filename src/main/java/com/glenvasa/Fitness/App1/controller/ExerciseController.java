@@ -1,12 +1,11 @@
 package com.glenvasa.Fitness.App1.controller;
 
 
-import com.glenvasa.Fitness.App1.dto.ExerciseCategoryDto;
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.model.Exercise;
 import com.glenvasa.Fitness.App1.model.ExerciseCategory;
 import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
-import com.glenvasa.Fitness.App1.service.ExerciseCategoryService;
+import com.glenvasa.Fitness.App1.repository.ExerciseRepository;
 import com.glenvasa.Fitness.App1.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +21,20 @@ import java.util.List;
 @RequestMapping("/exercise")
 public class ExerciseController {
 
+    @Autowired
     private final ExerciseService exerciseService;
+
     private final ExerciseCategoryRepository exerciseCategoryRepository;
+    private final ExerciseRepository exerciseRepository;
+    List<ExerciseCategory> exerciseCategoryList;
+
+
 
     @Autowired
-    public ExerciseController(ExerciseService exerciseService, ExerciseCategoryRepository exerciseCategoryRepository) {
+    public ExerciseController(ExerciseService exerciseService, ExerciseCategoryRepository exerciseCategoryRepository, ExerciseRepository exerciseRepository) {
         this.exerciseService = exerciseService;
         this.exerciseCategoryRepository = exerciseCategoryRepository;
+        this.exerciseRepository = exerciseRepository;
     }
 
     @GetMapping()
@@ -38,14 +44,17 @@ public class ExerciseController {
         List<Exercise> exerciseList =  exerciseService.loadExercises();
         model.addAttribute("exercises", exerciseList);
 
-        List<ExerciseCategory> exerciseCategoryList = exerciseCategoryRepository.findAll();
+        exerciseCategoryList = exerciseCategoryRepository.findAll();
         model.addAttribute("categories", exerciseCategoryList);
+
         return "exercise";
     }
 
     @PostMapping
     public String saveExercise(@ModelAttribute("exercise") ExerciseDto exerciseDto){
-        System.out.println(exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
+//        System.out.println("Ex Controller" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
+//          System.out.println(exerciseDto.getExerciseCategory());
+
         exerciseService.save(exerciseDto);
         return "redirect:/exercise?success";
     }
