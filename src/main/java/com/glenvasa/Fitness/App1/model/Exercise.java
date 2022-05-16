@@ -1,20 +1,26 @@
 package com.glenvasa.Fitness.App1.model;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "exercise")
+@ToString
 public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name", length = 50)
     private String name;
+
+    @Column(name = "description", length = 50)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "exerciseCategory_id")
+    @ManyToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name = "exerciseCategory_id")
     private ExerciseCategory exerciseCategory;
 
     public Exercise() {
