@@ -61,9 +61,9 @@
       </div>
       <div class="">
         <label class="" for="exerciseCategory">Category</label>:
-        <select class="exerciseCategory" id="exerciseCategory">
+        <select th:field="*{exerciseCategory}" id="exerciseCategory">
           <option value="0"></option>
-          <option th:each="category : ${categories}" th:value="${category.getName()}" th:text="${category.getName()}"></option>
+          <option th:each="exerciseCategory : ${categories}" th:value="${exerciseCategory.getName()}" th:text="${exerciseCategory.getName()}"></option>
         </select>
 <!--        <input id="exerciseCategory" class="mb-3 outline-none" th:field="*{exerciseCategory}"-->
 <!--               required autofocus="autofocus" />-->
