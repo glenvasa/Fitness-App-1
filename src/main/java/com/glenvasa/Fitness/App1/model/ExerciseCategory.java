@@ -1,9 +1,12 @@
 package com.glenvasa.Fitness.App1.model;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "exerciseCategory")
+@ToString
 public class ExerciseCategory {
 
     @Id
@@ -12,6 +15,9 @@ public class ExerciseCategory {
 
     private String name;
     private String description;
+
+//    @OneToOne(cascade=CascadeType.ALL)
+//    private Exercise exercise;
 
     public ExerciseCategory() {
     }
