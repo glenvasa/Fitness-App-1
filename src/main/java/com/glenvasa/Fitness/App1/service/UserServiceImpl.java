@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
         User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
                 registrationDto.getStreetAddress(), registrationDto.getCity(),
                 registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
-                registrationDto.getPhone2(), registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
+                registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
                 registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(), Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
