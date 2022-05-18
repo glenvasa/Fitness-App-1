@@ -1,8 +1,11 @@
 package com.glenvasa.Fitness.App1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "exerciseCategory")
@@ -18,13 +21,17 @@ public class ExerciseCategory {
 
 //    @OneToOne(cascade=CascadeType.ALL)
 //    private Exercise exercise;
+    @JsonIgnore
+    @OneToMany(mappedBy = "exerciseCategory")
+    private Set<Exercise> exercises = new HashSet<>();
 
     public ExerciseCategory() {
     }
 
-    public ExerciseCategory(String name, String description) {
+    public ExerciseCategory(String name, String description, Set<Exercise> exercises) {
         this.name = name;
         this.description = description;
+        this.exercises = exercises;
     }
 
     public Long getId() {
@@ -49,5 +56,13 @@ public class ExerciseCategory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(Set<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }
