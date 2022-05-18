@@ -1,6 +1,7 @@
 package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.ExerciseCategoryDto;
+import com.glenvasa.Fitness.App1.model.Exercise;
 import com.glenvasa.Fitness.App1.model.ExerciseCategory;
 import com.glenvasa.Fitness.App1.model.Role;
 import com.glenvasa.Fitness.App1.model.User;
@@ -10,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ExerciseCategoryServiceImpl implements ExerciseCategoryService{
@@ -25,7 +28,7 @@ public class ExerciseCategoryServiceImpl implements ExerciseCategoryService{
 
     @Override
     public ExerciseCategory save(ExerciseCategoryDto categoryDto) {
-        ExerciseCategory exerciseCategory = new ExerciseCategory(categoryDto.getName(), categoryDto.getDescription());
+        ExerciseCategory exerciseCategory = new ExerciseCategory(categoryDto.getName(), categoryDto.getDescription(), new HashSet<Exercise>());
         return categoryRepository.save(exerciseCategory);
     }
 
