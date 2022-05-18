@@ -19,22 +19,22 @@ public class Exercise {
     @Column(name = "description", length = 50)
     private String description;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+//    @ManyToOne(cascade=CascadeType.ALL)
 //    @JoinColumn(name = "exerciseCategory_id")
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="exerciseCategory_id", referencedColumnName = "id")
     private ExerciseCategory exerciseCategory;
 
     public Exercise() {
     }
 
-    public Exercise(Long id, String name, String description, ExerciseCategory exerciseCategory) {
-        this.id = id;
+    public Exercise(String name, String description, ExerciseCategory exerciseCategory) {
         this.name = name;
         this.description = description;
         this.exerciseCategory = exerciseCategory;
     }
 
-    public Exercise(String name, String description, ExerciseCategory exerciseCategory) {
-    }
 
     public Long getId() {
         return id;
