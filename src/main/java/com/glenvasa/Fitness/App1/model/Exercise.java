@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "exercise")
-@ToString
 public class Exercise {
 
     @Id
