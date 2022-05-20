@@ -28,6 +28,10 @@ public class Workout {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name= "workout_exercise",
+            // Add workout_exercise_id???????
+//            @Id
+//            @GeneratedValue(strategy = GenerationType.IDENTITY)
+//            private Long id;
             joinColumns = @JoinColumn(
                     name = "workout_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
