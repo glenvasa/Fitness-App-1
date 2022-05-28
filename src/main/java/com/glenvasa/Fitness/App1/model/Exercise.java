@@ -1,8 +1,11 @@
 package com.glenvasa.Fitness.App1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "exercise")
@@ -25,13 +28,26 @@ public class Exercise {
     @JoinColumn(name="exerciseCategory_id", referencedColumnName = "id")
     private ExerciseCategory exerciseCategory;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "exercise")
+    private Set<Sets> sets = new HashSet<>();
+
     public Exercise() {
     }
 
-    public Exercise(String name, String description, ExerciseCategory exerciseCategory) {
+    public Set<Sets> getSets() {
+        return sets;
+    }
+
+    public void setSets(Set<Sets> sets) {
+        this.sets = sets;
+    }
+
+    public Exercise(String name, String description, ExerciseCategory exerciseCategory, Set<Sets> sets) {
         this.name = name;
         this.description = description;
         this.exerciseCategory = exerciseCategory;
+        this.sets = sets;
     }
 
 
