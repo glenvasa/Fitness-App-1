@@ -3,12 +3,15 @@ package com.glenvasa.Fitness.App1.service;
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.model.Exercise;
 import com.glenvasa.Fitness.App1.model.ExerciseCategory;
+import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -29,7 +32,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 //        System.out.println("Ex Serv Impl" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
           ExerciseCategory category = exerciseCategoryRepository.findByName(exerciseDto.getExerciseCategory());
          System.out.println(category.toString()); // this Correctly prints Category object
-          Exercise exercise = new Exercise(exerciseDto.getName(), exerciseDto.getDescription(), category);
+          Exercise exercise = new Exercise(exerciseDto.getName(), exerciseDto.getDescription(), category, new HashSet<Sets>());
 //        Exercise exercise = new Exercise("Bicep curls", "Workout with dumbbells", new ExerciseCategory("arm exercises", "biceps, triceps, etc."));
         System.out.println(exerciseDto.getName() + exerciseDto.getDescription() + category); // THIs correctly prints the name, description and category
           System.out.println(exercise.toString());// BUT this shows all fields in Exercise object as Null
