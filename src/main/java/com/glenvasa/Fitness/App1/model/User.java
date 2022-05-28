@@ -61,9 +61,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Workout> workout = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Meal> meal = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<HealthProfile> healthProfiles = new HashSet<>();
+
    public User(String firstName, String lastName, String streetAddress, String city,
                 String state, String zipCode, String phone1, String email, String password,
-                Float height, Float weight, String dateOfBirth, Collection<Role> roles, Set<Workout> workout) {
+                Float height, Float weight, String dateOfBirth, Collection<Role> roles, Set<Workout> workout,
+                Set<Meal> meal, Set<HealthProfile> healthProfiles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -78,6 +87,8 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.roles = roles;
         this.workout = workout;
+        this.meal = meal;
+        this.healthProfiles = healthProfiles;
     }
 
 
