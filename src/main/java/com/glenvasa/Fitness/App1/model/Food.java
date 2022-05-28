@@ -1,11 +1,14 @@
 package com.glenvasa.Fitness.App1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "food")
@@ -18,19 +21,25 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    String name;
-    Float servingSize;
-    Integer calories;
-    Float fat;
-    Float carbs;
-    Float protein;
+    private String name;
+    private Float servingSize;
+    private Integer calories;
+    private Float fat;
+    private Float carbs;
+    private Float protein;
 
-    public Food(String name, Float servingSize, Integer calories, Float fat, Float carbs, Float protein) {
+    @JsonIgnore
+    @OneToMany(mappedBy = "food")
+    private Set<Servings> servings = new HashSet<>();
+
+    public Food(String name, Float servingSize, Integer calories, Float fat, Float carbs, Float protein,
+                Set<Servings> servings) {
         this.name = name;
         this.servingSize = servingSize;
         this.calories = calories;
         this.fat = fat;
         this.carbs = carbs;
         this.protein = protein;
+        this.servings = servings;
     }
 }
