@@ -1,11 +1,20 @@
 package com.glenvasa.Fitness.App1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "workout")
 public class Workout {
 
@@ -21,82 +30,25 @@ public class Workout {
 
     private LocalTime duration;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name= "workout_exercise",
-            // Add workout_exercise_id???????
-//            @Id
-//            @GeneratedValue(strategy = GenerationType.IDENTITY)
-//            private Long id;
-            joinColumns = @JoinColumn(
-                    name = "workout_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name ="exercise_id", referencedColumnName = "id"
-            )
-    )
-    private Set<Exercise> exercises;
-
-    public Workout() {
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "workout")
+    private Set<Sets> sets = new HashSet<>();
 
 
-    public Workout(String workoutName, Date dateOfWorkout, LocalTime duration, User user, Set<Exercise> exercises) {
+    public Workout(String workoutName, Date dateOfWorkout, LocalTime duration, User user, Set<Sets> sets) {
         this.workoutName = workoutName;
         this.dateOfWorkout = dateOfWorkout;
         this.duration = duration;
         this.user = user;
-        this.exercises = exercises;
+        this.sets = sets;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getWorkoutName() {
-        return workoutName;
-    }
-
-    public void setWorkoutName(String workoutName) {
-        this.workoutName = workoutName;
-    }
-
-    public Date getDateOfWorkout() {
-        return dateOfWorkout;
-    }
-
-    public void setDateOfWorkout(Date dateOfWorkout) {
-        this.dateOfWorkout = dateOfWorkout;
-    }
-
-    public LocalTime getDuration() {
-        return duration;
-    }
-
-    public void setDuration(LocalTime duration) {
-        this.duration = duration;
-    }
-
-    public Set<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(Set<Exercise> exercises) {
-        this.exercises = exercises;
-    }
 
 }
