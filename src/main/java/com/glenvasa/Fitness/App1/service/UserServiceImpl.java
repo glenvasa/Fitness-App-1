@@ -3,6 +3,7 @@ package com.glenvasa.Fitness.App1.service;
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.Role;
 import com.glenvasa.Fitness.App1.model.User;
+import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService{
                 registrationDto.getStreetAddress(), registrationDto.getCity(),
                 registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
                 registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
-                registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(), Arrays.asList(new Role("ROLE_USER")));
+                registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(), Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>());
         return userRepository.save(user);
     }
 
