@@ -20,8 +20,20 @@ public class Sets {
         private Integer repetitions;
         private Float weight;
 
-        public Sets(Integer repetitions, Float weight){
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name="workout_id", referencedColumnName = "id")
+        private Workout workout;
+
+
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name="exercise_id", referencedColumnName = "id")
+        private Exercise exercise;
+
+
+        public Sets(Integer repetitions, Float weight, Exercise exercise, Workout workout){
                 this.repetitions = repetitions;
                 this.weight = weight;
+                this.exercise = exercise;
+                this.workout = workout;
         }
 }
