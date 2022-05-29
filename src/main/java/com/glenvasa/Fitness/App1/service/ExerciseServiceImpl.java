@@ -39,10 +39,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         return exerciseRepository.save(exercise);
     }
 
-//    @Override
-//    public Exercise save(ExerciseDto exerciseDto) {
-//        return null;
-//    }
+
 
     @Override
     public List<Exercise> loadExercises() {
