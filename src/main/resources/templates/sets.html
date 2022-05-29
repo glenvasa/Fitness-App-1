@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sets</title>
+</head>
+<body>
+
+<!--Insert NavBar Fragment-->
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- success message -->
+<div th:if="${param.success}">
+    <div class="grid place-items-center">
+        <p>
+            You've successfully added a Set!
+        </p>
+    </div>
+</div>
+<h1 class="grid place-items-center mt-5 mb-5">Sets</h1>
+
+<!-- Show Sets-->
+<div class="grid place-items-center">
+    <div class="grid grid-cols-4">
+        <div th:each="set : ${sets}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+            <p class="text-orange-800 font-semibold">Exercise</p>
+            <p th:text="${set.exercise.getName()}" class="text-black"></p>
+            <p class="text-orange-800 font-semibold">Repetitions</p>
+            <p th:text="${set.repetitions}" class="text-black"></p>
+            <p class="text-orange-800 font-semibold">Weight</p>
+            <div th:text="${set.weight}" class="text-black"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--  Add Set Form -->
+<div class="grid place-items-center">
+    <div class="border-2 border-black p-5 rounded-md mt-5">
+        <form th:action="@{/sets}" method="post" th:object="${set}">
+            <h1 class="font-sans text-center text-lg mb-3">Add Set</h1>
+            <div class="">
+                <label class="" for="repetitions">Repetitions</label>:
+                <input id="repetitions" class="mb-3 outline-none" th:field="*{repetitions}"
+                       required autofocus="autofocus" />
+            </div>
+            <div class="">
+                <label class="" for="weight">Weight</label>:
+                <input id="weight" class="mb-3 outline-none" th:field="*{weight}"
+                       required autofocus="autofocus" />
+            </div>
+            <div class="">
+                <label class="" for="exercise">Exercise</label>:
+                <select th:field="*{exercise}" id="exercise">
+                    <option value="0"></option>
+                    <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}"></option>
+                </select>
+            </div>
+
+            <div class="text-center mt-5">
+                <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Set</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--Create Footer-->
+
+</body>
