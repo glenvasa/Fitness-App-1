@@ -10,7 +10,7 @@
 <div>
     <div th:replace="fragments/navbar :: navbar"></div>
 </div>
-<div class="grid place-items-center mt-10">
+<div class="grid place-items-center mt-10 bg-gradient-to-r from-orange-500 via-green-400 to-red-500">
 <div class="">
     <h1 class="mb-10">User Profile for: <span sec:authentication="principal.username"></span></h1>
    <p>First name:  <span th:text="${user.firstName}"></span></p>
