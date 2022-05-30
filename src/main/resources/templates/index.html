@@ -12,6 +12,13 @@
 </div>
 <div class="grid place-items-center mt-20">
     <h1>Welcome <span sec:authentication="principal.username"></span></h1>
+<!--    create workout form/button-->
+    <form th:action="@{/workout/create}" method="post" th:object="${workout}" class="bg-white">
+        <h1 class="font-sans text-center text-lg mb-3">Click below to Create a Workout</h1>
+        <div class="text-center mt-5">
+            <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">New Workout</button>
+        </div>
+    </form>
 </div>
 
 </body>
