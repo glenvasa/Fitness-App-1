@@ -26,9 +26,12 @@ public class Workout {
     private String workoutName;
 
     @Column(name = "date_of_workout")
-    private Date dateOfWorkout;
+    // will change to Date type or DateTime to incorporate time of day as well
+    private String dateOfWorkout;
 
-    private LocalTime duration;
+    @Column(name = "duration")
+    // will change to Time type
+    private Float duration;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -39,7 +42,7 @@ public class Workout {
     private Set<Sets> sets = new HashSet<>();
 
 
-    public Workout(String workoutName, Date dateOfWorkout, LocalTime duration, User user, Set<Sets> sets) {
+    public Workout(String workoutName, String dateOfWorkout, Float duration, User user, Set<Sets> sets) {
         this.workoutName = workoutName;
         this.dateOfWorkout = dateOfWorkout;
         this.duration = duration;
@@ -47,8 +50,8 @@ public class Workout {
         this.sets = sets;
     }
 
-
-
-
+    public Workout(User user){
+        this.user = user;
+    }
 
 }
