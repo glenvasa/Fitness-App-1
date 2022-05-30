@@ -6,14 +6,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Exercise</title>
 </head>
-<body>
+<body class="bg-red-300">
 
 <!--Insert NavBar Fragment-->
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
-<div th:if="${param.success}">
+<div th:if="${param.success}" class="">
   <div class="grid place-items-center">
     <p>
       You've successfully added an Exercise!
@@ -25,7 +25,7 @@
 <!-- Show Exercises-->
 <div class="grid place-items-center">
   <div class="grid grid-cols-4">
-    <div th:each="exercise : ${exercises}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+    <div th:each="exercise : ${exercises}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
       <!--  <div th:if="${param.list}">-->
 
       <p th:text="${exercise.name}" class="text-green-800 font-semibold text-lg"></p>
@@ -40,7 +40,7 @@
 <!--  Add Exercise Form -->
 <div class="grid place-items-center">
   <div class="border-2 border-black p-5 rounded-md mt-5">
-    <form th:action="@{/exercise}" method="post" th:object="${exercise}">
+    <form th:action="@{/exercise}" method="post" th:object="${exercise}" class="bg-white">
       <h1 class="font-sans text-center text-lg mb-3">Add Exercise</h1>
       <div class="">
         <label class="" for="name">Exercise Name</label>:
