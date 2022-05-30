@@ -36,4 +36,13 @@ public class Sets {
                 this.exercise = exercise;
                 this.workout = workout;
         }
+
+        // constructor w/o Workout so that when a set is created it does not create a new
+        // workout; we want to create sets and then add them to an existing workout
+        public Sets(Integer repetitions, Float weight, Exercise exercise){
+                this.repetitions = repetitions;
+                this.weight = weight;
+                this.exercise = exercise;
+                this.workout = null;
+        }
 }
