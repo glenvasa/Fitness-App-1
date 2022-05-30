@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public interface WorkoutService {
     Workout save(Principal principal);
+    Workout update(WorkoutDto workoutDto, Principal principal);
     Workout save(WorkoutDto workoutDto, Principal principal);
     List<Workout> loadWorkouts();
 }
