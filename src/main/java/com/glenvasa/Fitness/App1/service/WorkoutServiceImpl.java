@@ -41,16 +41,21 @@ public class WorkoutServiceImpl implements WorkoutService {
 
     @Override
     public Workout save(WorkoutDto workoutDto, Principal principal) {
-        String email = principal.getName();
-        User user = userService.loadUserByEmail(email);
-
-        Workout workout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
-                workoutDto.getDuration(), user, new HashSet<Sets>());
-
-        return workoutRepository.save(workout);
+        return null;
     }
 
-
+    // save workout
+//    @Override
+    public Workout update(WorkoutDto workoutDto, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        Workout workout = workoutRepository.findTopByOrderByIdDesc(); // find just created Workout
+//        Workout workout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
+//                workoutDto.getDuration(), user, new HashSet<Sets>());
+        System.out.println(workout.toString());
+        return null;
+//                workoutRepository.updateWorkoutById(workout);
+    }
 
 
 
