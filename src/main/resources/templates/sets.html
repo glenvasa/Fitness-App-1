@@ -26,11 +26,11 @@
 <div class="grid place-items-center">
     <div class="grid grid-cols-4">
         <div th:each="set : ${sets}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
-            <p class="text-orange-800 font-semibold">Exercise</p>
+            <p class="text-orange-500 font-semibold">Exercise</p>
             <p th:text="${set.exercise.getName()}" class="text-black"></p>
-            <p class="text-orange-800 font-semibold">Repetitions</p>
+            <p class="text-orange-500 font-semibold">Repetitions</p>
             <p th:text="${set.repetitions}" class="text-black"></p>
-            <p class="text-orange-800 font-semibold">Weight</p>
+            <p class="text-orange-500 font-semibold">Weight</p>
             <div th:text="${set.weight}" class="text-black"></div>
         </div>
     </div>
