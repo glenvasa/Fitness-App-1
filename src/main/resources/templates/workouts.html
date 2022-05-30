@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Workouts</title>
+</head>
+<body class="bg-blue-200">
+
+<!--Insert NavBar Fragment-->
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<!-- success message -->
+<!--<div th:if="${param.success}" class="">-->
+<!--    <div class="grid place-items-center">-->
+<!--        <p>-->
+<!--            You've successfully added an Exercise!-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+<h1 class="grid place-items-center mt-5 mb-5">Workouts</h1>
+
+<!-- Show Workouts-->
+<div class="grid place-items-center">
+    <div class="grid grid-cols-4">
+        <div th:each="workout : ${workouts}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
+            <!--  <div th:if="${param.list}">-->
+
+            <p th:text="${workout.workoutName}" class="text-green-800 font-semibold text-lg">none</p>
+            <p th:text="${workout.dateOfWorkout}" class="text-black"></p>
+            <p th:text="${workout.duration}" class="text-black"></p>
+            <br/>
+            <table class="">
+                <tr>
+                    <th>Exercise</th>
+                    <th>Weight</th>
+                    <th>Repetitions</th>
+                </tr>
+                <tr th:each="set : ${workout.sets}">
+                    <td th:text="${set.exercise}"></td>
+                    <td th:text="${set.weight}"></td>
+                    <td th:text="${set.repetitions}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Create Footer-->
+
+</body>
+</html>
