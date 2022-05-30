@@ -31,13 +31,12 @@ public class SetsServiceImpl implements SetsService {
 
     @Override
     public Sets save(SetsDto setsDto) {
-//        System.out.println("Ex Serv Impl" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
         Exercise exercise = exerciseRepository.findByName(setsDto.getExercise());
-//        System.out.println(category.toString()); // this Correctly prints Category object
+//        System.out.println(exercise.toString());
+        // Need to use Workout Id from user workout / retrieve that Workout object instead of creating new one
+//        Workout workout = workoutRepository.findById(
         Sets sets = new Sets(setsDto.getRepetitions(), setsDto.getWeight(), exercise, new Workout());
-//        Exercise exercise = new Exercise("Bicep curls", "Workout with dumbbells", new ExerciseCategory("arm exercises", "biceps, triceps, etc."));
-//        System.out.println(exerciseDto.getName() + exerciseDto.getDescription() + category); // THIs correctly prints the name, description and category
-//        System.out.println(exercise.toString());// BUT this shows all fields in Exercise object as Null
+
         return setsRepository.save(sets);
     }
 
