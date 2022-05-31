@@ -2,6 +2,7 @@ package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
+import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.UserService;
@@ -24,16 +25,20 @@ public class WorkoutController {
 
     private final WorkoutService workoutService;
     private final WorkoutRepository workoutRepository;
+    private final UserService userService;
 
     @Autowired
-    public WorkoutController(WorkoutService workoutService, WorkoutRepository workoutRepository) {
+    public WorkoutController(WorkoutService workoutService, WorkoutRepository workoutRepository, UserService userService) {
         this.workoutService = workoutService;
         this.workoutRepository = workoutRepository;
+        this.userService = userService;
     }
 
-    @GetMapping("/workouts")
-    public String displayWorkoutsPage(Model model){
-        List<Workout> workouts = workoutService.loadWorkouts();
+    @GetMapping("/workouts") // should display only workouts for logged in user
+    public String displayWorkoutsPage(Model model, Principal principal){
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        List<Workout> workouts = workoutService.loadWorkouts().stream().filter(wo -> wo.getUser().getId() == user.getId()).collect(Collectors.toList());
 //        Workout workout = workoutRepository.findTopByOrderByIdDesc();
 //        System.out.println(workout.toString());
 //        List<Workout> filteredWorkouts = workouts.stream().filter(wo -> wo.getId() == workout.getId()).collect(Collectors.toList());
