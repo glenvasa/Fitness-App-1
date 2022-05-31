@@ -38,20 +38,20 @@
 </div>
 <!--Workout Info Form-->
 <div class="border-2 border-black p-5 rounded-md mt-5 grid place-items-center" id="saveWorkoutForm">
-            <form th:action="@{/workout/create}" method="put" th:object="${workout}" class="flex">
+            <form th:action="@{/workout/update}" method="post" th:object="${workout}" class="flex">
 <!--                <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
                 <div class="">
-                    <label class="" for="repetitions">Date</label>:
-                    <input id="workoutDate" class="mb-3 outline-none" th:field="*{dateOfWorkout}"
+                    <label class="" for="dateOfWorkout">Date</label>:
+                    <input id="dateOfWorkout" class="mb-3 outline-none" th:field="*{dateOfWorkout}"
                            required autofocus="autofocus" />
                 </div>
                 <div class="">
-                    <label class="" for="weight">Duration</label>:
-                    <input id="workoutDuration" class="mb-3 outline-none" th:field="*{duration}"
+                    <label class="" for="duration">Duration</label>:
+                    <input id="duration" class="mb-3 outline-none" th:field="*{duration}"
                            required autofocus="autofocus" />
                 </div>
                 <div class="">
-                    <label class="" for="exercise">Workout Name</label>:
+                    <label class="" for="workoutName">Workout Name</label>:
                     <input id="workoutName" class="mb-3 outline-none" th:field="*{workoutName}"
                            required autofocus="autofocus" />
                 </div>
