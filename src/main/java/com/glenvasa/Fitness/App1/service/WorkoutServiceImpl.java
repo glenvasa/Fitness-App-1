@@ -45,7 +45,6 @@ public class WorkoutServiceImpl implements WorkoutService {
     }
 
     // save workout after adding name,duration, date info AFTER creating/adding all Sets
-    @Override
     public Workout update(WorkoutDto workoutDto, Workout workout) {
 
 
