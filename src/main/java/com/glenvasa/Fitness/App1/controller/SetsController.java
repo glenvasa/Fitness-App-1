@@ -75,11 +75,11 @@ public class SetsController {
         return "redirect:/sets?success";
     }
 
-    @PatchMapping("/workout/create")
+    @PostMapping("/workout/update")
     public String saveWorkout(@ModelAttribute("workout") WorkoutDto workoutDto){
-        Workout workout = workoutRepository.findTopByOrderByIdDesc();
+        Workout currentWorkout = workoutRepository.findTopByOrderByIdDesc();
 //        workoutService.update(workoutDto, workout);
         System.out.println(workoutDto.getDateOfWorkout() + workoutDto.getWorkoutName() + workoutDto.getDuration());
-        return "workouts";
+        return "redirect:/workouts";
     }
 }
