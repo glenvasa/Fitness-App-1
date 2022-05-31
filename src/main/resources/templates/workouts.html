@@ -39,7 +39,7 @@
                     <th>Repetitions</th>
                 </tr>
                 <tr th:each="set : ${workout.sets}">
-                    <td th:text="${set.exercise}"></td>
+                    <td th:text="${set.exercise.getName()}"></td>
                     <td th:text="${set.weight}"></td>
                     <td th:text="${set.repetitions}"></td>
                 </tr>
