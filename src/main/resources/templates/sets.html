@@ -23,7 +23,7 @@
 <h1 class="grid place-items-center mt-5 mb-5">Create Sets - Add Workout Info</h1>
 
 <!-- Show Sets-->
-<div class="grid place-items-center">
+<div class="grid place-items-center" id="setsGrid">
     <div class="grid grid-cols-4">
         <div th:each="set : ${sets}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
             <p class="text-orange-500 font-semibold">Exercise</p>
@@ -36,11 +36,35 @@
     </div>
 
 </div>
+<!--Workout Info Form-->
+<div class="border-2 border-black p-5 rounded-md mt-5 grid place-items-center" id="saveWorkoutForm">
+            <form th:action="@{/workout/create}" method="put" th:object="${workout}" class="flex">
+<!--                <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
+                <div class="">
+                    <label class="" for="repetitions">Date</label>:
+                    <input id="workoutDate" class="mb-3 outline-none" th:field="*{dateOfWorkout}"
+                           required autofocus="autofocus" />
+                </div>
+                <div class="">
+                    <label class="" for="weight">Duration</label>:
+                    <input id="workoutDuration" class="mb-3 outline-none" th:field="*{duration}"
+                           required autofocus="autofocus" />
+                </div>
+                <div class="">
+                    <label class="" for="exercise">Workout Name</label>:
+                    <input id="workoutName" class="mb-3 outline-none" th:field="*{workoutName}"
+                           required autofocus="autofocus" />
+                </div>
 
+                <div class="text-center mt-5">
+                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5" >Save Workout</button>
+                </div>
+            </form>
+        </div>
 
 <!--  Add Set Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5">
+    <div class="border-2 border-black p-5 rounded-md mt-5" id="addSetForm">
         <form th:action="@{/sets}" method="post" th:object="${set}">
             <h1 class="font-sans text-center text-lg mb-3">Add Set</h1>
             <div class="">
@@ -63,12 +87,39 @@
 
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Set</button>
+<!--                <button type="button" class="text-white bg-green-800 rounded-md px-2 py-1.5" onclick="displaySaveWorkout()">Save Workout</button>-->
             </div>
         </form>
     </div>
 </div>
+<!--    // Save Workout Form-->
+<!--    <div class="border-2 border-black p-5 rounded-md mt-5 hidden" id="saveWorkoutForm">-->
+<!--        <form th:action="@{/workout/create}" method="patch" th:object="${workout}">-->
+<!--            <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
+<!--            <div class="">-->
+<!--                <label class="" for="repetitions">Date</label>:-->
+<!--                <input id="workoutDate" class="mb-3 outline-none" th:field="*{dateOfWorkout}"-->
+<!--                       required autofocus="autofocus" />-->
+<!--            </div>-->
+<!--            <div class="">-->
+<!--                <label class="" for="weight">Duration</label>:-->
+<!--                <input id="workoutDuration" class="mb-3 outline-none" th:field="*{duration}"-->
+<!--                       required autofocus="autofocus" />-->
+<!--            </div>-->
+<!--            <div class="">-->
+<!--                <label class="" for="exercise">Workout Name</label>:-->
+<!--                <input id="workoutName" class="mb-3 outline-none" th:field="*{workoutName}"-->
+<!--                       required autofocus="autofocus" />-->
+<!--            </div>-->
+
+<!--            <div class="text-center mt-5">-->
+<!--                <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5" >Save Workout</button>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
 
 
 <!--Create Footer-->
-
+<!--<script src="js/script.js"></script>-->
 </body>
