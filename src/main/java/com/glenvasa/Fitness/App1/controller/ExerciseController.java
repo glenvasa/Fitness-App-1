@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/exercise")
 public class ExerciseController {
 
-    @Autowired
+
     private final ExerciseService exerciseService;
 
     private final ExerciseCategoryRepository exerciseCategoryRepository;
