@@ -45,11 +45,15 @@ public class WorkoutServiceImpl implements WorkoutService {
     }
 
     // save workout after adding name,duration, date info AFTER creating/adding all Sets
-    public Workout update(WorkoutDto workoutDto, Workout workout) {
+    @Override
+    public void update(WorkoutDto workoutDto, Workout workout) {
+//        User user = workout.getUser();
+//        Workout updatedWorkout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
+//               workoutDto.getDuration(), user, workout.getSets());
 
 
-
-        return null;
+                workoutRepository.updateWorkoutById(workoutDto.getDateOfWorkout(), workoutDto.getDuration(),
+                workoutDto.getWorkoutName(), workout.getId());
 
     }
 
