@@ -78,7 +78,7 @@ public class SetsController {
     @PostMapping("/workout/update")
     public String saveWorkout(@ModelAttribute("workout") WorkoutDto workoutDto){
         Workout currentWorkout = workoutRepository.findTopByOrderByIdDesc();
-//        workoutService.update(workoutDto, workout);
+        workoutService.update(workoutDto, currentWorkout);
         System.out.println(workoutDto.getDateOfWorkout() + workoutDto.getWorkoutName() + workoutDto.getDuration());
         return "redirect:/workouts";
     }
