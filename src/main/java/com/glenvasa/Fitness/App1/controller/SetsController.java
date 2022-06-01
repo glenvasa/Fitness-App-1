@@ -28,9 +28,8 @@ import java.util.stream.Collectors;
 @RequestMapping
 public class SetsController {
 
-    @Autowired
     private final SetsService setsService;
-    private final SetsRepository setsRepository;
+//    private final SetsRepository setsRepository;
     private final ExerciseRepository exerciseRepository;
     private final WorkoutService workoutService;
     private final WorkoutRepository workoutRepository;
@@ -41,11 +40,10 @@ public class SetsController {
 
 
     @Autowired
-    public SetsController(SetsService exerciseService, SetsRepository setsRepository,
-                          ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
+    public SetsController(SetsService exerciseService, ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
                           WorkoutService workoutService) {
         this.setsService = exerciseService;
-        this.setsRepository = setsRepository;
+//        this.setsRepository = setsRepository;
         this.exerciseRepository = exerciseRepository;
         this.workoutRepository = workoutRepository;
         this.workoutService = workoutService;
