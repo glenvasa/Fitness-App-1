@@ -32,15 +32,16 @@ public class Meal {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mealType_id", referencedColumnName = "id")
-    private MealType mealType;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "mealType_id", referencedColumnName = "id")
+//    private MealType mealType;
+    private String mealType;
 
     @JsonIgnore
     @OneToMany(mappedBy = "meal")
     private Set<Servings> servings = new HashSet<>();
 
-    public Meal(String date, String time, User user, MealType mealType, Set<Servings> servings) {
+    public Meal(String date, String time, String mealType, User user, Set<Servings> servings) {
         this.date = date;
         this.time = time;
         this.user = user;
