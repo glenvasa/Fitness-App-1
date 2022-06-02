@@ -50,11 +50,19 @@
 <!-- Show Servings-->
 <div class="grid place-items-center" id="servingsGrid">
     <div class="grid grid-cols-4">
-        <div th:each="serving : ${servings}" class="border-2 border-black bg-yellow-200 p-5 rounded-md mt-3 mr-2 text-center w-72">
+        <div th:each="serving : ${servings}" class="border-2 border-black bg-stone-100 p-5 rounded-md mt-3 mr-2 text-center w-72">
 <!--            <p class="text-orange-500 font-semibold">Food</p>-->
             <p th:text="${serving.food.getName()}" class="text-orange-600 text-lg font-semibold"></p>
             <p class="text-black font-semibold">Number of Servings</p>
             <p th:text="${serving.number}" class="text-black"></p>
+            <p class="text-black font-semibold">Total Calories</p>
+            <p th:with="totalCals=${serving.number * serving.food.getCalories()}"> <span th:text="${totalCals}" class="text-black"></span></p>
+            <p class="text-black font-semibold">Total Protein</p>
+            <p th:with="totalProtein=${serving.number * serving.food.getProtein()}"><span th:text="${totalProtein}" class="text-black"></span> grams</p>
+            <p class="text-black font-semibold">Total Fat</p>
+            <p th:with="totalFat=${serving.number * serving.food.getFat()}"> <span th:text="${totalFat}" class="text-black"></span> grams</p>
+            <p class="text-black font-semibold">Total Carbs</p>
+            <p th:with="totalCarbs=${serving.number * serving.food.getCarbs()}"> <span th:text="${totalCarbs}" class="text-black"></span> grams</p>
         </div>
     </div>
 
@@ -67,12 +75,12 @@
         <form th:action="@{/servings}" method="post" th:object="${serving}">
             <h1 class="font-sans text-center text-lg mb-3">Add Serving</h1>
             <div class="">
-                <label class="" for="number">Number</label>:
-                <input id="number" class="mb-3 outline-none bg-stone-300" th:field="*{number}"
+                <label class="mr-1" for="number">Number</label>:
+                <input id="number" class="mb-3 outline-none bg-blue-100" th:field="*{number}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
-                <label class="" for="food">Food</label>:
+                <label class="mr-1" for="food">Food</label>:
                 <select th:field="*{food}" id="food" class="bg-blue-100">
                     <option value="0"></option>
                     <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.getName()}"></option>
