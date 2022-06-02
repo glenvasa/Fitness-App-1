@@ -6,7 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Servings</title>
 </head>
-<body>
+<body class="bg-blue-200">
 
 <!--Insert NavBar Fragment-->
 
@@ -21,56 +21,59 @@
     </div>
 </div>
 <h1 class="grid place-items-center mt-5 mb-5">Create Servings - Add Meal Info</h1>
+<!--Meal Info Form-->
+<div class="grid place-items-center">
+<div class="border-2 border-black bg-yellow-100 p-5 rounded-md mt-5 grid place-items-center w-3/5" id="saveMealForm">
+    <form th:action="@{/meal/update}" method="post" th:object="${meal}" class="flex">
+        <div class="">
+            <label class="mr-1" for="date">Date:</label>
+            <input id="date" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{date}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="time">Time:</label>
+            <input id="time" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{time}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="mealType">Meal Type:</label>
+            <input id="mealType" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{mealType}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5 ml-3" >Save Meal</button>
+        </div>
+    </form>
+</div>
+</div>
 
 <!-- Show Servings-->
 <div class="grid place-items-center" id="servingsGrid">
     <div class="grid grid-cols-4">
-        <div th:each="serving : ${servings}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
-            <p class="text-orange-500 font-semibold">Food</p>
-            <p th:text="${serving.food.getName()}" class="text-black"></p>
-            <p class="text-orange-500 font-semibold">Number of Servings</p>
+        <div th:each="serving : ${servings}" class="border-2 border-black bg-yellow-200 p-5 rounded-md mt-3 mr-2 text-center w-72">
+<!--            <p class="text-orange-500 font-semibold">Food</p>-->
+            <p th:text="${serving.food.getName()}" class="text-orange-600 text-lg font-semibold"></p>
+            <p class="text-black font-semibold">Number of Servings</p>
             <p th:text="${serving.number}" class="text-black"></p>
         </div>
     </div>
 
 </div>
-<!--Meal Info Form-->
-<div class="border-2 border-black p-5 rounded-md mt-5 grid place-items-center" id="saveMealForm">
-    <form th:action="@{/meal/update}" method="post" th:object="${meal}" class="flex">
-        <div class="">
-            <label class="" for="date">Date</label>:
-            <input id="date" class="mb-3 outline-none" th:field="*{date}"
-                   required autofocus="autofocus" />
-        </div>
-        <div class="">
-            <label class="" for="time">Time</label>:
-            <input id="time" class="mb-3 outline-none" th:field="*{time}"
-                   required autofocus="autofocus" />
-        </div>
-        <div class="">
-            <label class="" for="mealType">Meal Type</label>:
-            <input id="mealType" class="mb-3 outline-none" th:field="*{mealType}"
-                   required autofocus="autofocus" />
-        </div>
-        <div class="text-center mt-5">
-            <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5" >Save Meal</button>
-        </div>
-    </form>
-</div>
+
 
 <!--  Add Serving Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5" id="addServingForm">
+    <div class="border-2 border-black bg-yellow-100 p-5 rounded-md mt-5" id="addServingForm">
         <form th:action="@{/servings}" method="post" th:object="${serving}">
             <h1 class="font-sans text-center text-lg mb-3">Add Serving</h1>
             <div class="">
                 <label class="" for="number">Number</label>:
-                <input id="number" class="mb-3 outline-none" th:field="*{number}"
+                <input id="number" class="mb-3 outline-none bg-stone-300" th:field="*{number}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
                 <label class="" for="food">Food</label>:
-                <select th:field="*{food}" id="food">
+                <select th:field="*{food}" id="food" class="bg-blue-100">
                     <option value="0"></option>
                     <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.getName()}"></option>
                 </select>
