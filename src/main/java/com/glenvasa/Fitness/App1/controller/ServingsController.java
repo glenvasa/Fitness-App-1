@@ -52,10 +52,13 @@ public class ServingsController {
             servingsList =  servingsService.loadServings();
             Meal currentMeal = mealRepository.findTopByOrderByIdDesc();
 //            System.out.println(currentMeal.getId());
-            List<Servings> currentMealServings = servingsList.stream()
-                    .filter(s -> s.getMeal().getId() == currentMeal.getId()).collect(Collectors.toList());
 
-            model.addAttribute("servings", currentMealServings);
+
+                List<Servings> currentMealServings = servingsList.stream()
+                        .filter(s -> s.getMeal().getId() == currentMeal.getId()).collect(Collectors.toList());
+
+                model.addAttribute("servings", currentMealServings);
+
 
             foodList = foodRepository.findAll();
             model.addAttribute("food", foodList);
