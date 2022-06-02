@@ -48,4 +48,8 @@ public class Meal {
         this.mealType = mealType;
         this.servings = servings;
     }
+
+    public Meal(User user){
+        this.user = user;
+    }
 }
