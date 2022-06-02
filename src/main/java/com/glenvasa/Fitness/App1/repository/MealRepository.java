@@ -18,5 +18,5 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
     @Query("update Meal m set m.date = ?1, m.time = ?2, m.mealType = ?3 where m.id = ?4")
     void updateMealById(String date, String time, String mealType, Long id);
 
-//    Workout updateWorkoutById(Long id, Workout updatedWorkout);
+
 }
