@@ -19,13 +19,13 @@ import java.util.List;
 public class WorkoutServiceImpl implements WorkoutService {
 
 
-    private final SetsRepository setsRepository;
+//    private final SetsRepository setsRepository;
     private final WorkoutRepository workoutRepository;
     private final UserService userService;
 
     @Autowired
-    public WorkoutServiceImpl(SetsRepository setsRepository, WorkoutRepository workoutRepository, UserService userService) {
-        this.setsRepository = setsRepository;
+    public WorkoutServiceImpl(WorkoutRepository workoutRepository, UserService userService) {
+//        this.setsRepository = setsRepository;
         this.workoutRepository = workoutRepository;
         this.userService = userService;
     }
@@ -39,6 +39,7 @@ public class WorkoutServiceImpl implements WorkoutService {
         return workoutRepository.save(workout);
     }
 
+    // don't believe using this method; will likely delete
     @Override
     public Workout save(WorkoutDto workoutDto, Principal principal) {
         return null;
