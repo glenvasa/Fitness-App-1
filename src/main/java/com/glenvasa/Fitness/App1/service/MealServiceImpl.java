@@ -45,7 +45,8 @@ public class MealServiceImpl implements MealService {
     // save workout after adding name,duration, date info AFTER creating/adding all Sets
     @Override
     public void update(MealDto mealDto, Meal meal) {
-        mealRepository.updateMealById(mealDto.getDate(), mealDto.getTime(), mealDto.getMealType(), meal.getId());
+        mealRepository.updateMealById(mealDto.getDate(), mealDto.getTime(), mealDto.getMealType(),
+                mealDto.getMealCals() ,meal.getId());
     }
 
 
