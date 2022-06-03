@@ -76,7 +76,6 @@ public class ServingsController {
         public String saveMeal(@ModelAttribute("meal") MealDto mealDto){
             Meal currentMeal = mealRepository.findTopByOrderByIdDesc();
             mealService.update(mealDto, currentMeal);
-//            System.out.println(workoutDto.getDateOfWorkout() + workoutDto.getWorkoutName() + workoutDto.getDuration());
             return "redirect:/meals";
         }
     }
