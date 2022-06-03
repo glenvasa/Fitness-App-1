@@ -13,13 +13,13 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
-<div th:if="${param.success}">
-    <div class="grid place-items-center">
-        <p>
-            You've successfully added a Serving!
-        </p>
-    </div>
-</div>
+<!--<div th:if="${param.success}">-->
+<!--    <div class="grid place-items-center">-->
+<!--        <p>-->
+<!--            You've successfully added a Serving!-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
 <h1 class="grid place-items-center mt-5 mb-5">Create Servings - Add Meal Info</h1>
 <!--Meal Info Form-->
 <div class="grid place-items-center">
@@ -41,6 +41,11 @@
                    required autofocus="autofocus" />
         </div>
         <div class="">
+            <label class="mr-1" for="mealCals">Total Meal Calories:</label>
+            <input id="mealCals" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{mealCals}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
             <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5 ml-3" >Save Meal</button>
         </div>
     </form>
@@ -56,7 +61,7 @@
             <p class="text-black font-semibold">Number of Servings</p>
             <p th:text="${serving.number}" class="text-black"></p>
             <p class="text-black font-semibold">Total Calories</p>
-            <p th:with="totalCals=${serving.number * serving.food.getCalories()}"> <span th:text="${totalCals}" class="text-black"></span></p>
+            <p th:with="totalCals=${serving.number * serving.food.getCalories()}"> <span th:text="${totalCals}" class="text-black" id="totalCals"></span></p>
             <p class="text-black font-semibold">Total Protein</p>
             <p th:with="totalProtein=${serving.number * serving.food.getProtein()}"><span th:text="${totalProtein}" class="text-black"></span> grams</p>
             <p class="text-black font-semibold">Total Fat</p>
@@ -94,5 +99,5 @@
     </div>
 </div>
 
-
+<script src="js/script.js"></script>
 </body>
