@@ -39,10 +39,8 @@ public class MealController {
         List<Meal> meals = mealService.loadMeals().stream().filter(m -> m.getUser().getId() == user.getId()).collect(Collectors.toList());
         model.addAttribute("meals", meals); // binds "meals" attribute right before page loads
 
-        //calculate total meal cals and make available through "mealCals" attribute
-//        Double mealCals = 0.0;
-//        meals.forEach();
-//        model.addAttribute("mealCals", mealCals);
+   //     calculate total meal cals and make available through "mealCals" attribute
+
         return "meals";
     }
 
