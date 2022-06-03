@@ -6,7 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Sets</title>
 </head>
-<body>
+<body class="bg-blue-200">
 
 <!--Insert NavBar Fragment-->
 
@@ -37,7 +37,8 @@
 
 </div>
 <!--Workout Info Form-->
-<div class="border-2 border-black p-5 rounded-md mt-5 grid place-items-center" id="saveWorkoutForm">
+<div class="grid place-items-center" id="saveWorkoutForm">
+    <div class="border-2 border-black bg-amber-300 p-5 rounded-md mt-5 grid place-items-center w-3/5">
             <form th:action="@{/workout/update}" method="post" th:object="${workout}" class="flex">
 <!--                <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
                 <div class="">
@@ -57,14 +58,15 @@
                 </div>
 
                 <div class="text-center mt-5">
-                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5" >Save Workout</button>
+                    <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5" >Save Workout</button>
                 </div>
             </form>
+        </div>
         </div>
 
 <!--  Add Set Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5" id="addSetForm">
+    <div class="border-2 border-black p-5 rounded-md mt-5 bg-amber-300" id="addSetForm">
         <form th:action="@{/sets}" method="post" th:object="${set}">
             <h1 class="font-sans text-center text-lg mb-3">Add Set</h1>
             <div class="">
@@ -86,7 +88,7 @@
             </div>
 
             <div class="text-center mt-5">
-                <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Set</button>
+                <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5">Add Set</button>
 <!--                <button type="button" class="text-white bg-green-800 rounded-md px-2 py-1.5" onclick="displaySaveWorkout()">Save Workout</button>-->
             </div>
         </form>
