@@ -36,16 +36,18 @@ public class Meal {
 //    @JoinColumn(name = "mealType_id", referencedColumnName = "id")
 //    private MealType mealType;
     private String mealType;
+    private Float mealCals;
 
     @JsonIgnore
     @OneToMany(mappedBy = "meal")
     private Set<Servings> servings = new HashSet<>();
 
-    public Meal(String date, String time, String mealType, User user, Set<Servings> servings) {
+    public Meal(String date, String time, String mealType, Float mealCals, User user, Set<Servings> servings) {
         this.date = date;
         this.time = time;
         this.user = user;
         this.mealType = mealType;
+        this.mealCals = mealCals;
         this.servings = servings;
     }
 
