@@ -4,28 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
+<!--    <link rel="stylesheet" href="css/styles.css" />-->
     <title>Fitness App</title>
 </head>
-<body>
+<body class="bg-blue-200">
 <div>
     <div th:replace="fragments/navbar :: navbar"></div>
 </div>
-<div class="grid place-items-center mt-10 bg-gradient-to-r from-orange-500 via-green-400 to-red-500">
-<div class="">
-    <h1 class="mb-10">User Profile for: <span sec:authentication="principal.username"></span></h1>
-   <p>First name:  <span th:text="${user.firstName}"></span></p>
-   <p>Last name:  <span th:text="${user.lastName}"></span></p>
-    <p>Street:  <span th:text="${user.streetAddress}"></span></p>
-    <p>City:  <span th:text="${user.city}"></span></p>
-    <p>State:  <span th:text="${user.state}"></span></p>
-    <p>Zip:  <span th:text="${user.zipCode}"></span></p>
-    <p>Phone1:  <span th:text="${user.phone1}"></span></p>
-<!--    <p>Phone2:  <span th:text="${user.phone2}"></span></p>-->
-    <p>Birthdate:  <span th:text="${user.dateOfBirth}"></span></p>
-    <p>Height:  <span th:text="${user.height}"></span> inches</p>
-    <p>Weight:  <span th:text="${user.weight}"></span> pounds</p>
-
-</div>
+<div class="grid grid grid-cols-3 mt-10 place-items-center">
+    <div class="" id="mealList">
+        <div class="border-2 border-black p-5 rounded-md mt-5 bg-red-200 9/10" id="mList">
+            <h1 class="mb-10 text-center">Meals</h1>
+<!--            <p>First name:  <span th:text="${user.firstName}"></span></p>-->
+<!--            <p>Last name:  <span th:text="${user.lastName}"></span></p>-->
+<!--            <p>Street:  <span th:text="${user.streetAddress}"></span></p>-->
+<!--            <p>City:  <span th:text="${user.city}"></span></p>-->
+<!--            <p>State:  <span th:text="${user.state}"></span></p>-->
+<!--            <p>Zip:  <span th:text="${user.zipCode}"></span></p>-->
+<!--            <p>Phone1:  <span th:text="${user.phone1}"></span></p>-->
+<!--            <p>Birthdate:  <span th:text="${user.dateOfBirth}"></span></p>-->
+<!--            <p>Height:  <span th:text="${user.height}"></span> inches</p>-->
+<!--            <p>Weight:  <span th:text="${user.weight}"></span> pounds</p>-->
+        </div>
+    </div>
+    <div class="" id="profileInfo">
+        <div class="border-2 border-black bg-cyan-100 p-5 rounded-md mt-5 w-9/10" >
+            <h1 class="mb-10 text-center">User Profile for <span sec:authentication="principal.username" class="underline underline-offset-1"></span></h1>
+            <p>First name:  <span th:text="${user.firstName}"></span></p>
+            <p>Last name:  <span th:text="${user.lastName}"></span></p>
+             <p>Street:  <span th:text="${user.streetAddress}"></span></p>
+            <p>City:  <span th:text="${user.city}"></span></p>
+             <p>State:  <span th:text="${user.state}"></span></p>
+             <p>Zip:  <span th:text="${user.zipCode}"></span></p>
+            <p>Phone1:  <span th:text="${user.phone1}"></span></p>
+            <p>Birthdate:  <span th:text="${user.dateOfBirth}"></span></p>
+            <p>Height:  <span th:text="${user.height}"></span> inches</p>
+            <p>Weight:  <span th:text="${user.weight}"></span> pounds</p>
+        </div>
+    </div>
+    <div class="" id="WorkoutList">
+        <div class="border-2 border-black bg-violet-200 p-5 rounded-md mt-5 w-9/10" >
+            <h1 class="mb-10 text-center">Workouts</h1>
+<!--            <p>First name:  <span th:text="${user.firstName}"></span></p>-->
+<!--            <p>Last name:  <span th:text="${user.lastName}"></span></p>-->
+<!--            <p>Street:  <span th:text="${user.streetAddress}"></span></p>-->
+<!--            <p>City:  <span th:text="${user.city}"></span></p>-->
+<!--            <p>State:  <span th:text="${user.state}"></span></p>-->
+<!--            <p>Zip:  <span th:text="${user.zipCode}"></span></p>-->
+<!--            <p>Phone1:  <span th:text="${user.phone1}"></span></p>-->
+<!--            &lt;!&ndash;    <p>Phone2:  <span th:text="${user.phone2}"></span></p>&ndash;&gt;-->
+<!--            <p>Birthdate:  <span th:text="${user.dateOfBirth}"></span></p>-->
+<!--            <p>Height:  <span th:text="${user.height}"></span> inches</p>-->
+<!--            <p>Weight:  <span th:text="${user.weight}"></span> pounds</p>-->
+        </div>
+    </div>
 </div>
 </body>
 </html>
