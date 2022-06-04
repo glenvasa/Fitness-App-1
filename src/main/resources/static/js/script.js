@@ -36,8 +36,9 @@ const openMealModal = (event) => {
           }
     }
 
-   console.log(event.target.innerText)
+//   console.log(event.target.innerText)
 
+    fetchMealData(event.target.innerText)
 
 
 }
@@ -61,4 +62,11 @@ const openWorkoutModal = () => {
     }
 
 
+}
+
+const fetchMealData = (date) => {
+   console.log(date)
+   fetch(`/profile/meals/${date}`)
+      .then(res => { console.log(res)})
+      .catch(err => {console.log(err)})
 }
