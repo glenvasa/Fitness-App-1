@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Long> {
 
@@ -19,4 +22,6 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
     void updateMealById(String date, String time, String mealType, Float mealCals, Long id);
 
 
+    @Query("from Meal m where m.user.id = ?1")
+    List<Meal> findAllByUserId(Long id);
 }
