@@ -15,13 +15,13 @@ import java.util.List;
 
 @Controller
 public class MainController {
-
-    private final UserService userService;
-
-    @Autowired
-    public MainController(UserService userService) {
-        this.userService = userService;
-    }
+//
+//    private final UserService userService;
+//
+//    @Autowired
+//    public MainController(UserService userService) {
+//        this.userService = userService;
+//    }
 
 @GetMapping("/login")
     public String login() {
@@ -33,14 +33,7 @@ public class MainController {
     return "index";
 }
 
-@GetMapping("/user/profile")
-    public String displayUserProfile(Principal principal, Model model) {
-    String email = principal.getName();
-    User user = userService.loadUserByEmail(email);
-    model.addAttribute("user", user);
-    System.out.println(user.toString());
-    return "profile";
-}
+
 
 
 }
