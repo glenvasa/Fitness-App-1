@@ -28,7 +28,7 @@ public class ProfileController {
         this.workoutRepository = workoutRepository;
     }
 
-    @GetMapping("/user/profile")
+    @GetMapping("/profile")
     public String displayUserProfile(Principal principal, Model model) {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
