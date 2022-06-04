@@ -10,12 +10,11 @@
         <div class="bg-white m-auto p-5 w-4/5 mt-14" id="mealModalContent">
             <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>
             <h1 class="text-black-500">Hello from Meal Modal</h1>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
+            <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-cyan-300">
+                <p>Date: <span th:text="${meal.date}" class="text-black"></span></p>
+                <p>Time: <span th:text="${meal.time}" class="text-black"></span></p>
+                <p>Meal Type: <span th:text="${meal.mealType}" class="text-black"></span></p>
+                <p>Calories: <span th:text="${meal.mealCals}" class="text-black"></span></p>
         </div>
     </div>
 </div>
