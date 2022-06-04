@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div th:fragment="mealModal" class="">
+    <div class="fixed z-1 pt-25 left-0 top-14 w-full h-full overflow-auto bg-black/[.5] hidden" id="mealModal">
+        <div class="bg-white m-auto p-5 w-4/5 mt-14" id="mealModalContent">
+            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeModal">&times;</span>
+            <h1 class="text-black-500">Hello from Meal Modal</h1>
+            <p>Dummy Text</p>
+            <p>Dummy Text</p>
+            <p>Dummy Text</p>
+            <p>Dummy Text</p>
+            <p>Dummy Text</p>
+            <p>Dummy Text</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
