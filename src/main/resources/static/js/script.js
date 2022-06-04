@@ -18,11 +18,11 @@ const addServingsCalories = () => {
    mealCals.value = totalMealCals
 }
 
-// opens Meal Modal when date-button clicked
-const openMealModal = () => {
+// opens Meal Modal when mealDate-button clicked
+const openMealModal = (event) => {
     const mealDateButtons = document.querySelectorAll('.mealDate')
     const mealModal = document.getElementById('mealModal')
-    const closeModalButton = document.getElementById('closeModal')
+    const closeModalButton = document.getElementById('closeMealModal')
 
     mealModal.classList.remove('hidden')
 
@@ -32,6 +32,30 @@ const openMealModal = () => {
     window.onclick = function(e) {
           if (e.target == mealModal && !mealModal.classList.contains('hidden')) {
             mealModal.classList.add('hidden')
+            window.onclick = null;
+          }
+    }
+
+   console.log(event.target.innerText)
+
+
+
+}
+
+// opens Workout Modal when workoutDate-button clicked
+const openWorkoutModal = () => {
+    const workoutDateButtons = document.querySelectorAll('.workoutDate')
+    const workoutModal = document.getElementById('workoutModal')
+    const closeModalButton = document.getElementById('closeWorkoutModal')
+
+    workoutModal.classList.remove('hidden')
+
+    closeModalButton.onclick = () => workoutModal.classList.add('hidden')
+
+    // only want window onclick to function IF model is open; otherwise it will prevent other page button onclick fns
+    window.onclick = function(e) {
+          if (e.target == workoutModal && !workoutModal.classList.contains('hidden')) {
+            workoutModal.classList.add('hidden')
             window.onclick = null;
           }
     }
