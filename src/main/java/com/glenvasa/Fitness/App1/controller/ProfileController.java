@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.security.Principal;
 import java.util.List;
@@ -18,13 +19,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Controller
 public class ProfileController {
 
   private final UserService userService;
   private final MealRepository mealRepository;
   private final WorkoutRepository workoutRepository;
-
+  List<Meal> dailyMeals;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
@@ -48,6 +50,9 @@ public class ProfileController {
 //        System.out.println(workoutDates);
         model.addAttribute("workoutDates", workoutDates);
 
+        model.addAttribute("dailyMeals", dailyMeals);
+        System.out.println("Inside GET /profile");
+        System.out.println(dailyMeals);
         return "profile";
     }
 
@@ -56,10 +61,10 @@ public class ProfileController {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
-        List<Meal> dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), date)).toList();
-        model.addAttribute("dailyMeals", dailyMeals);
+        dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), date)).toList();
+//        model.addAttribute("dailyMeals", dailyMeals);
 
-        System.out.println("hello from Profile Controller");
+        System.out.println("hello from Profile Controller GET /profile/meals/date");
         System.out.println(date);
         System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
