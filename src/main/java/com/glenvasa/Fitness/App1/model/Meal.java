@@ -39,7 +39,7 @@ public class Meal {
     private Float mealCals;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "meal")
+    @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
     private Set<Servings> servings = new HashSet<>();
 
     public Meal(String date, String time, String mealType, Float mealCals, User user, Set<Servings> servings) {
