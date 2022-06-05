@@ -27,8 +27,11 @@ public class ProfileController {
   private final UserService userService;
   private final MealRepository mealRepository;
   private final WorkoutRepository workoutRepository;
+
   List<Meal> dailyMeals;
-  Double dailyCals;
+  List<Workout> dailyWorkouts;
+//  Double dailyCals = 0.0;
+  Double modalDailyCals;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
@@ -44,21 +47,28 @@ public class ProfileController {
         model.addAttribute("user", user);
 
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
-        Set mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+
+//        meals.forEach(meal -> dailyCals += meal.getMealCals());
+
+        Set<String> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+
         model.addAttribute("mealDates", mealDates);
+//        model.addAttribute("dailyCals", dailyCals);
 
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-        List<String> workoutDates = workouts.stream().map(Workout::getDateOfWorkout).collect(Collectors.toList());
+        Set<String> workoutDates = workouts.stream().map(Workout::getDateOfWorkout).collect(Collectors.toSet());
 //        System.out.println(workoutDates);
         model.addAttribute("workoutDates", workoutDates);
 
         model.addAttribute("dailyMeals", dailyMeals);
-        model.addAttribute("dailyCals", dailyCals);
+        model.addAttribute("dailyWorkouts", dailyWorkouts);
+        model.addAttribute("modalDailyCals", modalDailyCals);
 
         System.out.println("Inside GET /profile");
         System.out.println(dailyMeals);
         return "profile";
     }
+
 
     @GetMapping("/profile/meals/{date}")
     public String displayMealsSummary(@PathVariable String date, Principal principal, Model model) {
@@ -67,12 +77,31 @@ public class ProfileController {
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
         dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), date)).toList();
 //        model.addAttribute("dailyMeals", dailyMeals);
-        dailyCals = 0.0;
-        dailyMeals.forEach(meal -> dailyCals += meal.getMealCals());
+        modalDailyCals = 0.0;
+        dailyMeals.forEach(meal -> modalDailyCals += meal.getMealCals());
 
         System.out.println("hello from Profile Controller GET /profile/meals/date");
         System.out.println(date);
         System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
+
+
+    @GetMapping("/profile/workouts/{date}")
+    public String displayWorkoutsSummary(@PathVariable String date, Principal principal, Model model) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
+        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), date)).toList();
+
+        System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
+        System.out.println(date);
+        System.out.println("dailyWorkouts" + dailyWorkouts);
+        return "redirect:/profile"; // may not need "redirect:/profile"
+    }
+
+
+
+
+
 }
