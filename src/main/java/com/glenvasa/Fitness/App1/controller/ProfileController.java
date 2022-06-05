@@ -17,6 +17,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -27,6 +28,7 @@ public class ProfileController {
   private final MealRepository mealRepository;
   private final WorkoutRepository workoutRepository;
   List<Meal> dailyMeals;
+  Double dailyCals;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
@@ -42,7 +44,7 @@ public class ProfileController {
         model.addAttribute("user", user);
 
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
-        List mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toList());
+        Set mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
         model.addAttribute("mealDates", mealDates);
 
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
@@ -51,6 +53,8 @@ public class ProfileController {
         model.addAttribute("workoutDates", workoutDates);
 
         model.addAttribute("dailyMeals", dailyMeals);
+        model.addAttribute("dailyCals", dailyCals);
+
         System.out.println("Inside GET /profile");
         System.out.println(dailyMeals);
         return "profile";
@@ -63,6 +67,8 @@ public class ProfileController {
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
         dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), date)).toList();
 //        model.addAttribute("dailyMeals", dailyMeals);
+        dailyCals = 0.0;
+        dailyMeals.forEach(meal -> dailyCals += meal.getMealCals());
 
         System.out.println("hello from Profile Controller GET /profile/meals/date");
         System.out.println(date);
