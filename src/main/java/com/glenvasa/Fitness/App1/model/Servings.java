@@ -20,12 +20,12 @@ public class Servings {
     @Column(name = "number")
     private Float number;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="meal_id", referencedColumnName = "id")
     private Meal meal;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="food_id", referencedColumnName = "id")
     private Food food;
 
