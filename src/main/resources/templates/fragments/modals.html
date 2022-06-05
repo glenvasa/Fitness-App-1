@@ -9,12 +9,28 @@
     <div class="fixed z-1 pt-25 left-0 top-14 w-full h-full overflow-auto bg-black/[.5] hidden" id="mealModal">
         <div class="bg-white m-auto p-5 w-4/5 mt-14" id="mealModalContent">
             <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>
-            <h1 class="text-black-500">Hello from Meal Modal</h1>
-            <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-cyan-300">
+<!--            <h1 class="text-black-500">Total Calories for <span th:text="${selectedDate}">:</span></h1>-->
+<!--            <span th:text="${selectedDateCals}"></span>-->
+            <div class="flex" id="dailyMealCards">
+            <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-red-200">
                 <p>Date: <span th:text="${meal.date}" class="text-black"></span></p>
                 <p>Time: <span th:text="${meal.time}" class="text-black"></span></p>
                 <p>Meal Type: <span th:text="${meal.mealType}" class="text-black"></span></p>
-                <p>Calories: <span th:text="${meal.mealCals}" class="text-black"></span></p>
+                <p>Meal Calories: <span th:text="${meal.mealCals}" class="text-black"></span></p>
+                <table>
+                    <tr>
+                        <th>Food</th>
+                        <th>Servings</th>
+                        <th>Calories</th>
+                    </tr>
+                    <tr th:each="serving : ${meal.servings}">
+                        <td th:text="${serving.food.getName()}"></td>
+                        <td th:text="${serving.getNumber()}"></td>
+                        <td th:with="totalCals=${serving.number * serving.food.getCalories()}"><span th:text="${totalCals}"></span></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
