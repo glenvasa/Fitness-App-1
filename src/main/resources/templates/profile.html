@@ -45,20 +45,8 @@
         </div>
     </div>
 </div>
-<!--<div th:replace="fragments/modals :: mealModal" class=""></div>-->
-<div class="">
-    <div class="fixed z-1 pt-25 left-0 top-14 w-full h-full overflow-auto bg-black/[.5] hidden" id="mealModal">
-        <div class="bg-white m-auto p-5 w-4/5 mt-14" id="mealModalContent">
-            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>
-            <h1 class="text-black-500">This is from Meal Modal</h1>
-            <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-cyan-300">
-                <p>Date: <span th:text="${meal.date}" class="text-black">Meal Date</span>Meal Date</p>
-                <p>Time: <span th:text="${meal.time}" class="text-black">Meal Time</span></p>
-                <p>Meal Type: <span th:text="${meal.mealType}" class="text-black">Meal Type</span></p>
-                <p>Calories: <span th:text="${meal.mealCals}" class="text-black">Meal Calories</span></p>
-            </div>
-        </div>
-    </div>
+<div th:replace="fragments/modals :: mealModal" class=""></div>
 <div th:replace="fragments/modals :: workoutModal" class=""></div>
 <script src="js/script.js"></script>
 </body>
+</html>
