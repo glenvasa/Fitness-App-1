@@ -10,7 +10,7 @@
         <div class="bg-white m-auto p-5 w-4/5 mt-14" id="mealModalContent">
             <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>
 <!--            <h1 class="text-black-500">Total Calories for <span th:text="${selectedDate}">:</span></h1>-->
-            <h1>Total Calories Consumed: <span th:text="${dailyCals}" class="text-semibold"></span></h1>
+            <h1>Total Calories Consumed: <span th:text="${modalDailyCals}" class="text-semibold"></span></h1>
             <div class="flex" id="dailyMealCards">
             <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-red-200">
                 <p>Date: <span th:text="${meal.date}" class="text-black"></span></p>
@@ -39,12 +39,26 @@
         <div class="bg-white m-auto p-5 w-4/5 mt-14" id="workoutModalContent">
             <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeWorkoutModal">&times;</span>
             <h1 class="text-black-500">Hello from Workout Modal</h1>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
-            <p>Dummy Text</p>
+            <div class="flex" id="dailyWorkoutCards">
+                <div th:each="workout : ${dailyWorkouts}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-red-200">
+                    <p><span th:text="${workout.workoutName}" class="text-green-800 font-semibold text-lg">none</span></p>
+                    <p>Date: <span th:text="${workout.dateOfWorkout}" class="text-black"></span></p>
+                    <p>Duration: <span th:text="${workout.duration}" class="text-black"></span> minutes</p>
+                    <br/>
+                    <table class="">
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Weight</th>
+                            <th>Repetitions</th>
+                        </tr>
+                        <tr th:each="set : ${workout.sets}">
+                            <td th:text="${set.exercise.getName()}"></td>
+                            <td th:text="${set.weight}"></td>
+                            <td th:text="${set.repetitions}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
