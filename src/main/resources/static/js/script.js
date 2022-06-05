@@ -22,16 +22,21 @@ const addServingsCalories = () => {
 const openMealModal = (event) => {
     const mealDateButtons = document.querySelectorAll('.mealDate')
     const mealModal = document.getElementById('mealModal')
+    const mealModalContent = document.getElementById("mealModalContent")
     const closeModalButton = document.getElementById('closeMealModal')
 
     mealModal.classList.remove('hidden')
 
-    closeModalButton.onclick = () => mealModal.classList.add('hidden')
+    closeModalButton.onclick = function() {
+        mealModal.classList.add('hidden')
+//        mealModalContent.innerText = ""
+    }
 
     // only want window onclick to function IF model is open; otherwise it will prevent other page button onclick fns
     window.onclick = function(e) {
           if (e.target == mealModal && !mealModal.classList.contains('hidden')) {
             mealModal.classList.add('hidden')
+//            mealModalContent.innerText = ""
             window.onclick = null;
           }
     }
