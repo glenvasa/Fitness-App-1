@@ -24,6 +24,9 @@ public class HealthProfile {
     @Column(name = "weight")
     private Float weight;
 
+    @Column(name = "maintenance_calories")
+    private Double maintenanceCalories;
+
     @Column(name = "body_fat")
     private Float bodyFat;
 
@@ -40,10 +43,11 @@ public class HealthProfile {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
-    public HealthProfile(String date, String time, Float weight, Float bodyFat, Integer steps, User user){
+    public HealthProfile(String date, String time, Float weight, Double maintenanceCalories, Float bodyFat, Integer steps, User user){
         this.date = date;
         this.time = time;
         this.weight = weight;
+        this.maintenanceCalories = maintenanceCalories;
         this.bodyFat = bodyFat;
         this.steps = steps;
         this.user = user;
