@@ -32,6 +32,8 @@ public class ProfileController {
   List<Workout> dailyWorkouts;
 //  Double dailyCals = 0.0;
   Double modalDailyCals;
+  String mealDate;
+  String workoutDate;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
@@ -64,6 +66,8 @@ public class ProfileController {
         model.addAttribute("dailyMeals", dailyMeals);
         model.addAttribute("dailyWorkouts", dailyWorkouts);
         model.addAttribute("modalDailyCals", modalDailyCals);
+        model.addAttribute("mealDate", mealDate);
+        model.addAttribute("workoutDate", workoutDate);
 
         System.out.println("Inside GET /profile");
         System.out.println(dailyMeals);
@@ -83,6 +87,8 @@ public class ProfileController {
 
         System.out.println("hello from Profile Controller GET /profile/meals/date");
         System.out.println(date);
+
+        mealDate = date;
         System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
@@ -97,6 +103,8 @@ public class ProfileController {
 
         System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
         System.out.println(date);
+        workoutDate = date;
+
         System.out.println("dailyWorkouts" + dailyWorkouts);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
