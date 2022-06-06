@@ -6,12 +6,12 @@
 </head>
 <body>
 <div th:fragment="mealModal" class="">
-    <div class="w-full overflow-auto" id="mealModal">
-        <div class="m-auto p-5 w-4/5 mt-3" id="mealModalContent">
+    <div class="w-full" id="mealModal">
+        <div class="m-auto p-5 mt-3" id="mealModalContent">
 <!--            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>-->
 <!--            <h1 class="text-black-500">Total Calories for <span th:text="${selectedDate}">:</span></h1>-->
             <h1>Total Calories Consumed: <span th:text="${modalDailyCals}" class="text-semibold"></span></h1>
-            <div class="flex" id="dailyMealCards">
+            <div class="grid grid-cols-3" id="dailyMealCards">
             <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-red-200">
                 <p>Date: <span th:text="${meal.date}" class="text-black"></span></p>
                 <p>Time: <span th:text="${meal.time}" class="text-black"></span></p>
@@ -35,13 +35,13 @@
     </div>
 </div>
 <div th:fragment="workoutModal" class="">
-    <div class="fixed z-1 pt-25 left-0 top-14 w-full h-full overflow-auto bg-black/[.5] hidden" id="workoutModal">
-        <div class="bg-white m-auto p-5 w-4/5 mt-14" id="workoutModalContent">
-            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeWorkoutModal">&times;</span>
+    <div class="w-full" id="workoutModal">
+        <div class="m-auto p-5 mt-3" id="workoutModalContent">
+<!--            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeWorkoutModal">&times;</span>-->
             <h1 class="text-black-500">Hello from Workout Modal</h1>
-            <div class="flex" id="dailyWorkoutCards">
-                <div th:each="workout : ${dailyWorkouts}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-red-200">
-                    <p><span th:text="${workout.workoutName}" class="text-green-800 font-semibold text-lg">none</span></p>
+            <div class="grid grid-cols-2" id="dailyWorkoutCards">
+                <div th:each="workout : ${dailyWorkouts}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-violet-200">
+                    <p><span th:text="${workout.workoutName}" class="font-semibold text-lg">none</span></p>
                     <p>Date: <span th:text="${workout.dateOfWorkout}" class="text-black"></span></p>
                     <p>Duration: <span th:text="${workout.duration}" class="text-black"></span> minutes</p>
                     <br/>
