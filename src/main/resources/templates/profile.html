@@ -18,7 +18,7 @@
             <h1 class="mb-10 text-center text-lg">Meals</h1>
             <div th:each="mealDate : ${mealDates}" class="">
                 <button type='button'><a th:href="@{/profile/meals/{date}(date = ${mealDate})}" th:text="${mealDate}"></a></button>
-                <span th:text="${dailyCals}"></span>
+<!--                <span th:text="${dailyCals}"></span>-->
             </div>
         </div>
     </div>
@@ -49,14 +49,17 @@
     <div class="" id="WorkoutList">
         <div class="border-2 border-black bg-violet-200 p-5 rounded-md w-9/10" >
             <h1 class="mb-10 text-center text-lg">Workouts</h1>
-            <div th:each="wdate : ${workoutDates}" class="">
-                <button th:text="${wdate}" class="workoutDate text-blue-700 font-semibold text-base" onclick="openWorkoutModal()"></button>
+            <div th:each="workoutDate : ${workoutDates}" class="">
+                <button type='button'><a th:href="@{/profile/workouts/{date}(date = ${workoutDate})}" th:text="${workoutDate}"></a></button>
             </div>
         </div>
     </div>
 </div>
-<div th:replace="fragments/modals :: mealModal" class=""></div>
-<div th:replace="fragments/modals :: workoutModal" class=""></div>
+<div class="flex justify-evenly" id="modalContainer">
+    <div th:replace="fragments/modals :: mealModal" class=""></div>
+    <div th:replace="fragments/modals :: workoutModal" class=""></div>
+</div>
+
 <script src="js/script.js"></script>
 </body>
 </html>
