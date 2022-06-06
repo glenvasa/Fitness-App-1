@@ -18,24 +18,30 @@ const addServingsCalories = () => {
    mealCals.value = totalMealCals
 }
 
+
+
 // opens Meal Modal when mealDate-button clicked
-const openMealModal = (event) => {
+const moveMealModal = (event) => {
+event.preventDefault()
     const mealDateButtons = document.querySelectorAll('.mealDate')
     const mealModal = document.getElementById('mealModal')
     const mealModalContent = document.getElementById("mealModalContent")
     const closeModalButton = document.getElementById('closeMealModal')
 
-    mealModal.classList.remove('hidden')
+mealModal.style.top = 0;
+
+//    mealModal.classList.remove('invisible')
 
     closeModalButton.onclick = function() {
-        mealModal.classList.add('hidden')
+//        mealModal.classList.add('invisible')
 //        mealModalContent.innerText = ""
     }
 
     // only want window onclick to function IF model is open; otherwise it will prevent other page button onclick fns
     window.onclick = function(e) {
-          if (e.target == mealModal && !mealModal.classList.contains('hidden')) {
-            mealModal.classList.add('hidden')
+          if (e.target == mealModal && !mealModal.classList.contains('invisible')) {
+
+//            mealModal.classList.add('invisible')
 //            mealModalContent.innerText = ""
             window.onclick = null;
           }
@@ -43,13 +49,14 @@ const openMealModal = (event) => {
 
 //   console.log(event.target.innerText)
 
-    fetchMealData(event.target.innerText)
+//    fetchMealData(event.target.innerText)
 
 
 }
 
 // opens Workout Modal when workoutDate-button clicked
 const openWorkoutModal = () => {
+
     const workoutDateButtons = document.querySelectorAll('.workoutDate')
     const workoutModal = document.getElementById('workoutModal')
     const closeModalButton = document.getElementById('closeWorkoutModal')
@@ -71,15 +78,26 @@ fetchWorkoutData(event.target.innerText)
 }
 
 
+//if(window.location.pathname == "/profile") {
+//window.addEventListener("load", () => {
+//    const mealModal = document.getElementById('mealModal')
+//    mealModal.classList.add('invisible')
+//})
 
 
 
 
-const fetchMealData = (date) => {
-   console.log(date)
+const fetchMealData = (event) => {
+
+window.location.reload()
+   const date = event.target.innerText
+//   console.log(date)
    fetch(`/profile/meals/${date}`)
-      .then(res => { console.log(res)})
-      .catch(err => {console.log(err)})
+
+//      .catch(err => {console.log(err)})
+//mealModal.classList.add('invisible')
+//moveMealModal(event)
+
 }
 
 const fetchWorkoutData = (date) => {
@@ -87,4 +105,16 @@ const fetchWorkoutData = (date) => {
    fetch(`/profile/workouts/${date}`)
       .then(res => { console.log(res)})
       .catch(err => {console.log(err)})
+}
+
+
+
+const modalUp = (event) => {
+//  event.preventDefault()
+
+const mealModal = document.getElementById('mealModal')
+  mealModal.style.top = 0;
+  console.log('timeout')
+
+
 }
