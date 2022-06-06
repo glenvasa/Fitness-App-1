@@ -51,6 +51,7 @@ public class ProfileController {
 //        meals.forEach(meal -> dailyCals += meal.getMealCals());
 
         Set<String> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+        // for each date in mealDates retrieve list of Meals and use .size to display next to date as # of meals for the day
 
         model.addAttribute("mealDates", mealDates);
 //        model.addAttribute("dailyCals", dailyCals);
