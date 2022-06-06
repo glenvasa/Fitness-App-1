@@ -25,7 +25,7 @@
 <!-- Show Sets-->
 <div class="grid place-items-center" id="setsGrid">
     <div class="grid grid-cols-4">
-        <div th:each="set : ${sets}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+        <div th:each="set : ${sets}" class="bg-amber-100 border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
             <p class="text-orange-500 font-semibold">Exercise</p>
             <p th:text="${set.exercise.getName()}" class="text-black"></p>
             <p class="text-orange-500 font-semibold">Repetitions</p>
@@ -38,7 +38,7 @@
 </div>
 <!--Workout Info Form-->
 <div class="grid place-items-center" id="saveWorkoutForm">
-    <div class="border-2 border-black bg-amber-300 p-5 rounded-md mt-5 grid place-items-center w-3/5">
+    <div class="border-2 border-black bg-amber-100 p-5 rounded-md mt-5 grid place-items-center w-3/5">
             <form th:action="@{/workout/update}" method="post" th:object="${workout}" class="flex">
 <!--                <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
                 <div class="">
@@ -66,7 +66,7 @@
 
 <!--  Add Set Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5 bg-amber-300" id="addSetForm">
+    <div class="border-2 border-black p-5 rounded-md mt-5 bg-amber-100" id="addSetForm">
         <form th:action="@{/sets}" method="post" th:object="${set}">
             <h1 class="font-sans text-center text-lg mb-3">Add Set</h1>
             <div class="">
