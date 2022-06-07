@@ -31,7 +31,7 @@
         </form>
     </div>
 </div>
-<div class="grid place-items-center mt-20">
+<div class="grid grid-cols-2 place-items-center mt-20">
     <div class="bg-white border-2 border-black p-5 rounded-md mb-10" id="calorieCalc">
         <form>
             <div class="text-center">
@@ -84,7 +84,20 @@
             </div>
         </form>
     </div>
-
+    <div class="bg-white border-2 border-black p-5 rounded-md mb-10" id="prTable">
+    <table>
+        <tr>
+            <th>Exercise</th>
+            <th>Personal Record</th>
+            <th>Date</th>
+        </tr>
+<!--        <tr th:each="serving : ${meal.servings}">-->
+<!--            <td th:text="${serving.food.getName()}"></td>-->
+<!--            <td th:text="${serving.getNumber()}"></td>-->
+<!--            <td th:with="totalCals=${serving.number * serving.food.getCalories()}"><span th:text="${totalCals}"></span></td>-->
+<!--        </tr>-->
+    </table>
+    </div>
 </div>
 <script src="js/script.js"></script>
 </body>
