@@ -2,10 +2,7 @@ package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.dto.SetsDto;
-import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
-import com.glenvasa.Fitness.App1.model.Sets;
-import com.glenvasa.Fitness.App1.model.Workout;
+import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.ExerciseRepository;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
@@ -13,6 +10,7 @@ import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,13 +21,15 @@ public class SetsServiceImpl implements SetsService {
     private final SetsRepository setsRepository;
     private final ExerciseRepository exerciseRepository;
     private final WorkoutRepository workoutRepository;
+    private final UserService userService;
 
     @Autowired
     public SetsServiceImpl(SetsRepository setsRepository, ExerciseRepository exerciseRepository,
-                           WorkoutRepository workoutRepository) {
+                           WorkoutRepository workoutRepository, UserService userService) {
         this.setsRepository = setsRepository;
         this.exerciseRepository = exerciseRepository;
         this.workoutRepository = workoutRepository;
+        this.userService = userService;
     }
 
 
@@ -47,10 +47,16 @@ public class SetsServiceImpl implements SetsService {
 
 
 
-
     @Override
     public List<Sets> loadSets() {
         return setsRepository.findAll();
+    }
+
+    @Override
+    public List<Sets> loadSetsByUserId(Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        return setsRepository.findAllByUserId(user.getId());
     }
 }
 
