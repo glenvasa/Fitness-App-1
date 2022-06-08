@@ -1,10 +1,7 @@
 package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.WorkoutDto;
-import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.Sets;
-import com.glenvasa.Fitness.App1.model.User;
-import com.glenvasa.Fitness.App1.model.Workout;
+import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
 import com.glenvasa.Fitness.App1.repository.UserRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
@@ -58,6 +55,14 @@ public class WorkoutServiceImpl implements WorkoutService {
 
     }
 
+
+
+//    @Override
+//    public PersonalRecords getPersonalRecords(Principal principal){
+//        String email = principal.getName();
+//        User user = userService.loadUserByEmail(email);
+//        return workoutRepository.findPersonalRecord(user.getId());
+//    }
 
 
     @Override
