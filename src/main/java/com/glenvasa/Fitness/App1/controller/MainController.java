@@ -46,7 +46,7 @@ public class MainController {
     public String home(Model model, Principal principal){
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
 
-        // ExerciseStats is util class containing 2 fields (weight / repetitions)
+        // ExerciseStats is util class containing 3 fields (weight / repetitions / dateOfWorkout)
         Map<String, PRStats> personalRecords = new HashMap<>();
 
     allSets.forEach(sets -> {
