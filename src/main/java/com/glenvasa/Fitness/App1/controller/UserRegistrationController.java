@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/registration")
 public class UserRegistrationController {
 
     private final UserService userService;
@@ -18,16 +17,22 @@ public class UserRegistrationController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/registration")
     public String displayRegistrationPage(Model model){
         model.addAttribute("user", new UserRegistrationDto()); // binds "user" attribute to the model right before page loads
         return "registration"; // returns registration.html
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto){
         userService.save(userRegistrationDto);
          return "redirect:/registration?success";
+    }
+
+    @PostMapping("/profile/update")
+    public String updateUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto){
+
+        return "redirect:/profile";
     }
 
 }
