@@ -14,7 +14,7 @@
 <div class="grid grid-cols-3 mt-2 place-items-center">
 
     <div class="" id="mealList">
-        <div class="border-2 border-black p-5 rounded-md bg-red-200 9/10" id="mList">
+        <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10" id="mList">
             <h1 class="mb-10 text-center text-lg">Meals</h1>
             <div th:each="mealDate : ${mealDates}" class="">
                 <button type='button'><a th:href="@{/profile/meals/{date}(date = ${mealDate})}" th:text="${mealDate}"></a></button>
@@ -24,26 +24,52 @@
     </div>
     <div class="" id="profileInfo">
         <h1 class="mb-2 text-center text-lg"><span sec:authentication="principal.username" class="underline underline-offset-1"></span></h1>
-        <div class="grid grid-cols-2 border-2 border-black bg-cyan-100 p-5 rounded-md w-full" >
-            <div class="">
-                <p>First name:  <span th:text="${user.firstName}" class="ml-1"></span></p>
-                <p>Street:  <span th:text="${user.streetAddress}" class="ml-1"></span></p>
-
-                <p>State:  <span th:text="${user.state}" class="ml-1"></span></p>
-                <p>Phone1:  <span th:text="${user.phone1}" class="ml-1"></span></p>
-                <p>Birthdate:  <span th:text="${user.dateOfBirth}" class="ml-1"></span></p>
+        <div class="border-2 border-black bg-stone-300 p-5 rounded-md w-full" >
+            <form th:action="@{/profile/update}" method="post" th:object="${user}">
+                <p>
+                    <label for="firstName" class="w-[150px] pr-[20px] inline-block">First Name: </label>
+                    <input id="firstName" th:field="*{firstName}"  class="ml-1" />
+                </p>
+                <p>
+                    <label for="lastName" class="w-[150px] pr-[20px] inline-block">Last Name: </label>
+                    <input id="lastName" th:field="*{lastName}" class="ml-1" />
+                </p>
+               <p>
+                   <label for="streetAddress" class="w-[150px] pr-[20px] inline-block">Street: </label>
+                   <input id="streetAddress" th:field="*{streetAddress}" class="ml-1" />
+               </p>
+                <p>
+                    <label for="state" class="w-[150px] pr-[20px] inline-block">State:  </label>
+                    <input id="state" th:field="*{state}" class="ml-1" />
+                </p>
+               <p>
+                   <label for="phone1" class="w-[150px] pr-[20px] inline-block">Phone: </label>
+                   <input id="phone1" th:field="*{phone1}" class="ml-1"/>
+               </p>
+                <p>
+                    <label for="dateOfBirth" class="w-[150px] pr-[20px] inline-block">Date of Birth: </label>
+                    <input id="dateOfBirth" th:field="*{dateOfBirth}" class="ml-1" />
+                </p>
+                <p>
+                    <label for="city" class="w-[150px] pr-[20px] inline-block">City: </label>
+                    <input id="city" th:field="*{city}" class="ml-1">
+                </p>
+                <p>
+                    <label for="zipCode" class="w-[150px] pr-[20px] inline-block">Zip: </label>
+                    <input id="zipCode" th:field="*{zipCode}" class="ml-1">
+                </p>
+                <p>
+                    <label for="height" class="w-[150px] pr-[20px] inline-block">Height: </label>
+                    <input id="height" th:field="*{height}" class="ml-1">
+                </p>
+                <p>
+                    <label for="weight" class="w-[150px] pr-[20px] inline-block">Weight: </label>
+                    <input id="weight" th:field="*{weight}" class="ml-1">
+                </p>
+            <div class="text-center mt-5">
+                <button type="submit" class="border-2 border-black rounded-md p-1 bg-orange-300">Update Profile</button>
             </div>
-           <div class="ml-8">
-
-               <p>Last name:  <span th:text="${user.lastName}" class="ml-1"></span></p>
-               <p>City:  <span th:text="${user.city}" class="ml-1"></span></p>
-
-               <p>Zip:  <span th:text="${user.zipCode}" class="ml-1"></span></p>
-
-               <p>Height:  <span th:text="${user.height}" class="ml-1"></span> inches</p>
-               <p>Weight:  <span th:text="${user.weight}" class="ml-1"></span> pounds</p>
-           </div>
-
+       </form>
         </div>
     </div>
     <div class="" id="WorkoutList">
