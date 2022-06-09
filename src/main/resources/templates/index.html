@@ -11,7 +11,7 @@
     <div th:insert="fragments/navbar :: navbar"></div>
 </div>
 <div class="grid place-items-center mt-8">
-    <h1>Welcome <span sec:authentication="principal.username"></span></h1>
+    <h1 class="text-lg font-semibold">Welcome <span sec:authentication="principal.username"></span></h1>
     <div class="flex mt-2">
 
 <!--    create meal form/button-->
@@ -31,11 +31,12 @@
         </form>
     </div>
 </div>
-<div class="grid grid-cols-2 place-items-center mt-20">
-    <div class="bg-white border-2 border-black p-5 rounded-md mb-10" id="calorieCalc">
+<div class="grid grid-cols-2 place-items-center mt-5 border-t-2 border-black">
+    <div class="bg-violet-200 border-2 border-black p-5 rounded-md mb-10 mt-4" id="calorieCalc">
         <form>
             <div class="text-center">
-            <h1 class="font-sans text-lg mb-3">Calculate Your Maintenance Calories</h1>
+                <div class="border-b-2"><h1 class="font-sans text-lg font-semibold mb-3">Calculate Your Maintenance Calories</h1></div>
+
             <small class="">These are the amount of calories you should consume each day to maintain your current weight.</small></br>
             <small class="">If you want to lose 1 pound a week, eat 500 fewer calories per day than this amount.</small></br></br>
             </div>
@@ -85,21 +86,21 @@
         </form>
     </div>
 
-    <div class="bg-white border-2 border-black p-5 rounded-md mb-10 -mt-10" id="prTable">
+    <div class="bg-teal-100 border-2 border-black p-5 rounded-md mb-10 -mt-[296px]" id="prTable">
        <div class="border-b-2">
-           <h1 class="text-center text-lg mb-3 font-semibold">Your Personal Records</h1>
+           <h1 class="text-center text-lg mb-3 font-semibold">Your Personal Workout Records</h1>
        </div>
 
     <table class="">
-        <tr class="ml-2">
-            <th class="mr-3">Exercise</th>
-            <th class="mr-3">Personal Record</th>
-            <th class="mr-3">Date Achieved</th>
+        <tr class="text-center">
+            <th class="text-center">Exercise</th>
+            <th class="text-center">Personal Record</th>
+            <th class="text-center">Date Achieved</th>
         </tr>
         <tr th:each="record : ${personalRecords}">
-            <td th:text="${record.key}" class="mr-3"></td>
-            <td> <span th:text="${record.value.weight}" class="ml-3"></span>lbs. for <span th:text="${record.value.repetitions}" class=""></span> repetitions</td>
-            <td> <span th:text="${record.value.dateOfWorkout}" class="ml-3"></span></td>
+            <td th:text="${record.key}" class="mr-6"></td>
+            <td> <span th:text="${record.value.weight}" class="ml-6"></span> lbs for <span th:text="${record.value.repetitions}" class=""></span> repetitions</td>
+            <td> <span th:text="${record.value.dateOfWorkout}" class="ml-6 mr-6"></span></td>
         </tr>
     </table>
     </div>
