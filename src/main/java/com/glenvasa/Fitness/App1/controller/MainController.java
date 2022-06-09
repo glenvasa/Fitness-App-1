@@ -10,6 +10,7 @@ import com.glenvasa.Fitness.App1.service.WorkoutService;
 import com.glenvasa.Fitness.App1.utilClass.PRStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
@@ -42,7 +43,7 @@ public class MainController {
 //}
 
 @GetMapping("/")
-    public String home(Principal principal){
+    public String home(Model model, Principal principal){
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
 
         // ExerciseStats is util class containing 2 fields (weight / repetitions)
@@ -61,7 +62,10 @@ public class MainController {
         // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
         personalRecords.computeIfPresent(exerciseName, (key,value) -> value.getWeight() > weight ? value : prStats);
     });
-        System.out.println(personalRecords);
+
+//       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
+
+        model.addAttribute("personalRecords", personalRecords);
 
         return "index";
 
