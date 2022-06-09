@@ -84,18 +84,23 @@
             </div>
         </form>
     </div>
-    <div class="bg-white border-2 border-black p-5 rounded-md mb-10" id="prTable">
-    <table>
-        <tr>
-            <th>Exercise</th>
-            <th>Personal Record</th>
-            <th>Date</th>
+
+    <div class="bg-white border-2 border-black p-5 rounded-md mb-10 -mt-10" id="prTable">
+       <div class="border-b-2">
+           <h1 class="text-center text-lg mb-3 font-semibold">Your Personal Records</h1>
+       </div>
+
+    <table class="">
+        <tr class="ml-2">
+            <th class="mr-3">Exercise</th>
+            <th class="mr-3">Personal Record</th>
+            <th class="mr-3">Date Achieved</th>
         </tr>
-<!--        <tr th:each="serving : ${meal.servings}">-->
-<!--            <td th:text="${serving.food.getName()}"></td>-->
-<!--            <td th:text="${serving.getNumber()}"></td>-->
-<!--            <td th:with="totalCals=${serving.number * serving.food.getCalories()}"><span th:text="${totalCals}"></span></td>-->
-<!--        </tr>-->
+        <tr th:each="record : ${personalRecords}">
+            <td th:text="${record.key}" class="mr-3"></td>
+            <td> <span th:text="${record.value.weight}" class="ml-3"></span>lbs. for <span th:text="${record.value.repetitions}" class=""></span> repetitions</td>
+            <td> <span th:text="${record.value.dateOfWorkout}" class="ml-3"></span></td>
+        </tr>
     </table>
     </div>
 </div>
