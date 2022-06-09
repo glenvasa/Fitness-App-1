@@ -6,15 +6,14 @@ import com.glenvasa.Fitness.App1.model.PersonalRecords;
 import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.service.SetsService;
 import com.glenvasa.Fitness.App1.service.WorkoutService;
+
+import com.glenvasa.Fitness.App1.utilClass.PRStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -45,37 +44,26 @@ public class MainController {
 @GetMapping("/")
     public String home(Principal principal){
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
-//            System.out.println("The number of sets for " + principal.getName() + " is " + allSets.size());
 
-    Map<String, Float> personalRecords = new HashMap<>();
+        // ExerciseStats is util class containing 2 fields (weight / repetitions)
+        Map<String, PRStats> personalRecords = new HashMap<>();
+
     allSets.forEach(sets -> {
         String exerciseName = sets.getExercise().getName();
         Float weight = sets.getWeight();
+        Integer repetitions = sets.getRepetitions();
+        String dateOfWorkout = sets.getWorkout().getDateOfWorkout();
+        PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout);
 
+        // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
+        personalRecords.putIfAbsent(exerciseName, prStats);
 
-        //retrieves current maxWeight value for exerciseName key
-//        Float maxWeight = personalRecords.get(exerciseName); // may not need this code
-
-        // if key/exerciseName doesn't exist in Map, create it with weight as value
-        personalRecords.putIfAbsent(exerciseName, weight);
-        // if key exists, compare value with weight and replace if weight > value
-        personalRecords.computeIfPresent(exerciseName, (key,value) -> value >= weight ? value : weight);
-
-//        if(weight > maxWeight){
-//            // replace current maxWeight with weight if weight > maxWeight
-//             personalRecords.put(exerciseName, weight);
-//        }
-
-
-
-
-//        Map<String, List<Item>> items = new HashMap<>();
-//        items.computeIfAbsent(key, k -> new ArrayList<>()).add(item);
-
+        // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
+        personalRecords.computeIfPresent(exerciseName, (key,value) -> value.getWeight() > weight ? value : prStats);
     });
         System.out.println(personalRecords);
 
-         return "index";
+        return "index";
 
 }
 
