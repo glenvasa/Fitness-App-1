@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,6 +43,24 @@ public class UserServiceImpl implements UserService{
     @Override
     public User loadUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void update(UserRegistrationDto userRegistrationDto, Principal principal) {
+        String email = principal.getName();
+        Long userId = userRepository.findByEmail(email).getId();
+
+        userRepository.updateUserById(userRegistrationDto.getFirstName(), userRegistrationDto.getLastName(), userRegistrationDto.getStreetAddress(),
+                userRegistrationDto.getCity(), userRegistrationDto.getState(), userRegistrationDto.getZipCode(), userRegistrationDto.getPhone1(),
+                userRegistrationDto.getHeight(), userRegistrationDto.getWeight(), userRegistrationDto.getDateOfBirth(), userId);
+
+    }
+
+    @Override
+    public void delete(Principal principal) {
+        String email = principal.getName();
+        Long userId = userRepository.findByEmail(email).getId();
+        userRepository.deleteById(userId);
     }
 
 
