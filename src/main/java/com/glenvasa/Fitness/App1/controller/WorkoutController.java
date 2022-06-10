@@ -54,6 +54,7 @@ public class WorkoutController {
 
     }
 
+
 //    @PostMapping("/workout/create")
 //    public String createWorkout(@ModelAttribute("workout") workoutDto workoutDto){
 ////        System.out.println("Ex Controller" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
