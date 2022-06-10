@@ -1,11 +1,15 @@
 package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
+import com.glenvasa.Fitness.App1.dto.WorkoutDto;
+import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 public class UserRegistrationController {
@@ -30,9 +34,15 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/profile/update")
-    public String updateUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto){
-
+    public String updateUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto, Principal principal){
+        userService.update(userRegistrationDto, principal);
         return "redirect:/profile";
+    }
+
+    @PostMapping("/profile/delete")
+    public String deleteUser(Principal principal){
+        userService.delete(principal);
+        return "redirect:/login?deleted";
     }
 
 }
