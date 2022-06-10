@@ -7,10 +7,18 @@
     <title>Login</title>
 </head>
 <body class="bg-blue-200">
-<div th:replace="fragments/navbar :: navbar"></div>
+<!--<div th:replace="fragments/navbar :: navbar"></div>-->
 <div class="grid place-items-center">
     <div class = "">
         <div class = "">
+            <!-- delete Account message -->
+            <div th:if="${param.deleted}">
+                <div class="grid place-items-center">
+                    <p>
+                        You've successfully deleted your Account!
+                    </p>
+                </div>
+            </div>
 
                 <!-- login error message -->
                 <div th:if="${param.error}">
