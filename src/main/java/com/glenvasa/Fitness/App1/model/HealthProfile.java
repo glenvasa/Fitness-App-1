@@ -39,7 +39,7 @@ public class HealthProfile {
     @Column(name = "time")
     private String time;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
