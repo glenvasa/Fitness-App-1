@@ -25,7 +25,7 @@ public class Servings {
     private Meal meal;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name="food_id", referencedColumnName = "id")
     private Food food;
 
