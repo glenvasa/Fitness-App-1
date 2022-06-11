@@ -15,4 +15,6 @@ public interface MealService {
     void update(MealDto mealDto, Meal meal);
     Meal save(MealDto mealDto, Principal principal);
     List<Meal> loadMeals();
+
+    void deleteMeal(Long mealId);
 }
