@@ -74,7 +74,7 @@ public class SetsController {
         return "redirect:/sets?success";
     }
 
-    @DeleteMapping("/sets/delete/{setId}")
+    @PostMapping("/sets/delete/{setId}")
     public String deleteSet(@PathVariable Long setId) {
         setsService.deleteSet(setId);
         return "redirect:/sets";
