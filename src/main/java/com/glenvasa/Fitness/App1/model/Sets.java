@@ -25,7 +25,7 @@ public class Sets {
         private Workout workout;
 
 
-        @ManyToOne(cascade = CascadeType.ALL)
+        @ManyToOne
         @JoinColumn(name="exercise_id", referencedColumnName = "id")
         private Exercise exercise;
 
