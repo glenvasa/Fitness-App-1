@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WorkoutServiceImpl implements WorkoutService {
 
-
-//    private final SetsRepository setsRepository;
     private final WorkoutRepository workoutRepository;
+    private final SetsRepository setsRepository;
     private final UserService userService;
 
     @Autowired
-    public WorkoutServiceImpl(WorkoutRepository workoutRepository, UserService userService) {
-//        this.setsRepository = setsRepository;
+    public WorkoutServiceImpl(WorkoutRepository workoutRepository, UserService userService, SetsRepository setsRepository) {
+        this.setsRepository = setsRepository;
         this.workoutRepository = workoutRepository;
         this.userService = userService;
     }
@@ -57,17 +57,17 @@ public class WorkoutServiceImpl implements WorkoutService {
 
 
 
-//    @Override
-//    public PersonalRecords getPersonalRecords(Principal principal){
-//        String email = principal.getName();
-//        User user = userService.loadUserByEmail(email);
-//        return workoutRepository.findPersonalRecord(user.getId());
-//    }
-
-
     @Override
     public List<Workout> loadWorkouts() {
         return workoutRepository.findAll();
     }
+
+    @Override
+    public void deleteWorkout(Long workoutId) {
+        Workout workout = workoutRepository.findWorkoutById(workoutId);
+        workout.getSets().forEach(sets -> setsRepository.deleteById(sets.getId()));
+        workoutRepository.deleteWorkoutById(workoutId);
+    }
+
 }
 
