@@ -2,7 +2,10 @@ package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.*;
+import com.glenvasa.Fitness.App1.repository.ServingsRepository;
+import com.glenvasa.Fitness.App1.repository.SetsRepository;
 import com.glenvasa.Fitness.App1.repository.UserRepository;
+import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,16 +18,25 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+    private final WorkoutRepository workoutRepository;
+    private final SetsRepository setsRepository;
+    private final ServingsRepository servingsRepository;
+
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, WorkoutRepository workoutRepository,
+                           SetsRepository setsRepository, ServingsRepository servingsRepository) {
         this.userRepository = userRepository;
+        this.workoutRepository = workoutRepository;
+        this.setsRepository = setsRepository;
+        this.servingsRepository = servingsRepository;
     }
 
     @Override
@@ -59,8 +71,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public void delete(Principal principal) {
         String email = principal.getName();
-        Long userId = userRepository.findByEmail(email).getId();
-        userRepository.deleteById(userId);
+        User user = userRepository.findByEmail(email);
+        Set<Workout> workouts = user.getWorkout();
+        Set<Meal> meals = user.getMeal();
+        workouts.forEach(workout -> workout.getSets().forEach(sets -> setsRepository.deleteById(sets.getId())));
+        meals.forEach(meal -> meal.getServings().forEach(serving -> servingsRepository.deleteById(serving.getId())));
+        //        workouts.forEach(workout -> workoutRepository.deleteById(workout.getId()));
+        userRepository.deleteById(user.getId());
     }
 
 
