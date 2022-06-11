@@ -25,7 +25,8 @@
 <!-- Show Sets-->
 <div class="grid place-items-center" id="setsGrid">
     <div class="grid grid-cols-4">
-        <div th:each="set : ${sets}" class="bg-amber-100 border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+        <div th:each="set : ${sets}" class="relative bg-amber-100 border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
+            <span class="absolute top-1 right-4 text-slate-500 text-2xl font-bold cursor-pointer" id="deleteSet" th:onclick="deleteSet([[${set.id}]])">&times;</span>
             <p class="text-orange-500 font-semibold">Exercise</p>
             <p th:text="${set.exercise.getName()}" class="text-black"></p>
             <p class="text-orange-500 font-semibold">Repetitions</p>
@@ -123,5 +124,5 @@
 
 
 <!--Create Footer-->
-<!--<script src="js/script.js"></script>-->
+<script src="js/script.js"></script>
 </body>
