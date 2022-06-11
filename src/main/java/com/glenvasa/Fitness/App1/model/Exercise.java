@@ -28,7 +28,7 @@ public class Exercise {
     private String description;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="exerciseCategory_id", referencedColumnName = "id")
     private ExerciseCategory exerciseCategory;
 
