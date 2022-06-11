@@ -11,10 +11,7 @@ import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -54,22 +51,11 @@ public class WorkoutController {
 
     }
 
+    @PostMapping("/workout/delete/{workoutId}")
+    public String deleteWorkout(@PathVariable Long workoutId){
+        workoutService.deleteWorkout(workoutId);
+        return "redirect:/workouts";
+    }
 
-//    @PostMapping("/workout/create")
-//    public String createWorkout(@ModelAttribute("workout") workoutDto workoutDto){
-////        System.out.println("Ex Controller" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
-////          System.out.println(exerciseDto.getExerciseCategory());
-//
-//        exerciseService.save(exerciseDto);
-//        return "redirect:/exercise?success";
-//
-
-
-    // May be easier to save workouts from Set Service
-//    @PostMapping("/workout/save")
-//    public String saveWorkout(@ModelAttribute("") workoutDto workoutDto){
-//        workoutService.save(workoutDto);
-//        return "redirect:/workout?success";
-//    }
 
 }
