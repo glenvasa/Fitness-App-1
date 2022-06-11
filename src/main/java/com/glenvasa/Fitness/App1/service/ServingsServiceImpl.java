@@ -44,4 +44,9 @@ public class ServingsServiceImpl implements ServingsService {
         return servingsRepository.findAll();
     }
 
+    @Override
+    public void deleteServing(Long id) {
+        servingsRepository.deleteById(id);
+    }
+
 }
