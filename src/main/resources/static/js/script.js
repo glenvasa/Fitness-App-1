@@ -46,8 +46,11 @@ const calorieCalculator = () => {
 
 }
 
-
-
+// gives user option to delete a created set before saving a workout
+const deleteSet = async (setId) => {
+      await fetch(`/sets/delete/${setId}`, {
+      method: 'DELETE'})
+}
 
 
 
