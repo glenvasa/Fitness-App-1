@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,6 +72,12 @@ public class SetsController {
     public String saveSet(@ModelAttribute("sets") SetsDto setsDto){
         setsService.save(setsDto);
         return "redirect:/sets?success";
+    }
+
+    @DeleteMapping("/sets/delete/{setId}")
+    public String deleteSet(@PathVariable Long id) {
+        setsService.deleteSet(id);
+        return "redirect:/sets";
     }
 
     @PostMapping("/workout/update")
