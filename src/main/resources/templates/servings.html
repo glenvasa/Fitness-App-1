@@ -55,8 +55,11 @@
 <!-- Show Servings-->
 <div class="grid place-items-center" id="servingsGrid">
     <div class="grid grid-cols-4">
-        <div th:each="serving : ${servings}" class="border-2 border-black bg-stone-100 p-5 rounded-md mt-3 mr-2 text-center w-72">
+        <div th:each="serving : ${servings}" class="relative border-2 border-black bg-stone-100 p-5 rounded-md mt-3 mr-2 text-center w-72">
 <!--            <p class="text-orange-500 font-semibold">Food</p>-->
+            <form th:action="@{'/servings/delete/{servingId}'(servingId=${serving.id})}" th:method="post">
+                <button type="submit" class="absolute top-1 right-4 text-slate-500 text-2xl font-bold cursor-pointer" id="deleteServing">&times;</button>
+            </form>
             <p th:text="${serving.food.getName()}" class="text-orange-600 text-lg font-semibold"></p>
             <p class="text-black font-semibold">Number of Servings</p>
             <p th:text="${serving.number}" class="text-black"></p>
