@@ -6,6 +6,7 @@ import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
+import com.glenvasa.Fitness.App1.repository.ServingsRepository;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,13 @@ public class MealServiceImpl implements MealService {
 
     private final MealRepository mealRepository;
     private final UserService userService;
+    private final ServingsRepository servingsRepository;
 
     @Autowired
-    public MealServiceImpl(MealRepository mealRepository, UserService userService) {
+    public MealServiceImpl(MealRepository mealRepository, UserService userService, ServingsRepository servingsRepository) {
         this.mealRepository = mealRepository;
         this.userService = userService;
+        this.servingsRepository = servingsRepository;
     }
 
     // to create workout before adding sets, other data; just user object and auto created id
@@ -55,5 +58,14 @@ public class MealServiceImpl implements MealService {
     public List<Meal> loadMeals() {
         return mealRepository.findAll();
     }
+
+    @Override
+    public void deleteMeal(Long mealId) {
+        Meal meal = mealRepository.findMealById(mealId);
+        meal.getServings().forEach(servings -> servingsRepository.deleteById(servings.getId()));
+        mealRepository.deleteMealById(mealId);
+    }
+
+
 }
 
