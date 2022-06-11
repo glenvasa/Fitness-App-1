@@ -58,5 +58,10 @@ public class SetsServiceImpl implements SetsService {
         User user = userService.loadUserByEmail(email);
         return setsRepository.findAllByUserId(user.getId());
     }
+
+    @Override
+    public void deleteSet(Long id) {
+        setsRepository.deleteById(id);
+    }
 }
 
