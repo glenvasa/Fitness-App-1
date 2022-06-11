@@ -12,4 +12,6 @@ public interface SetsService {
     Sets save(SetsDto setsDto);
     List<Sets> loadSets();
     List<Sets> loadSetsByUserId(Principal principal);
+
+    void deleteSet(Long id);
 }
