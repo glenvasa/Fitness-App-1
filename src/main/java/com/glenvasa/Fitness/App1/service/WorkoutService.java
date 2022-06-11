@@ -18,4 +18,6 @@ public interface WorkoutService {
 //    PersonalRecords getPersonalRecords(Principal principal);
     Workout save(WorkoutDto workoutDto, Principal principal);
     List<Workout> loadWorkouts();
+
+    void deleteWorkout(Long workoutId);
 }
