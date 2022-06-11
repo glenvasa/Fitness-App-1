@@ -26,7 +26,6 @@
 <div class="grid place-items-center">
     <div class="grid grid-cols-4">
         <div th:each="workout : ${workouts}" class="relative border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
-            <!--  <div th:if="${param.list}">-->
             <form th:action="@{'/workout/delete/{workoutId}'(workoutId=${workout.id})}" th:method="post">
                 <button type="submit" class="absolute top-1 right-4 text-slate-500 text-2xl font-bold cursor-pointer" id="deleteWorkout">&times;</button>
             </form>
