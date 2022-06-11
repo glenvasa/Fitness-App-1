@@ -28,15 +28,13 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
     @Query("from Workout w where w.user.id = ?1")
     List<Workout> findAllByUserId(Long id);
 
-//    @Query("MAX(s.weight), e.name, from workout w, join sets s on w.id = s.workout.id, join exercise e on s.exercise.id = e.id, where w.user.id = ?1, group by e.name")
-//    PersonalRecords findPersonalRecord(Long id);
+    @Query("from Workout w where w.id = ?1")
+    Workout findWorkoutById(Long id);
 
+    @Modifying
+    @Transactional
+    @Query("delete Workout w where w.id = ?1")
+    void deleteWorkoutById(Long id);
 
-//    @PersistenceContext
-//    pEntityManager entityManager;
-//
-//    public List<Object[]> customQuery(int id) {
-//        Query nativeQuery = entityManager.createNativeQuery(product_ordered).setParameter("id",id);
-//        return nativeQuery.getResultList();
     }
 
