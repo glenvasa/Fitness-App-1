@@ -11,4 +11,5 @@ public interface ServingsService {
     Servings save(ServingsDto servingsDto);
     List<Servings> loadServings();
 
+    void deleteServing(Long id);
 }
