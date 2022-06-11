@@ -24,4 +24,14 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     @Query("from Meal m where m.user.id = ?1")
     List<Meal> findAllByUserId(Long id);
+
+    @Query("from Meal m where m.id = ?1")
+    Meal findMealById(Long id);
+
+    @Modifying
+    @Transactional
+    @Query("delete Meal m where m.id = ?1")
+    void deleteMealById(Long id);
+
+
 }
