@@ -18,4 +18,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "u.zipCode = ?6, u.phone1 = ?7, u.height = ?8, u.weight = ?9, u.dateOfBirth = ?10 where u.id = ?11")
     void updateUserById(String firstName, String lastName, String streetAddress, String city,
                            String state, String zipCode, String phone1, Float height, Float weight, String dateOfBirth, Long id);
+
+
+    @Override
+    @Modifying
+    @Transactional
+    @Query("delete User u where u.id = ?1")
+    void deleteById(Long aLong);
 }
