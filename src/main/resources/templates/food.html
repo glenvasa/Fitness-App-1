@@ -13,13 +13,13 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
-<div th:if="${param.success}" class="">
-    <div class="grid place-items-center">
-        <p>
-            You've successfully added Food!
-        </p>
-    </div>
-</div>
+<!--<div th:if="${param.success}" class="">-->
+<!--    <div class="grid place-items-center">-->
+<!--        <p>-->
+<!--            You've successfully added Food!-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
 <h1 class="grid place-items-center mt-5 mb-5">Food</h1>
 
 <!-- Show Food-->
@@ -41,7 +41,7 @@
 
 <!--  Add Food Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5">
+    <div class="bg-white border-2 border-black p-5 rounded-md mt-5">
         <form th:action="@{/food}" method="post" th:object="${food}" class="bg-white">
             <h1 class="font-sans text-center text-lg mb-3">Add Food</h1>
             <div class="">
@@ -69,6 +69,13 @@
             <div class="">
                 <label class="" for="protein">Protein</label>:
                 <input id="protein" class="mb-3 outline-none" th:field="*{protein}" required autofocus="autofocus" />
+            </div>
+            <div class="">
+                <label class="" for="foodCategory">Category</label>:
+                <select th:field="*{foodCategory}" id="foodCategory">
+                    <option value="0"></option>
+                    <option th:each="foodCategory : ${categories}" th:value="${foodCategory.getName()}" th:text="${foodCategory.getName()}"></option>
+                </select>
             </div>
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Food</button>
