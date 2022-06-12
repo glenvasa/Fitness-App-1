@@ -28,6 +28,11 @@ public class Food {
     private Float carbs;
     private Float protein;
 
+    @ManyToOne
+    @JoinColumn(name="foodCategory_id", referencedColumnName = "id")
+    private FoodCategory foodCategory;
+
+
     @JsonIgnore
     @OneToMany(mappedBy = "food")
     private Set<Servings> servings = new HashSet<>();
