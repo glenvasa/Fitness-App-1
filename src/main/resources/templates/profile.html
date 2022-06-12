@@ -27,44 +27,44 @@
         <div class="border-2 border-black bg-stone-300 p-5 rounded-md w-full" >
             <form th:action="@{/profile/update}" method="post" th:object="${user}">
                 <p>
-                    <label for="firstName" class="w-[150px] pr-[20px] inline-block">First Name: </label>
-                    <input id="firstName" th:field="*{firstName}"  class="ml-1" />
+                    <label for="firstName" class="w-[150px] pr-[20px] inline-block mb-1">First Name: </label>
+                    <input id="firstName" th:field="*{firstName}"  class="ml-1 mb-1" />
                 </p>
                 <p>
-                    <label for="lastName" class="w-[150px] pr-[20px] inline-block">Last Name: </label>
-                    <input id="lastName" th:field="*{lastName}" class="ml-1" />
-                </p>
-               <p>
-                   <label for="streetAddress" class="w-[150px] pr-[20px] inline-block">Street: </label>
-                   <input id="streetAddress" th:field="*{streetAddress}" class="ml-1" />
-               </p>
-                <p>
-                    <label for="state" class="w-[150px] pr-[20px] inline-block">State:  </label>
-                    <input id="state" th:field="*{state}" class="ml-1" />
+                    <label for="lastName" class="w-[150px] pr-[20px] inline-block mb-1">Last Name: </label>
+                    <input id="lastName" th:field="*{lastName}" class="ml-1 mb-1" />
                 </p>
                <p>
-                   <label for="phone1" class="w-[150px] pr-[20px] inline-block">Phone: </label>
-                   <input id="phone1" th:field="*{phone1}" class="ml-1"/>
+                   <label for="streetAddress" class="w-[150px] pr-[20px] inline-block mb-1">Street: </label>
+                   <input id="streetAddress" th:field="*{streetAddress}" class="ml-1 mb-1" />
                </p>
                 <p>
-                    <label for="dateOfBirth" class="w-[150px] pr-[20px] inline-block">Date of Birth: </label>
-                    <input id="dateOfBirth" th:field="*{dateOfBirth}" class="ml-1" />
+                    <label for="state" class="w-[150px] pr-[20px] inline-block mb-1">State:  </label>
+                    <input id="state" th:field="*{state}" class="ml-1 mb-1" />
+                </p>
+               <p>
+                   <label for="phone1" class="w-[150px] pr-[20px] inline-block mb-1">Phone: </label>
+                   <input id="phone1" th:field="*{phone1}" class="ml-1 mb-1"/>
+               </p>
+                <p>
+                    <label for="dateOfBirth" class="w-[150px] pr-[20px] inline-block mb-1">Date of Birth: </label>
+                    <input id="dateOfBirth" th:field="*{dateOfBirth}" class="ml-1 mb-1" />
                 </p>
                 <p>
-                    <label for="city" class="w-[150px] pr-[20px] inline-block">City: </label>
-                    <input id="city" th:field="*{city}" class="ml-1">
+                    <label for="city" class="w-[150px] pr-[20px] inline-block mb-1">City: </label>
+                    <input id="city" th:field="*{city}" class="ml-1 mb-1">
                 </p>
                 <p>
-                    <label for="zipCode" class="w-[150px] pr-[20px] inline-block">Zip: </label>
-                    <input id="zipCode" th:field="*{zipCode}" class="ml-1">
+                    <label for="zipCode" class="w-[150px] pr-[20px] inline-block mb-1">Zip: </label>
+                    <input id="zipCode" th:field="*{zipCode}" class="ml-1 mb-1">
                 </p>
                 <p>
-                    <label for="height" class="w-[150px] pr-[20px] inline-block">Height: </label>
-                    <input id="height" th:field="*{height}" class="ml-1">
+                    <label for="height" class="w-[150px] pr-[20px] inline-block mb-1">Height: </label>
+                    <input id="height" th:field="*{height}" class="ml-1 mb-1">
                 </p>
                 <p>
-                    <label for="weight" class="w-[150px] pr-[20px] inline-block">Weight: </label>
-                    <input id="weight" th:field="*{weight}" class="ml-1">
+                    <label for="weight" class="w-[150px] pr-[20px] inline-block mb-1">Weight: </label>
+                    <input id="weight" th:field="*{weight}" class="ml-1 mb-1">
                 </p>
             <div class="text-center mt-5">
                 <button type="submit" class="border-2 border-black rounded-md p-1 bg-orange-300">Update Profile</button>
