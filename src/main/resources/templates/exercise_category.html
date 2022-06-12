@@ -13,31 +13,22 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
-<div th:if="${param.success}">
-  <div class="grid place-items-center">
-    <p>
-      You've successfully added an Exercise Category!
-    </p>
-  </div>
-</div>
+<!--<div th:if="${param.success}">-->
+<!--  <div class="grid place-items-center">-->
+<!--    <p>-->
+<!--      You've successfully added an Exercise Category!-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</div>-->
 <h1 class="grid place-items-center mt-5 mb-5">Exercise Categories</h1>
 
 <!-- Show Exercise Categories-->
 <div class="grid place-items-center">
 <div class="grid grid-cols-4">
-  <div th:each="category : ${categories}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
-<!--  <div th:if="${param.list}">-->
-
+  <div th:each="category : ${categories}" class="bg-white border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72">
         <p th:text="${category.name}" class="text-purple-800 font-semibold text-lg"></p>
         <div th:text="${category.description}" class="text-black"></div>
-<!--          <p class="text-purple-800">Cardiovascular</p>-->
-<!--        <div class="">-->
-<!--          Cardio exercise, which is sometimes referred to as aerobic exercise, is any rhythmic activity that raises your heart-->
-<!--          rate into your target heart rate zone. This is the zone where you burn the most fat and calories.</div>-->
 
-<!--  </div>-->
-<!--  <a href="/" th:href="@{/exercise/category?list}" class="text-white bg-purple-800 border-black rounded-md px-2 py-1.5">Show Categories</a>-->
-<!--    </div>-->
     </div>
   </div>
 
@@ -46,7 +37,7 @@
 
 <!--  Add Category Form -->
 <div class="grid place-items-center">
-  <div class="border-2 border-black p-5 rounded-md mt-5">
+  <div class="bg-white border-2 border-black p-5 rounded-md mt-5">
     <form th:action="@{/exercise/category}" method="post" th:object="${category}">
       <h1 class="font-sans text-center text-lg mb-3">Add Exercise Category</h1>
       <div class="">
