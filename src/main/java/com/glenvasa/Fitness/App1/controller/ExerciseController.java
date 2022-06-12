@@ -23,9 +23,8 @@ public class ExerciseController {
 
 
     private final ExerciseService exerciseService;
-
-    private final ExerciseCategoryRepository exerciseCategoryRepository;
     private final ExerciseRepository exerciseRepository;
+    private final ExerciseCategoryRepository exerciseCategoryRepository;
     List<ExerciseCategory> exerciseCategoryList;
 
 
@@ -52,9 +51,6 @@ public class ExerciseController {
 
     @PostMapping
     public String saveExercise(@ModelAttribute("exercise") ExerciseDto exerciseDto){
-//        System.out.println("Ex Controller" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
-//          System.out.println(exerciseDto.getExerciseCategory());
-
         exerciseService.save(exerciseDto);
         return "redirect:/exercise?success";
     }
