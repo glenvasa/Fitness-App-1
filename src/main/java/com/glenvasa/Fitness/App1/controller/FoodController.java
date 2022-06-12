@@ -5,8 +5,10 @@ import com.glenvasa.Fitness.App1.dto.FoodDto;
 import com.glenvasa.Fitness.App1.model.Exercise;
 import com.glenvasa.Fitness.App1.model.ExerciseCategory;
 import com.glenvasa.Fitness.App1.model.Food;
+import com.glenvasa.Fitness.App1.model.FoodCategory;
 import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.ExerciseRepository;
+import com.glenvasa.Fitness.App1.repository.FoodCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.FoodRepository;
 import com.glenvasa.Fitness.App1.service.ExerciseService;
 import com.glenvasa.Fitness.App1.service.FoodService;
@@ -26,16 +28,16 @@ public class FoodController {
 
 
     private final FoodService foodService;
-
     private final FoodRepository foodRepository;
-//    List<ExerciseCategory> exerciseCategoryList;
-
+    private final FoodCategoryRepository foodCategoryRepository;
+    List<FoodCategory> foodCategoryList;
 
 
     @Autowired
-    public FoodController(FoodService foodService, FoodRepository foodRepository) {
+    public FoodController(FoodService foodService, FoodRepository foodRepository, FoodCategoryRepository foodCategoryRepository) {
         this.foodService = foodService;
         this.foodRepository = foodRepository;
+        this.foodCategoryRepository = foodCategoryRepository;
     }
 
     @GetMapping()
@@ -45,14 +47,14 @@ public class FoodController {
         List<Food> foodList =  foodService.loadFood();
         model.addAttribute("foodBag", foodList);
 
+        foodCategoryList = foodCategoryRepository.findAll();
+        model.addAttribute("categories", foodCategoryList);
+
         return "food";
     }
 
     @PostMapping
     public String saveFood(@ModelAttribute("food") FoodDto foodDto){
-//        System.out.println("Ex Controller" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
-//          System.out.println(exerciseDto.getExerciseCategory());
-
         foodService.save(foodDto);
         return "redirect:/food?success";
     }
