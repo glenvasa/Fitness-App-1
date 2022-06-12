@@ -26,8 +26,6 @@
 <div class="grid place-items-center">
   <div class="grid grid-cols-4">
     <div th:each="exercise : ${exercises}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
-      <!--  <div th:if="${param.list}">-->
-
       <p th:text="${exercise.name}" class="text-green-800 font-semibold text-lg"></p>
       <div th:text="${exercise.description}" class="text-black"></div>
 <!--      <div th:text="${exercise.exerciseCategory}" class="text-black"></div>-->
@@ -39,7 +37,7 @@
 
 <!--  Add Exercise Form -->
 <div class="grid place-items-center">
-  <div class="border-2 border-black p-5 rounded-md mt-5">
+  <div class="bg-white border-2 border-black p-5 rounded-md mt-5">
     <form th:action="@{/exercise}" method="post" th:object="${exercise}" class="bg-white">
       <h1 class="font-sans text-center text-lg mb-3">Add Exercise</h1>
       <div class="">
@@ -58,8 +56,6 @@
           <option value="0"></option>
           <option th:each="exerciseCategory : ${categories}" th:value="${exerciseCategory.getName()}" th:text="${exerciseCategory.getName()}"></option>
         </select>
-<!--        <input id="exerciseCategory" class="mb-3 outline-none" th:field="*{exerciseCategory}"-->
-<!--               required autofocus="autofocus" />-->
       </div>
 
       <div class="text-center mt-5">
