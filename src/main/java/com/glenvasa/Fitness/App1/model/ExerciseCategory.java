@@ -1,6 +1,9 @@
 package com.glenvasa.Fitness.App1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,24 +13,21 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "exerciseCategory")
 public class ExerciseCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String description;
 
-//    @OneToOne(cascade=CascadeType.ALL)
-//    private Exercise exercise;
     @JsonIgnore
     @OneToMany(mappedBy = "exerciseCategory")
     private Set<Exercise> exercises = new HashSet<>();
-
-    public ExerciseCategory() {
-    }
 
     public ExerciseCategory(String name, String description, Set<Exercise> exercises) {
         this.name = name;
@@ -35,35 +35,5 @@ public class ExerciseCategory {
         this.exercises = exercises;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(Set<Exercise> exercises) {
-        this.exercises = exercises;
-    }
 }
