@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -23,7 +24,7 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
     @Modifying
     @Transactional
     @Query("update Workout w set w.dateOfWorkout = ?1, w.duration = ?2, w.workoutName = ?3 where w.id = ?4")
-    void updateWorkoutById(String dateOfWorkout, Float duration, String workoutName, Long id);
+    void updateWorkoutById(LocalDate dateOfWorkout, Float duration, String workoutName, Long id);
 
     @Query("from Workout w where w.user.id = ?1")
     List<Workout> findAllByUserId(Long id);
