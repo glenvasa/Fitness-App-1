@@ -13,12 +13,12 @@ import javax.persistence.Column;
 @ToString
 public class WorkoutDto {
     private String workoutName;
-    private String dateOfWorkout;
+//    private String dateOfWorkout;
     private Float duration;
 
-    public WorkoutDto(String workoutName, String dateOfWorkout, Float duration){
+    public WorkoutDto(String workoutName, Float duration){
         this.workoutName = workoutName;
-        this.dateOfWorkout = dateOfWorkout;
+//        this.dateOfWorkout = dateOfWorkout;
         this.duration = duration;
     }
 }
