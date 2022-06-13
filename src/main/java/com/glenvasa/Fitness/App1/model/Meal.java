@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,10 +25,10 @@ public class Meal {
     private Long id;
 
     @Column(name = "date")
-    private String date;
+    private LocalDate date;
 
     @Column(name = "time")
-    private String time;
+    private LocalTime time;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -42,7 +44,7 @@ public class Meal {
     @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
     private Set<Servings> servings = new HashSet<>();
 
-    public Meal(String date, String time, String mealType, Float mealCals, User user, Set<Servings> servings) {
+    public Meal(LocalDate date, LocalTime time, String mealType, Float mealCals, User user, Set<Servings> servings) {
         this.date = date;
         this.time = time;
         this.user = user;
