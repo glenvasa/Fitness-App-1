@@ -77,7 +77,7 @@ public class ServingsController {
 
         @PostMapping("/meal/update")
         public String saveMeal(@ModelAttribute("meal") MealDto mealDto){
-            Meal currentMeal = mealRepository.findTopByOrderByIdDesc();
+            Meal currentMeal = mealRepository.findTopByOrderByIdDesc(); // retrieves the meal just created
             mealService.update(mealDto, currentMeal);
             return "redirect:/meals";
         }
