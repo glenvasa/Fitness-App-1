@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -48,9 +49,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 //        User user = workout.getUser();
 //        Workout updatedWorkout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
 //               workoutDto.getDuration(), user, workout.getSets());
+            LocalDate today = LocalDate.now();
 
-
-                workoutRepository.updateWorkoutById(workoutDto.getDateOfWorkout(), workoutDto.getDuration(),
+                workoutRepository.updateWorkoutById(today, workoutDto.getDuration(),
                 workoutDto.getWorkoutName(), workout.getId());
 
     }
