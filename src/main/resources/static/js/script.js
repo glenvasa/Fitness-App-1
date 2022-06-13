@@ -18,6 +18,55 @@ const addServingsCalories = () => {
    mealCals.value = totalMealCals
 }
 
+// Give user option to click button and auto input current date/time for Meal
+const currentDateTime = () => {
+  const month = document.getElementById('month')
+  const day = document.getElementById('day')
+  const year = document.getElementById('year')
+  const hour = document.getElementById('hour')
+  const minute = document.getElementById('minute')
+  const dayNight = document.getElementById('dayNight')
+
+  const currentDate = new Date();
+  const cDay = currentDate.getDate()
+  const cMonth = currentDate.getMonth() + 1
+  const cYear = currentDate.getFullYear()
+  let cHours = currentDate.getHours()
+  let cMinutes = currentDate.getMinutes()
+  let cDayNight;
+
+  cHours >= 12 ? cDayNight = "PM" : cDayNight = "AM"
+  cHours > 12 ? cHours -= 12 : cHours = cHours
+  cMinutes <= 9 ? cMinutes = "0" + cMinutes : cMinutes = cMinutes
+
+  month.value = cMonth;
+  day.value = cDay;
+  year.value = cYear;
+  hour.value = cHours;
+  minute.value = cMinutes;
+  dayNight.value = cDayNight;
+
+}
+
+// give User option to click a button and
+const currentDate = () => {
+  const month = document.getElementById('month')
+  const day = document.getElementById('day')
+  const year = document.getElementById('year')
+
+
+  const currentDate = new Date();
+  const cDay = currentDate.getDate()
+  const cMonth = currentDate.getMonth() + 1
+  const cYear = currentDate.getFullYear()
+
+  month.value = cMonth;
+  day.value = cDay;
+  year.value = cYear;
+
+}
+
+
 
 const calorieCalculator = () => {
   const weight = document.getElementById('calcWeight').value
