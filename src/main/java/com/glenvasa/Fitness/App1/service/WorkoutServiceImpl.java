@@ -49,10 +49,9 @@ public class WorkoutServiceImpl implements WorkoutService {
 //        User user = workout.getUser();
 //        Workout updatedWorkout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
 //               workoutDto.getDuration(), user, workout.getSets());
-            LocalDate today = LocalDate.now();
-
-                workoutRepository.updateWorkoutById(today, workoutDto.getDuration(),
-                workoutDto.getWorkoutName(), workout.getId());
+//            LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(workoutDto.getYear(), workoutDto.getMonth(), workoutDto.getDay());
+        workoutRepository.updateWorkoutById(date, workoutDto.getDuration(), workoutDto.getWorkoutName(), workout.getId());
 
     }
 
