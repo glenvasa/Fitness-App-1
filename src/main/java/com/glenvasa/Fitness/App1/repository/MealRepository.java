@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +21,7 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
     @Modifying
     @Transactional
     @Query("update Meal m set m.date = ?1, m.time = ?2, m.mealType = ?3, m.mealCals = ?4 where m.id = ?5")
-    void updateMealById(String date, String time, String mealType, Float mealCals, Long id);
+    void updateMealById(LocalDate date, LocalTime time, String mealType, Float mealCals, Long id);
 
 
     @Query("from Meal m where m.user.id = ?1")
