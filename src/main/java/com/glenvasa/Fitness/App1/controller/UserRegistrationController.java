@@ -45,4 +45,5 @@ public class UserRegistrationController {
         return "redirect:/login?deleted";
     }
 
+
 }
