@@ -26,15 +26,36 @@
 <div class="border-2 border-black bg-yellow-100 p-5 rounded-md mt-5 grid place-items-center w-3/5" id="saveMealForm">
     <form th:action="@{/meal/update}" method="post" th:object="${meal}" class="flex">
         <div class="">
-            <label class="mr-1" for="date">Date:</label>
-            <input id="date" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{date}"
+            <label class="mr-1" for="month">Month:</label>
+            <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{month}"
                    required autofocus="autofocus" />
         </div>
         <div class="">
-            <label class="mr-1" for="time">Time:</label>
-            <input id="time" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{time}"
+            <label class="mr-1" for="day">Day:</label>
+            <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{day}"
                    required autofocus="autofocus" />
         </div>
+        <div class="">
+            <label class="mr-1" for="year">Year:</label>
+            <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{year}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="hour">Hour:</label>
+            <input id="hour" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{hour}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="minute">Minutes:</label>
+            <input id="minute" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{minute}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="dayNight">AM/PM:</label>
+            <input id="dayNight" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{dayNight}"
+                   required autofocus="autofocus" />
+        </div>
+
         <div class="">
             <label class="mr-1" for="mealType">Meal Type:</label>
             <input id="mealType" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{mealType}"
