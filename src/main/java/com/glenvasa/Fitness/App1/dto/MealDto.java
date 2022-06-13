@@ -10,14 +10,24 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MealDto {
-    private String date;
-    private String time;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int minute;
+    private String dayNight;
+
+
     private String mealType;
     private Float mealCals;
 
-    public MealDto(String date, String time, String mealType, Float mealCals) {
-        this.date = date;
-        this.time = time;
+    public MealDto(int year, int month, int day, int hour, int minute, String dayNight, String mealType, Float mealCals) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.dayNight = dayNight;
         this.mealType = mealType;
         this.mealCals = mealCals;
     }
