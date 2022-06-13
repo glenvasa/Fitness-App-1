@@ -33,8 +33,8 @@ public class ProfileController {
   List<Workout> dailyWorkouts;
 //  Double dailyCals = 0.0;
   Double modalDailyCals;
-  String mealDate;
-  String workoutDate;
+  LocalDate mealDate;
+  LocalDate workoutDate;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
@@ -53,7 +53,7 @@ public class ProfileController {
 
 //        meals.forEach(meal -> dailyCals += meal.getMealCals());
 
-        Set<String> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+        Set<LocalDate> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
         // for each date in mealDates retrieve list of Meals and use .size to display next to date as # of meals for the day
 
         model.addAttribute("mealDates", mealDates);
@@ -81,7 +81,8 @@ public class ProfileController {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
-        dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), date)).toList();
+        mealDate = LocalDate.parse(date);
+        dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), mealDate)).toList();
 //        model.addAttribute("dailyMeals", dailyMeals);
         modalDailyCals = 0.0;
         dailyMeals.forEach(meal -> modalDailyCals += meal.getMealCals());
@@ -89,7 +90,7 @@ public class ProfileController {
         System.out.println("hello from Profile Controller GET /profile/meals/date");
         System.out.println(date);
 
-        mealDate = date;
+
         System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
@@ -100,11 +101,12 @@ public class ProfileController {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), date)).toList();
+        workoutDate = LocalDate.parse(date);
+        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), workoutDate)).toList();
 
         System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
         System.out.println(date);
-        workoutDate = date;
+
 
         System.out.println("dailyWorkouts" + dailyWorkouts);
         return "redirect:/profile"; // may not need "redirect:/profile"
