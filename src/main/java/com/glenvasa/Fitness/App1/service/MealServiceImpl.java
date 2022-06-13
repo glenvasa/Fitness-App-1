@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -48,7 +50,20 @@ public class MealServiceImpl implements MealService {
     // save workout after adding name,duration, date info AFTER creating/adding all Sets
     @Override
     public void update(MealDto mealDto, Meal meal) {
-        mealRepository.updateMealById(mealDto.getDate(), mealDto.getTime(), mealDto.getMealType(),
+        int formattedHour;
+        int hour = mealDto.getHour();
+        String dayNight = mealDto.getDayNight();
+
+        if(dayNight.toLowerCase().startsWith("a")){
+            formattedHour = hour;
+        } else {
+            formattedHour = hour + 12;
+        }
+
+        LocalDate date = LocalDate.of(mealDto.getYear(), mealDto.getMonth(), mealDto.getDay());
+        LocalTime time = LocalTime.of(formattedHour, mealDto.getMinute(), 0);
+
+        mealRepository.updateMealById(date, time, mealDto.getMealType(),
                 mealDto.getMealCals() ,meal.getId());
     }
 
