@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class ProfileController {
 //        model.addAttribute("dailyCals", dailyCals);
 
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-        Set<String> workoutDates = workouts.stream().map(Workout::getDateOfWorkout).collect(Collectors.toSet());
+        Set<LocalDate> workoutDates = workouts.stream().map(Workout::getDateOfWorkout).collect(Collectors.toSet());
 //        System.out.println(workoutDates);
         model.addAttribute("workoutDates", workoutDates);
 
