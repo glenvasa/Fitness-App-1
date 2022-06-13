@@ -47,8 +47,7 @@ public class UserServiceImpl implements UserService{
                 registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
                 registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
                 registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(),
-                Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>(),
-                new HashSet<HealthProfile>());
+                Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>());
         return userRepository.save(user);
     }
 
@@ -67,6 +66,14 @@ public class UserServiceImpl implements UserService{
                 userRegistrationDto.getHeight(), userRegistrationDto.getWeight(), userRegistrationDto.getDateOfBirth(), userId);
 
     }
+
+    @Override
+    public void updateUserMaintCals(Integer maintCals, Principal principal) {
+        String email = principal.getName();
+        Long userId = userRepository.findByEmail(email).getId();
+        userRepository.updateUserMaintCals(maintCals, userId);
+    }
+
 
     @Override
     public void delete(Principal principal) {
