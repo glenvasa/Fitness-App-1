@@ -103,6 +103,18 @@
             <!--                <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
             <div class="">
                 <h1 class="font-sans text-center font-semibold text-lg mb-3">Save Workout</h1>
+                <div class="">
+                    <button onclick="currentDate()" class="text-white bg-green-800 rounded-md px-1 mr-5 mt-3 mb-4" id="currentButton">Now</button>
+                        <label class="mr-1" for="month">Month:</label>
+                        <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{month}"
+                               required autofocus="autofocus" />
+                        <label class="mr-1" for="day">Day:</label>
+                        <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{day}"
+                               required autofocus="autofocus" />
+                        <label class="mr-1" for="year">Year:</label>
+                        <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{year}"
+                               required autofocus="autofocus" />
+                </div>
 <!--                <label class="" for="dateOfWorkout">Date</label>:-->
 <!--                <input id="dateOfWorkout" class="outline-none ml-1 mb-3" th:field="*{dateOfWorkout}"-->
 <!--                       required autofocus="autofocus" />-->
