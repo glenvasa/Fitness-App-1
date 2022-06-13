@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -53,7 +55,7 @@ public class MainController {
         String exerciseName = sets.getExercise().getName();
         Float weight = sets.getWeight();
         Integer repetitions = sets.getRepetitions();
-        String dateOfWorkout = sets.getWorkout().getDateOfWorkout();
+        LocalDate dateOfWorkout = sets.getWorkout().getDateOfWorkout();
         PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout);
 
         // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
