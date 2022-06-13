@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
@@ -29,7 +30,7 @@ public class Workout {
 
     @Column(name = "date_of_workout")
     // will change to Date type or DateTime to incorporate time of day as well
-    private String dateOfWorkout;
+    private LocalDate dateOfWorkout;
 
     @Column(name = "duration")
     // will change to Time type
@@ -44,7 +45,7 @@ public class Workout {
     private Set<Sets> sets = new HashSet<>();
 
 
-    public Workout(String workoutName, String dateOfWorkout, Float duration, User user, Set<Sets> sets) {
+    public Workout(String workoutName, LocalDate dateOfWorkout, Float duration, User user, Set<Sets> sets) {
         this.workoutName = workoutName;
         this.dateOfWorkout = dateOfWorkout;
         this.duration = duration;
