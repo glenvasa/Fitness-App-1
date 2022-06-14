@@ -2,9 +2,12 @@ package com.glenvasa.Fitness.App1.controller;
 
 
 
+import com.glenvasa.Fitness.App1.dto.HealthProfileDto;
+import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.PersonalRecords;
 import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.model.User;
+import com.glenvasa.Fitness.App1.service.HealthProfileService;
 import com.glenvasa.Fitness.App1.service.SetsService;
 import com.glenvasa.Fitness.App1.service.UserService;
 import com.glenvasa.Fitness.App1.service.WorkoutService;
@@ -14,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -28,11 +32,13 @@ public class MainController {
 
     SetsService setsService;
     UserService userService;
+    HealthProfileService healthProfileService;
 
     @Autowired
-    MainController(SetsService setsService, UserService userService) {
+    MainController(SetsService setsService, UserService userService, HealthProfileService healthProfileService) {
         this.setsService = setsService;
         this.userService = userService;
+        this.healthProfileService = healthProfileService;
     }
 
     @GetMapping("/login")
@@ -72,12 +78,17 @@ public class MainController {
 //       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
 
         model.addAttribute("personalRecords", personalRecords);
-
+        model.addAttribute("health", new HealthProfileDto());
 
         return "index";
 
     }
 
+    @PostMapping("/user/healthProfile")
+    public String createHealthProfile(@ModelAttribute("health") HealthProfileDto healthProfileDto, Principal principal){
+        healthProfileService.save(healthProfileDto, principal);
+        return "redirect:/profile";
+    }
 //    @PostMapping("/user/update/{maintCals}")
 //    public String updateMaintCals(@PathVariable Integer maintCals, Principal principal) {
 //        userService.updateUserMaintCals(maintCals, principal);
