@@ -14,6 +14,6 @@ public interface UserService extends UserDetailsService { // UserDetailsService 
     User loadUserByEmail(String email);
 
     void update(UserRegistrationDto userRegistrationDto, Principal principal);
-    void updateUserMaintCals(Integer maintCals, Principal principal);
+//    void updateUserMaintCals(Integer maintCals, Principal principal);
     void delete(Principal principal);
 }
