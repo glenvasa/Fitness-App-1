@@ -32,7 +32,7 @@ public class ProfileController {
   List<Meal> dailyMeals;
   List<Workout> dailyWorkouts;
 //  Double dailyCals = 0.0;
-  Double modalDailyCals;
+  Double modalDailyCals = 0.0;
   LocalDate mealDate;
   LocalDate workoutDate;
 
@@ -67,11 +67,13 @@ public class ProfileController {
         model.addAttribute("dailyMeals", dailyMeals);
         model.addAttribute("dailyWorkouts", dailyWorkouts);
         model.addAttribute("modalDailyCals", modalDailyCals);
+        model.addAttribute("maintCals", user.getMaintCals());
         model.addAttribute("mealDate", mealDate);
         model.addAttribute("workoutDate", workoutDate);
 
         System.out.println("Inside GET /profile");
         System.out.println(dailyMeals);
+        System.out.println(modalDailyCals);
         return "profile";
     }
 
