@@ -78,11 +78,11 @@ public class MainController {
 
     }
 
-    @PostMapping("/user/update/{maintCals}")
-    public String updateMaintCals(@PathVariable Integer maintCals, Principal principal) {
-        userService.updateUserMaintCals(maintCals, principal);
-        return "index";
-    }
+//    @PostMapping("/user/update/{maintCals}")
+//    public String updateMaintCals(@PathVariable Integer maintCals, Principal principal) {
+//        userService.updateUserMaintCals(maintCals, principal);
+//        return "index";
+//    }
 
 }
 
