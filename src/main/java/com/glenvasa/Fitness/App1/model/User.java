@@ -35,13 +35,18 @@ public class User {
 
     @Column(name = "zip_code")
     private String zipCode;
-    private String phone1;
+
+    // Twilio text takes phone as String
+    private String phone;
     private String email;
     private String password;
     private Float height;
-    private Float weight;
 
-    private Integer maintCals;
+    //moving this to Health Profile entity
+//    private Float weight;
+
+    // moving this to Health Profile entity
+//    private Integer maintCals;
 
     @Column(name = "date_of_birth")
     private String dateOfBirth;
@@ -66,33 +71,34 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Meal> meal = new HashSet<>();
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "user")
-//    private Set<HealthProfile> healthProfiles = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<HealthProfile> healthProfiles = new HashSet<>();
 
 
 
 
    public User(String firstName, String lastName, String streetAddress, String city,
-                String state, String zipCode, String phone1, String email, String password,
-                Float height, Float weight, String dateOfBirth, Collection<Role> roles, Set<Workout> workout,
-                Set<Meal> meal) {
+                String state, String zipCode, String phone, String email, String password,
+                Float height, String dateOfBirth, Collection<Role> roles, Set<Workout> workout,
+                Set<Meal> meal, Set<HealthProfile> healthProfiles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
-        this.phone1 = phone1;
+        this.phone = phone;
         this.email = email;
         this.password = password;
         this.height = height;
-        this.weight = weight;
+//        this.weight = weight;
         this.dateOfBirth = dateOfBirth;
         this.roles = roles;
         this.workout = workout;
         this.meal = meal;
-        this.maintCals = 0;
+        this.healthProfiles = healthProfiles;
+//        this.maintCals = 0;
     }
 
 
