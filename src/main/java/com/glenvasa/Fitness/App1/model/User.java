@@ -70,6 +70,9 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    private Set<HealthProfile> healthProfiles = new HashSet<>();
 
+
+
+
    public User(String firstName, String lastName, String streetAddress, String city,
                 String state, String zipCode, String phone1, String email, String password,
                 Float height, Float weight, String dateOfBirth, Collection<Role> roles, Set<Workout> workout,
@@ -89,6 +92,7 @@ public class User {
         this.roles = roles;
         this.workout = workout;
         this.meal = meal;
+        this.maintCals = 0;
     }
 
 
