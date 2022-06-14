@@ -54,11 +54,18 @@ public class MealServiceImpl implements MealService {
         int hour = mealDto.getHour();
         String dayNight = mealDto.getDayNight();
 
-        if(dayNight.toLowerCase().startsWith("a")){
+        if((dayNight.toLowerCase().startsWith("a") && hour != 12) || dayNight.toLowerCase().startsWith("p") && hour == 12 ) {
             formattedHour = hour;
-        } else {
+        } else if(dayNight.toLowerCase().startsWith("p") && hour != 12) {
             formattedHour = hour + 12;
+        } else {
+            formattedHour = 0;
         }
+
+
+//        if(dayNight.toLowerCase().startsWith("p") && hour == 12){
+//            formattedHour = hour;
+//        }
 
         LocalDate date = LocalDate.of(mealDto.getYear(), mealDto.getMonth(), mealDto.getDay());
         LocalTime time = LocalTime.of(formattedHour, mealDto.getMinute(), 0);
