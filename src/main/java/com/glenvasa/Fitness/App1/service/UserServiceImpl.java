@@ -2,10 +2,7 @@ package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.*;
-import com.glenvasa.Fitness.App1.repository.ServingsRepository;
-import com.glenvasa.Fitness.App1.repository.SetsRepository;
-import com.glenvasa.Fitness.App1.repository.UserRepository;
-import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
+import com.glenvasa.Fitness.App1.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,15 +23,17 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
     private final WorkoutRepository workoutRepository;
+    private final MealRepository mealRepository;
     private final SetsRepository setsRepository;
     private final ServingsRepository servingsRepository;
 
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, WorkoutRepository workoutRepository,
-                           SetsRepository setsRepository, ServingsRepository servingsRepository) {
+                           MealRepository mealRepository, SetsRepository setsRepository, ServingsRepository servingsRepository) {
         this.userRepository = userRepository;
         this.workoutRepository = workoutRepository;
+        this.mealRepository = mealRepository;
         this.setsRepository = setsRepository;
         this.servingsRepository = servingsRepository;
     }
@@ -44,10 +43,11 @@ public class UserServiceImpl implements UserService{
 
         User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
                 registrationDto.getStreetAddress(), registrationDto.getCity(),
-                registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone1(),
+                registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone(),
                 registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
-                registrationDto.getHeight(), registrationDto.getWeight(), registrationDto.getDateOfBirth(),
-                Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>());
+                registrationDto.getHeight(), registrationDto.getDateOfBirth(),
+                Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>(),
+                new HashSet<HealthProfile>());
         return userRepository.save(user);
     }
 
@@ -62,17 +62,17 @@ public class UserServiceImpl implements UserService{
         Long userId = userRepository.findByEmail(email).getId();
 
         userRepository.updateUserById(userRegistrationDto.getFirstName(), userRegistrationDto.getLastName(), userRegistrationDto.getStreetAddress(),
-                userRegistrationDto.getCity(), userRegistrationDto.getState(), userRegistrationDto.getZipCode(), userRegistrationDto.getPhone1(),
-                userRegistrationDto.getHeight(), userRegistrationDto.getWeight(), userRegistrationDto.getDateOfBirth(), userId);
+                userRegistrationDto.getCity(), userRegistrationDto.getState(), userRegistrationDto.getZipCode(), userRegistrationDto.getPhone(),
+                userRegistrationDto.getHeight(), userRegistrationDto.getDateOfBirth(), userId);
 
     }
 
-    @Override
-    public void updateUserMaintCals(Integer maintCals, Principal principal) {
-        String email = principal.getName();
-        Long userId = userRepository.findByEmail(email).getId();
-        userRepository.updateUserMaintCals(maintCals, userId);
-    }
+//    @Override
+//    public void updateUserMaintCals(Integer maintCals, Principal principal) {
+//        String email = principal.getName();
+//        Long userId = userRepository.findByEmail(email).getId();
+//        userRepository.updateUserMaintCals(maintCals, userId);
+//    }
 
 
     @Override
@@ -83,6 +83,9 @@ public class UserServiceImpl implements UserService{
         Set<Meal> meals = user.getMeal();
         workouts.forEach(workout -> workout.getSets().forEach(sets -> setsRepository.deleteById(sets.getId())));
         meals.forEach(meal -> meal.getServings().forEach(serving -> servingsRepository.deleteById(serving.getId())));
+        workouts.forEach(workout -> workoutRepository.deleteWorkoutById(workout.getId()));
+        meals.forEach(meal -> mealRepository.deleteMealById(meal.getId()));
+
         //        workouts.forEach(workout -> workoutRepository.deleteById(workout.getId()));
         userRepository.deleteById(user.getId());
     }
