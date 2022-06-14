@@ -12,12 +12,12 @@ import lombok.Setter;
 
         private String name;
         private String description;
-        private ExerciseCategory exerciseCategory;
 
-        public FoodCategoryDto(String name, String description, ExerciseCategory exerciseCategory) {
+
+        public FoodCategoryDto(String name, String description) {
             this.name = name;
             this.description = description;
-            this.exerciseCategory = exerciseCategory;
+
         }
 
     }
