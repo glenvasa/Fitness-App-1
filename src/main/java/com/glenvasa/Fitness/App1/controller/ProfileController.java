@@ -67,7 +67,7 @@ public class ProfileController {
         model.addAttribute("dailyMeals", dailyMeals);
         model.addAttribute("dailyWorkouts", dailyWorkouts);
         model.addAttribute("modalDailyCals", modalDailyCals);
-        model.addAttribute("maintCals", user.getMaintCals());
+//        model.addAttribute("maintCals", user.getMaintCals());
         model.addAttribute("mealDate", mealDate);
         model.addAttribute("workoutDate", workoutDate);
 
