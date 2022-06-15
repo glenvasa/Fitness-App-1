@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.*;
 
 
@@ -78,14 +79,24 @@ public class MainController {
 //       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
 
         model.addAttribute("personalRecords", personalRecords);
-        model.addAttribute("health", new HealthProfileDto());
+
+        //Retrieve User's Height and dateOfBirth from User and auto input to Maintenance Calories Form
+        User user = userService.loadUserByEmail(principal.getName());
+        Integer age = Period.between(LocalDate.parse(user.getDateOfBirth()), LocalDate.now()).getYears();
+        System.out.println("You are " + age + " years old.");
+
+        model.addAttribute("height", user.getHeight());
+        model.addAttribute("age", age);
+
+        model.addAttribute("healthProfile", new HealthProfileDto());
+
 
         return "index";
 
     }
 
     @PostMapping("/user/healthProfile")
-    public String createHealthProfile(@ModelAttribute("health") HealthProfileDto healthProfileDto, Principal principal){
+    public String createHealthProfile(@ModelAttribute("healthProfile") HealthProfileDto healthProfileDto, Principal principal){
         healthProfileService.save(healthProfileDto, principal);
         return "redirect:/profile";
     }
