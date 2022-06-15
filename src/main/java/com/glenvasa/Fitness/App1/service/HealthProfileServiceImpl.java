@@ -26,7 +26,7 @@ public class HealthProfileServiceImpl implements HealthProfileService{
         String email = principal.getName();
         User user = userRepository.findByEmail(email);
         LocalDate today = LocalDate.now();
-
-        return healthProfileRepository.save(today, healthProfileDto.getWeight(), healthProfileDto.getExerciseLevel(), healthProfileDto.getMaintenanceCalories(), user);
+        HealthProfile healthProfile = new HealthProfile(today, healthProfileDto.getWeight(), healthProfileDto.getExerciseLevel(), healthProfileDto.getMaintenanceCalories(), user);
+        return healthProfileRepository.save(healthProfile);
     }
 }
