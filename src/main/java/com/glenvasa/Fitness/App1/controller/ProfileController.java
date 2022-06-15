@@ -1,8 +1,10 @@
 package com.glenvasa.Fitness.App1.controller;
 
+import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
+import com.glenvasa.Fitness.App1.repository.HealthProfileRepository;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.UserService;
@@ -15,10 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -28,6 +27,7 @@ public class ProfileController {
   private final UserService userService;
   private final MealRepository mealRepository;
   private final WorkoutRepository workoutRepository;
+  private final HealthProfileRepository healthProfileRepository;
 
   List<Meal> dailyMeals;
   List<Workout> dailyWorkouts;
@@ -35,12 +35,14 @@ public class ProfileController {
   Double modalDailyCals = 0.0;
   LocalDate mealDate;
   LocalDate workoutDate;
+  HealthProfile currentHealthProfile;
 
     @Autowired
-    public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository){
+    public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository, HealthProfileRepository healthProfileRepository){
         this.userService = userService;
         this.mealRepository = mealRepository;
         this.workoutRepository = workoutRepository;
+        this.healthProfileRepository = healthProfileRepository;
     }
 
     @GetMapping("/profile")
@@ -71,9 +73,24 @@ public class ProfileController {
         model.addAttribute("mealDate", mealDate);
         model.addAttribute("workoutDate", workoutDate);
 
+        // Get all user's healthProfiles, get most recent, add to model to display
+        List<HealthProfile> healthProfiles = healthProfileRepository.findAll().stream().filter(healthProfile1 -> healthProfile1.getUser().getId() == user.getId()).collect(Collectors.toList());
+
+        if(healthProfiles.size() > 0){
+            currentHealthProfile = healthProfiles.get(healthProfiles.size() - 1);
+
+        } else {
+            currentHealthProfile = new HealthProfile(LocalDate.now(), 0.00F, 0, (double) 0, user);
+        }
+        model.addAttribute("healthProfile", currentHealthProfile);
+        //        findTopByOrderByIdDesc();
+
+
         System.out.println("Inside GET /profile");
-        System.out.println(dailyMeals);
-        System.out.println(modalDailyCals);
+        System.out.println(currentHealthProfile);
+
+        //        System.out.println(dailyMeals);
+//        System.out.println(modalDailyCals);
         return "profile";
     }
 
