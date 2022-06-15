@@ -1,3 +1,10 @@
+//if(window.location.pathname === "/") {
+//window.addEventListener("load", () => {
+//    console.log(window.location.pathname)
+//    retrieveAgeHeight();
+//})
+
+
 // only want "load" event listener to be added and call addServingsCalories if /servings route
 if(window.location.pathname === "/servings") {
 window.addEventListener("load", () => {
@@ -76,7 +83,7 @@ const calorieCalculator = () => {
   const male= document.getElementById('male').checked
   const female= document.getElementById('female').checked
 
-  const maintCals = document.getElementById('maintCals')
+  const maintenanceCalories = document.getElementById('maintenanceCalories')
   let calories;
 
   if(male){
@@ -91,18 +98,18 @@ const calorieCalculator = () => {
     }
 
 
-  maintCals.value = Math.round(calories)
+  maintenanceCalories.value = Math.round(calories)
 
 }
 
 
-const saveMaintCals = () => {
-   const maintCals = document.getElementById("maintCals").value
-   console.log(maintCals)
-   fetch(`/user/update/${maintCals}`, {
-         method: 'POST'})
-
-}
+//const saveMaintCals = () => {
+//   const maintCals = document.getElementById("maintCals").value
+//   console.log(maintCals)
+//   fetch(`/user/update/${maintCals}`, {
+//         method: 'POST'})
+//
+//}
 
 
 
