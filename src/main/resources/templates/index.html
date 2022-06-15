@@ -34,7 +34,7 @@
 </div>
 <div class="grid grid-cols-2 place-items-center mt-5 border-t-2 border-black">
     <div class="bg-violet-200 border-2 border-black p-5 rounded-md mb-10 mt-4" id="calorieCalc">
-        <form>
+        <form th:action="@{/user/healthProfile}" method="post" th:object="${healthProfile}" class="">
             <div class="text-center">
                 <div class="border-b-2"><h1 class="font-sans text-lg font-semibold mb-3">Calculate Your Maintenance Calories</h1></div>
 
@@ -43,17 +43,17 @@
             </div>
                 <div class="">
                 <label class="" for="calcWeight">Weight (lbs)</label>:
-                <input id="calcWeight" class="mb-3 outline-none"
+                <input id="calcWeight" class="mb-3 outline-none" th:field="*{weight}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
                 <label class="" for="calcHeight">Height (in)</label>:
-                <input id="calcHeight" class="mb-3 outline-none"
+                <input id="calcHeight" class="mb-3 outline-none" th:value="${height}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
-                <label class="" for="calcExLevel">Age</label>:
-                <input id="calcAge" class="mb-3 outline-none"
+                <label class="" for="calcAge">Age</label>:
+                <input id="calcAge" class="mb-3 outline-none" th:value="${age}"
                        required autofocus="autofocus" />
             </div>
             <div class="text-center">
@@ -65,7 +65,7 @@
             </br>
             <div class="">
                 <label class="" for="calcExLevel">Exercise Level</label>:
-                <input id="calcExLevel" class="mb-3 outline-none"
+                <input id="calcExLevel" class="mb-3 outline-none" th:field="*{exerciseLevel}"
                        required autofocus="autofocus" />
                 </br>
                 <small>If you are sedentary and do not exercise, enter 1.2 above.</small></br>
@@ -76,13 +76,13 @@
             </div>
             </br>
             <div class="">
-                <label class="mr-1" for="maintCals">Maintenance Calories:</label>
-                <input id="maintCals" class="mb-3 outline-none bg-blue-100"
+                <label class="mr-1" for="maintenanceCalories">Maintenance Calories:</label>
+                <input id="maintenanceCalories" class="mb-3 outline-none bg-blue-100" th:field="*{maintenanceCalories}"
                        required autofocus="autofocus" />
             </div>
             <div class="flex justify-center text-center mt-5">
                 <button type="button" class="text-white bg-cyan-500 rounded-md px-2 py-1.5 mr-3" onclick="calorieCalculator()">Calculate</button>
-                <button type="button" class="text-white bg-cyan-800 rounded-md px-2 py-1.5" onclick="saveMaintCals()">Save</button>
+                <button type="submit" class="text-white bg-cyan-800 rounded-md px-2 py-1.5">Save</button>
             </div>
         </form>
     </div>
