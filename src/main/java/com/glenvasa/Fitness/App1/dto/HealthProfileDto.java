@@ -12,10 +12,10 @@ import javax.persistence.Column;
 public class HealthProfileDto {
 
     private Float weight;
-    private Integer exerciseLevel;
+    private Double exerciseLevel;
     private Double maintenanceCalories;
 
-    public HealthProfileDto(Float weight, Integer exerciseLevel, Double maintenanceCalories) {
+    public HealthProfileDto(Float weight, Double exerciseLevel, Double maintenanceCalories) {
         this.weight = weight;
         this.exerciseLevel = exerciseLevel;
         this.maintenanceCalories = maintenanceCalories;
