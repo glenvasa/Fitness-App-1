@@ -87,6 +87,11 @@ public class MainController {
 
         model.addAttribute("height", user.getHeight());
         model.addAttribute("age", age);
+        model.addAttribute("levelOne", new String("You are sedentary and do not exercise."));
+        model.addAttribute("levelTwo", new String("You exercise lightly 1-3 times per week."));
+        model.addAttribute("levelThree", new String("You exercise 3 - 5 days per week."));
+        model.addAttribute("levelFour", new String("You exercise 6 - 7 days per week."));
+        model.addAttribute("levelFive", new String("You exercise 7 days a week and also have a physically demanding job."));
 
         model.addAttribute("healthProfile", new HealthProfileDto());
 
