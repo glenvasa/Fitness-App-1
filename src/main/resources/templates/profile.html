@@ -15,15 +15,17 @@
 
     <div class="" id="mealList">
         <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10" id="mList">
-            <h1 class="mb-10 text-center text-lg">Meals</h1>
-            <form th:action="@{/profile/meals}" method="post" th:object="${selectedDate}">
-                <select th:field="*{date}" id="mealDateList">
-                    <option value="0">Select Date</option>
-                    <option th:each="mealDate : ${mealDates}" th:text="${mealDate}" th:value="${mealDate}" class=""></option>
-                </select>
-                <div class="text-center mt-5">
-                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Meals</button>
-                </div>
+            <h1 class="mb-10 text-center text-lg">Select Date to View Meals/Workouts</h1>
+            <form th:action="@{/profile/meals}" method="post" th:object="${selectedDate}" class="text-center">
+                <input type="date" th:name="date" th:value="*{date}" onchange="this.form.submit()"/>
+<!--                <select th:field="*{date}" id="mealDateList">-->
+<!--                    <option value="0">Select Date</option>-->
+<!--                    <option th:each="mealDate : ${mealDates}" th:text="${mealDate}" th:value="${mealDate}" class=""></option>-->
+<!--                </select>-->
+
+<!--                <div class="text-center mt-5">-->
+<!--                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Meals</button>-->
+<!--                </div>-->
             </form>
 
         </div>
@@ -91,18 +93,19 @@
         </div>
     </div>
     <div class="" id="WorkoutList">
-        <div class="border-2 border-black bg-violet-200 p-5 rounded-md w-9/10" >
-            <h1 class="mb-10 text-center text-lg">Workouts</h1>
-            <form th:action="@{/profile/workouts}" method="post" th:object="${selectedDate}">
-                <select th:field="*{date}" id="workoutsDateList">
-                    <option value="0">Select Date</option>
-                    <option th:each="workoutDate : ${workoutDates}" th:text="${workoutDate}" th:value="${workoutDate}" class=""></option>
-                </select>
-                <div class="text-center mt-5">
-                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Workouts</button>
-                </div>
-            </form>
-        </div>
+<!--        <div class="border-2 border-black bg-violet-200 p-5 rounded-md w-9/10" >-->
+<!--            <h1 class="mb-10 text-center text-lg">Workouts</h1>-->
+<!--            <form th:action="@{/profile/workouts}" method="post" th:object="${selectedDate}">-->
+<!--                <input type="date" th:name="date" th:value="*{date}" onchange="this.form.submit()"/>-->
+<!--&lt;!&ndash;                <select th:field="*{date}" id="workoutsDateList">&ndash;&gt;-->
+<!--                    <option value="0">Select Date</option>-->
+<!--                    <option th:each="workoutDate : ${workoutDates}" th:text="${workoutDate}" th:value="${workoutDate}" class=""></option>-->
+<!--                </select>-->
+<!--                <div class="text-center mt-5">-->
+<!--                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Workouts</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
     </div>
 </div>
 <div class="flex justify-evenly" id="modalContainer">
