@@ -38,8 +38,9 @@
 <div th:fragment="workoutModal" class="">
     <div class="w-full" id="workoutModal">
         <div class="m-auto p-5 mt-3" id="workoutModalContent">
-<!--            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeWorkoutModal">&times;</span>-->
-            <h1 class="text-black-500">Workouts for <span th:text="${workoutDate}"></span></h1>
+<!--          <>  <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeWorkoutModal">&times;</span>-->
+            </br>
+            <h1 class="text-black-500">Workouts for <span th:text="${mealDate}"></span></h1>
             <div class="grid grid-cols-2" id="dailyWorkoutCards">
                 <div th:each="workout : ${dailyWorkouts}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-violet-200">
                     <p><span th:text="${workout.workoutName}" class="font-semibold text-lg">none</span></p>
