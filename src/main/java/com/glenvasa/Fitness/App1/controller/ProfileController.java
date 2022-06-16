@@ -1,5 +1,6 @@
 package com.glenvasa.Fitness.App1.controller;
 
+import com.glenvasa.Fitness.App1.dto.FoodDto;
 import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
@@ -8,12 +9,11 @@ import com.glenvasa.Fitness.App1.repository.HealthProfileRepository;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.UserService;
+import com.glenvasa.Fitness.App1.utilClass.SelectedDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -36,6 +36,7 @@ public class ProfileController {
   LocalDate mealDate;
   LocalDate workoutDate;
   HealthProfile currentHealthProfile;
+//  SelectedDate selectedDate;
 
     @Autowired
     public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository, HealthProfileRepository healthProfileRepository){
@@ -56,6 +57,9 @@ public class ProfileController {
         meals.forEach(meal -> dailyCals += meal.getMealCals());
 
         Set<LocalDate> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+
+        //
+        model.addAttribute("selectedDate", new SelectedDate());
         // for each date in mealDates retrieve list of Meals and use .size to display next to date as # of meals for the day
 
         model.addAttribute("mealDates", mealDates);
@@ -95,19 +99,19 @@ public class ProfileController {
     }
 
 
-    @GetMapping("/profile/meals/{date}")
-    public String displayMealsSummary(@PathVariable String date, Principal principal, Model model) {
+    @PostMapping("/profile/meals")
+    public String displayMealsSummary(@ModelAttribute("selectedDate") SelectedDate selectedDate, Principal principal, Model model) {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
-        mealDate = LocalDate.parse(date);
+        mealDate = LocalDate.parse(selectedDate.getDate());
         dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), mealDate)).toList();
 //        model.addAttribute("dailyMeals", dailyMeals);
         modalDailyCals = 0.0;
         dailyMeals.forEach(meal -> modalDailyCals += meal.getMealCals());
 
-        System.out.println("hello from Profile Controller GET /profile/meals/date");
-        System.out.println(date);
+        System.out.println("hello from Profile Controller GET /profile/meals/");
+        System.out.println(selectedDate);
 
 
         System.out.println("dailyMeals" + dailyMeals);
@@ -115,16 +119,16 @@ public class ProfileController {
     }
 
 
-    @GetMapping("/profile/workouts/{date}")
-    public String displayWorkoutsSummary(@PathVariable String date, Principal principal, Model model) {
+    @PostMapping("/profile/workouts")
+    public String displayWorkoutsSummary(@ModelAttribute("selectedDate") SelectedDate selectedDate, Principal principal, Model model) {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-        workoutDate = LocalDate.parse(date);
+        workoutDate = LocalDate.parse(selectedDate.getDate());
         dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), workoutDate)).toList();
 
         System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
-        System.out.println(date);
+        System.out.println(workoutDate);
 
 
         System.out.println("dailyWorkouts" + dailyWorkouts);
