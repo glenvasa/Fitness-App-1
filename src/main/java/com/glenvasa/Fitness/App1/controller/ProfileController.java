@@ -31,7 +31,7 @@ public class ProfileController {
 
   List<Meal> dailyMeals;
   List<Workout> dailyWorkouts;
-//  Double dailyCals = 0.0;
+  Double dailyCals = 0.0;
   Double modalDailyCals = 0.0;
   LocalDate mealDate;
   LocalDate workoutDate;
@@ -53,13 +53,13 @@ public class ProfileController {
 
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
 
-//        meals.forEach(meal -> dailyCals += meal.getMealCals());
+        meals.forEach(meal -> dailyCals += meal.getMealCals());
 
         Set<LocalDate> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
         // for each date in mealDates retrieve list of Meals and use .size to display next to date as # of meals for the day
 
         model.addAttribute("mealDates", mealDates);
-//        model.addAttribute("dailyCals", dailyCals);
+        model.addAttribute("dailyCals", dailyCals);
 
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
         Set<LocalDate> workoutDates = workouts.stream().map(Workout::getDateOfWorkout).collect(Collectors.toSet());
@@ -69,7 +69,7 @@ public class ProfileController {
         model.addAttribute("dailyMeals", dailyMeals);
         model.addAttribute("dailyWorkouts", dailyWorkouts);
         model.addAttribute("modalDailyCals", modalDailyCals);
-//        model.addAttribute("maintCals", user.getMaintCals());
+
         model.addAttribute("mealDate", mealDate);
         model.addAttribute("workoutDate", workoutDate);
 
@@ -80,11 +80,11 @@ public class ProfileController {
             currentHealthProfile = healthProfiles.get(healthProfiles.size() - 1);
 
         } else {
-            currentHealthProfile = new HealthProfile(LocalDate.now(), 0.00F, 0, (double) 0, user);
+            currentHealthProfile = new HealthProfile(LocalDate.now(), 0.00F, (double) 0, (double) 0, user);
         }
         model.addAttribute("healthProfile", currentHealthProfile);
-        //        findTopByOrderByIdDesc();
 
+      model.addAttribute("maintCals", currentHealthProfile.getMaintenanceCalories());
 
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
