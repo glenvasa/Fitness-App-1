@@ -16,10 +16,16 @@
     <div class="" id="mealList">
         <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10" id="mList">
             <h1 class="mb-10 text-center text-lg">Meals</h1>
-            <div th:each="mealDate : ${mealDates}" class="">
-                <button type='button'><a th:href="@{/profile/meals/{date}(date = ${mealDate})}" th:text="${mealDate}"></a></button>
-<!--                <span th:text="${dailyCals}"></span>-->
-            </div>
+            <form th:action="@{/profile/meals}" method="post" th:object="${selectedDate}">
+                <select th:field="*{date}" id="mealDateList">
+                    <option value="0">Select Date</option>
+                    <option th:each="mealDate : ${mealDates}" th:text="${mealDate}" th:value="${mealDate}" class=""></option>
+                </select>
+                <div class="text-center mt-5">
+                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Meals</button>
+                </div>
+            </form>
+
         </div>
     </div>
     <div class="" id="profileInfo">
@@ -87,9 +93,15 @@
     <div class="" id="WorkoutList">
         <div class="border-2 border-black bg-violet-200 p-5 rounded-md w-9/10" >
             <h1 class="mb-10 text-center text-lg">Workouts</h1>
-            <div th:each="workoutDate : ${workoutDates}" class="">
-                <button type='button'><a th:href="@{/profile/workouts/{date}(date = ${workoutDate})}" th:text="${workoutDate}"></a></button>
-            </div>
+            <form th:action="@{/profile/workouts}" method="post" th:object="${selectedDate}">
+                <select th:field="*{date}" id="workoutsDateList">
+                    <option value="0">Select Date</option>
+                    <option th:each="workoutDate : ${workoutDates}" th:text="${workoutDate}" th:value="${workoutDate}" class=""></option>
+                </select>
+                <div class="text-center mt-5">
+                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Workouts</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
