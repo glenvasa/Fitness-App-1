@@ -110,6 +110,12 @@ public class ProfileController {
         modalDailyCals = 0.0;
         dailyMeals.forEach(meal -> modalDailyCals += meal.getMealCals());
 
+        List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
+//        workoutDate = LocalDate.parse(selectedDate.getDate());
+        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), mealDate)).toList();
+
+
+
         System.out.println("hello from Profile Controller GET /profile/meals/");
         System.out.println(selectedDate);
 
