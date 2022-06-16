@@ -29,7 +29,7 @@ public class HealthProfile {
     private Float weight;
 
     @Column(name = "exercise_level")
-    private Integer exerciseLevel;
+    private Double exerciseLevel;
 
     @Column(name = "maintenance_calories")
     private Double maintenanceCalories;
@@ -39,7 +39,7 @@ public class HealthProfile {
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
-    public HealthProfile(LocalDate date, Float weight, Integer exerciseLevel, Double maintenanceCalories, User user){
+    public HealthProfile(LocalDate date, Float weight, Double exerciseLevel, Double maintenanceCalories, User user){
         this.date = date;
         this.weight = weight;
         this.exerciseLevel = exerciseLevel;
