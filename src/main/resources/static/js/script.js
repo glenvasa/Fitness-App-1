@@ -79,7 +79,7 @@ const calorieCalculator = () => {
   const weight = document.getElementById('calcWeight').value
   const height = document.getElementById('calcHeight').value
   const age = document.getElementById('calcAge').value
-  const exerciseLevel = document.getElementById('calcExLevel').value
+  const exerciseLevel = document.getElementById('exerciseLevel').value
   const male= document.getElementById('male').checked
   const female= document.getElementById('female').checked
 
@@ -87,16 +87,17 @@ const calorieCalculator = () => {
   let calories;
 
   if(male){
-    calories = exerciseLevel * (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age))
+    calories = exerciseLevel * (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age)) - 120
     console.log("male")
   } else if(female){
-    calories = exerciseLevel * (655 + (4.35 * weight) + (4.7 * height) - (4.7 * age))
+    calories = exerciseLevel * (655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)) - 120
       console.log("female")
     } else {
      alert("Please choose gender for Calorie Calculator")
      calories = 0
     }
 
+console.log(exerciseLevel)
 
   maintenanceCalories.value = Math.round(calories)
 
