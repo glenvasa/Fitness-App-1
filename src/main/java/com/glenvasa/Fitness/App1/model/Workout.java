@@ -41,7 +41,7 @@ public class Workout {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "workout")
+    @OneToMany(mappedBy = "workout", fetch = FetchType.EAGER)
     private Set<Sets> sets = new HashSet<>();
 
 
