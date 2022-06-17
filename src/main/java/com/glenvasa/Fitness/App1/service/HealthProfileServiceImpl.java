@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class HealthProfileServiceImpl implements HealthProfileService{
@@ -29,4 +30,15 @@ public class HealthProfileServiceImpl implements HealthProfileService{
         HealthProfile healthProfile = new HealthProfile(today, healthProfileDto.getWeight(), healthProfileDto.getExerciseLevel(), healthProfileDto.getMaintenanceCalories(), user);
         return healthProfileRepository.save(healthProfile);
     }
+
+    @Override
+    public List<HealthProfile> findTodayProfiles(Principal principal, LocalDate today) {
+        String email = principal.getName();
+        User user = userRepository.findByEmail(email);
+        return healthProfileRepository.findDailyByUserId(user.getId(), today);
+    }
+
+    //query HealthProfile db to see if user has created a profile for today
+
+
 }
