@@ -35,6 +35,7 @@ public class ProfileController {
   Double modalDailyCals = 0.0;
   LocalDate mealDate;
   LocalDate workoutDate;
+  List<HealthProfile> healthProfiles;
   HealthProfile currentHealthProfile;
 //  SelectedDate selectedDate;
 
@@ -78,7 +79,7 @@ public class ProfileController {
         model.addAttribute("workoutDate", workoutDate);
 
         // Get all user's healthProfiles, get most recent, add to model to display
-        List<HealthProfile> healthProfiles = healthProfileRepository.findAll().stream().filter(healthProfile1 -> healthProfile1.getUser().getId() == user.getId()).collect(Collectors.toList());
+        healthProfiles = healthProfileRepository.findAll().stream().filter(healthProfile1 -> healthProfile1.getUser().getId() == user.getId()).collect(Collectors.toList());
 
         if(healthProfiles.size() > 0){
             currentHealthProfile = healthProfiles.get(healthProfiles.size() - 1);
@@ -114,32 +115,43 @@ public class ProfileController {
 //        workoutDate = LocalDate.parse(selectedDate.getDate());
         dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), mealDate)).toList();
 
+        List<HealthProfile> dailyHealthProfiles = healthProfileRepository.findDailyByUserId(user.getId(), mealDate);
+//       List<HealthProfile> allHealthProfiles = healthProfileRepository.findAll().stream().filter(healthProfile1 -> healthProfile1.getUser().getId() == user.getId() && healthProfile1.getDate() == mealDate).collect(Collectors.toList());
+//       List<HealthProfile> dailyHealthProfiles = allHealthProfiles.stream().filter(healthProfile2 -> healthProfile2.getDate() == mealDate).collect(Collectors.toList());
+       System.out.println(mealDate);
+       System.out.println(dailyHealthProfiles);
+//       System.out.println(dailyHealthProfiles);
+       //sets curentHealthProfile to the last of the list of hps created for a date (use most recent as user may create many for a day but last is one they stick with)
+       // the only issue I need to address is if user didn't create an hp for that date, I should find most recent hp created before the date
+        if(dailyHealthProfiles.size() > 0){
+            currentHealthProfile = dailyHealthProfiles.get(dailyHealthProfiles.size() - 1);
+        }
 
 
         System.out.println("hello from Profile Controller GET /profile/meals/");
-        System.out.println(selectedDate);
+        System.out.println(currentHealthProfile); //accurately printing most recent hp but not updating
 
 
         System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
 
-
-    @PostMapping("/profile/workouts")
-    public String displayWorkoutsSummary(@ModelAttribute("selectedDate") SelectedDate selectedDate, Principal principal, Model model) {
-        String email = principal.getName();
-        User user = userService.loadUserByEmail(email);
-        List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-        workoutDate = LocalDate.parse(selectedDate.getDate());
-        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), workoutDate)).toList();
-
-        System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
-        System.out.println(workoutDate);
-
-
-        System.out.println("dailyWorkouts" + dailyWorkouts);
-        return "redirect:/profile"; // may not need "redirect:/profile"
-    }
+//
+//    @PostMapping("/profile/workouts")
+//    public String displayWorkoutsSummary(@ModelAttribute("selectedDate") SelectedDate selectedDate, Principal principal, Model model) {
+//        String email = principal.getName();
+//        User user = userService.loadUserByEmail(email);
+//        List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
+//        workoutDate = LocalDate.parse(selectedDate.getDate());
+//        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), workoutDate)).toList();
+//
+//        System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
+//        System.out.println(workoutDate);
+//
+//
+//        System.out.println("dailyWorkouts" + dailyWorkouts);
+//        return "redirect:/profile"; // may not need "redirect:/profile"
+//    }
 
 
 
