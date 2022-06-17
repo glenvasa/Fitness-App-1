@@ -1,8 +1,42 @@
-//if(window.location.pathname === "/") {
-//window.addEventListener("load", () => {
-//    console.log(window.location.pathname)
-//    retrieveAgeHeight();
-//})
+//const todayHealthProfileExists = async () => {
+//
+//    const result = await fetch('/user/healthProfile/today')
+//    const exists = result.data
+//    console.log(exists)
+//      if(exists == true){
+//          const currentDate = new Date().toISOString().split('T')[0]
+//          localStorage.setItem("hpDate", JSON.stringify(currentDate))
+//      }
+//}
+
+
+if(window.location.pathname === "/") {
+    const createMeal = document.getElementById("createMeal")
+    const createWorkout = document.getElementById("createWorkout")
+    const dailyHp = document.getElementById("dailyHp")
+    const currentDate = new Date().toISOString().split('T')[0]
+
+    if(dailyHp.innerText == "exists"){
+        localStorage.setItem("hpDate", JSON.stringify(currentDate))
+        createMeal.classList.remove("hidden")
+        createWorkout.classList.remove("hidden")
+    }
+    console.log(window.location.pathname)
+
+
+     const hpDate = JSON.parse(localStorage.getItem("hpDate"))
+    if (!hpDate == currentDate || hpDate == null ) {// checks if hpDate stored in LocalStorage == currentDate
+         console.log("false")
+          createMeal.classList.add("hidden")
+          createWorkout.classList.add("hidden")
+        } else {
+          console.log("true")
+        }
+    //
+
+}
+
+
 
 
 // only want "load" event listener to be added and call addServingsCalories if /servings route
