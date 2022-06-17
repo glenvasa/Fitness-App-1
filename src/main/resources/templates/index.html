@@ -12,18 +12,19 @@
     <div th:insert="fragments/navbar :: navbar"></div>
 </div>
 <div class="grid place-items-center mt-8">
+    <p th:text="${dailyHp}" id="dailyHp">not-exists</p>
     <h1 class="text-lg font-semibold">Welcome <span sec:authentication="principal.username"></span></h1>
     <div class="flex mt-2">
 
 <!--    create meal form/button-->
-    <form th:action="@{/meal/create}" method="post" th:object="${meal}" class="bg-white border-2 border-black p-5 rounded-md">
+    <form th:action="@{/meal/create}" method="post" th:object="${meal}" id="createMeal" class="bg-white border-2 border-black p-5 rounded-md">
         <h1 class="font-sans text-center text-lg mb-3">Click below to Create a Meal</h1>
         <div class="text-center mt-5">
             <button type="submit" class="text-white bg-purple-800 rounded-md px-2 py-1.5">New Meal</button>
         </div>
     </form>
         <!--    create workout form/button-->
-        <form th:action="@{/workout/create}" method="post" th:object="${workout}"
+        <form th:action="@{/workout/create}" method="post" th:object="${workout}" id="createWorkout"
               class="bg-white border-2 border-black p-5 rounded-md ml-8">
             <h1 class="font-sans text-center text-lg mb-3">Click below to Create a Workout</h1>
             <div class="text-center mt-5">
