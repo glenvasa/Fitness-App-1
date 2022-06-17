@@ -13,11 +13,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface HealthProfileRepository extends JpaRepository<HealthProfile, Long> {
 
     HealthProfile findTopByOrderByIdDesc();
+
+    @Query("from HealthProfile hp where hp.user.id = ?1 and hp.date =?2")
+    List<HealthProfile> findDailyByUserId(Long id, LocalDate mealDate);
 
 //    @Modifying
 //    @Transactional
