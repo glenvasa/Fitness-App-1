@@ -53,6 +53,7 @@ public class WorkoutServiceImpl implements WorkoutService {
         LocalDate date = LocalDate.of(workoutDto.getYear(), workoutDto.getMonth(), workoutDto.getDay());
         workoutRepository.updateWorkoutById(date, workoutDto.getDuration(), workoutDto.getWorkoutName(), workout.getId());
 
+
     }
 
 
