@@ -4,6 +4,7 @@ package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.HealthProfileDto;
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
+import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.PersonalRecords;
 import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.model.User;
@@ -16,11 +17,9 @@ import com.glenvasa.Fitness.App1.utilClass.PRStats;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -87,14 +86,22 @@ public class MainController {
 
         model.addAttribute("height", user.getHeight());
         model.addAttribute("age", age);
-        model.addAttribute("levelOne", new String("You are sedentary and do not exercise."));
-        model.addAttribute("levelTwo", new String("You exercise lightly 1-3 times per week."));
-        model.addAttribute("levelThree", new String("You exercise 3 - 5 days per week."));
-        model.addAttribute("levelFour", new String("You exercise 6 - 7 days per week."));
-        model.addAttribute("levelFive", new String("You exercise 7 days a week and also have a physically demanding job."));
+        model.addAttribute("levelOne", "You are sedentary and do not exercise.");
+        model.addAttribute("levelTwo", "You exercise lightly 1-3 times per week.");
+        model.addAttribute("levelThree", "You exercise 3 - 5 days per week.");
+        model.addAttribute("levelFour", "You exercise 6 - 7 days per week.");
+        model.addAttribute("levelFive", "You exercise 7 days a week and also have a physically demanding job.");
 
         model.addAttribute("healthProfile", new HealthProfileDto());
 
+        LocalDate today = LocalDate.now();
+        List<HealthProfile> todayHealthProfiles = healthProfileService.findTodayProfiles(principal, today);
+        System.out.println(todayHealthProfiles.size() > 0);
+
+//        model.addAttribute("dailyHp", "not-exists");
+        if(todayHealthProfiles.size() > 0){
+            model.addAttribute("dailyHp", "exists");
+        }
 
         return "index";
 
@@ -105,11 +112,18 @@ public class MainController {
         healthProfileService.save(healthProfileDto, principal);
         return "redirect:/profile";
     }
-//    @PostMapping("/user/update/{maintCals}")
-//    public String updateMaintCals(@PathVariable Integer maintCals, Principal principal) {
-//        userService.updateUserMaintCals(maintCals, principal);
-//        return "index";
+
+//    checks to see if any healthProfiles created by user for current date
+
+//    @GetMapping("/user/healthProfile/today")
+//    public String getDailyHealthProfile(Principal principal){
+//        LocalDate today = LocalDate.now();
+//        List<HealthProfile> todayHealthProfiles = healthProfileService.findTodayProfiles(principal, today);
+//        System.out.println("Today's Health Profiles");
+//         System.out.println(todayHealthProfiles);
+//        return "redirect:/profile";
 //    }
+
 
 }
 
