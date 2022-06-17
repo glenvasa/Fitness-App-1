@@ -110,7 +110,7 @@ public class MainController {
     @PostMapping("/user/healthProfile")
     public String createHealthProfile(@ModelAttribute("healthProfile") HealthProfileDto healthProfileDto, Principal principal){
         healthProfileService.save(healthProfileDto, principal);
-        return "redirect:/profile";
+        return "index";
     }
 
 //    checks to see if any healthProfiles created by user for current date
