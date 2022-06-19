@@ -31,19 +31,23 @@ public class HealthProfile {
     @Column(name = "exercise_level")
     private Double exerciseLevel;
 
-    @Column(name = "maintenance_calories")
-    private Double maintenanceCalories;
+    @Column(name = "target_calories")
+    private Double targetCalories;
+
+    @Column(name = "weight_goal")
+    private String weightGoal;
 
    // changed to mirror Workout and Meal ManyToOne properties.
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
-    public HealthProfile(LocalDate date, Float weight, Double exerciseLevel, Double maintenanceCalories, User user){
+    public HealthProfile(LocalDate date, Float weight, Double exerciseLevel, Double targetCalories, String weightGoal, User user){
         this.date = date;
         this.weight = weight;
         this.exerciseLevel = exerciseLevel;
-        this.maintenanceCalories = maintenanceCalories;
+        this.targetCalories = targetCalories;
+        this.weightGoal = weightGoal;
         this.user = user;
     }
 }
