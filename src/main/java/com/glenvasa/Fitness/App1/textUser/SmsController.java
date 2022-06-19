@@ -16,7 +16,7 @@ public class SmsController {
     }
 
     @PostMapping         // add @Valid before @RequestBody to activate @NotBlank annotations for SMSRequest fields
-    public String sendSms(@ModelAttribute("smsRequestDto") SmsRequestDto smsRequestDto){
+    public String sendSms(SmsRequestDto smsRequestDto){
         service.sendSms(smsRequestDto);
         return "redirect:/profile";
     }
