@@ -92,6 +92,9 @@ public class MainController {
         model.addAttribute("levelFour", "You exercise 6 - 7 days per week.");
         model.addAttribute("levelFive", "You exercise 7 days a week and also have a physically demanding job.");
 
+        String[] weightGoals = {"Lose Weight", "Maintain Weight", "Gain Weight"};
+        model.addAttribute("weightGoals", weightGoals);
+
         model.addAttribute("healthProfile", new HealthProfileDto());
 
         LocalDate today = LocalDate.now();
@@ -100,7 +103,7 @@ public class MainController {
 
 //        model.addAttribute("dailyHp", "not-exists");
         if(todayHealthProfiles.size() > 0){
-            model.addAttribute("dailyHp", "exists");
+            model.addAttribute("dailyHp", "Click below to Create a Meal or Workout");
         }
 
         return "index";
@@ -110,7 +113,7 @@ public class MainController {
     @PostMapping("/user/healthProfile")
     public String createHealthProfile(@ModelAttribute("healthProfile") HealthProfileDto healthProfileDto, Principal principal){
         healthProfileService.save(healthProfileDto, principal);
-        return "index";
+        return "redirect:/profile";
     }
 
 //    checks to see if any healthProfiles created by user for current date
