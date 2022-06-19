@@ -12,13 +12,14 @@
     <div th:insert="fragments/navbar :: navbar"></div>
 </div>
 <div class="grid place-items-center mt-8">
-    <p th:text="${dailyHp}" id="dailyHp">not-exists</p>
+
     <h1 class="text-lg font-semibold">Welcome <span sec:authentication="principal.username"></span></h1>
+    <p th:text="${dailyHp}" id="dailyHp" class="text-lg font semibold">Create Your Daily Target Calories Below</p>
     <div class="flex mt-2">
 
 <!--    create meal form/button-->
     <form th:action="@{/meal/create}" method="post" th:object="${meal}" id="createMeal" class="bg-white border-2 border-black p-5 rounded-md">
-        <h1 class="font-sans text-center text-lg mb-3">Click below to Create a Meal</h1>
+        <h1 class="font-sans text-center text-lg mb-3">Create a Meal</h1>
         <div class="text-center mt-5">
             <button type="submit" class="text-white bg-purple-800 rounded-md px-2 py-1.5">New Meal</button>
         </div>
@@ -26,7 +27,7 @@
         <!--    create workout form/button-->
         <form th:action="@{/workout/create}" method="post" th:object="${workout}" id="createWorkout"
               class="bg-white border-2 border-black p-5 rounded-md ml-8">
-            <h1 class="font-sans text-center text-lg mb-3">Click below to Create a Workout</h1>
+            <h1 class="font-sans text-center text-lg mb-3">Create a Workout</h1>
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-red-800 rounded-md px-2 py-1.5">New Workout</button>
             </div>
@@ -34,10 +35,10 @@
     </div>
 </div>
 <div class="grid grid-cols-2 place-items-center mt-5 border-t-2 border-black">
-    <div class="bg-violet-200 border-2 border-black p-5 rounded-md mb-10 mt-4" id="calorieCalc">
+    <div class="bg-violet-300 border-2 border-black p-5 rounded-md mb-10 mt-4" id="calorieCalc">
         <form th:action="@{/user/healthProfile}" method="post" th:object="${healthProfile}" class="">
             <div class="text-center">
-                <div class="border-b-2"><h1 class="font-sans text-lg font-semibold mb-3">Calculate Your Maintenance Calories</h1></div>
+                <div class="border-b-2"><h1 class="font-sans text-lg font-semibold mb-3">Calculate Your Daily Target Calories</h1></div>
 
             <small class="">These are the amount of calories you should consume each day to maintain your current weight.</small></br>
             <small class="">If you want to lose 1 pound a week, eat 500 fewer calories per day than this amount.</small></br></br>
@@ -57,11 +58,26 @@
                 <input id="calcAge" class="mb-3 outline-none" th:value="${age}"
                        required autofocus="autofocus" />
             </div>
+            <div class="text-center flex">
+                <p class="mr-2">Gender:</p>
+                <label for="male" class="mr-1">Male</label>
+                <input type="radio" id='male' class="mt-[7px]" name="gender" value="male">
+                <label for="female" class="mr-1 ml-2">Female</label>
+                <input type="radio" id='female' class="mt-[7px]" name="gender" value="female">
+            </div>
+            </br>
             <div class="text-center">
-                <label for="male">Male</label>
-                <input type="radio" id='male' name="gender" value="male">
-                <label for="female">Female</label>
-                <input type="radio" id='female' name="gender" value="female">
+                <p>Your Weight Goal</p>
+                <th:block th:each="goal : ${weightGoals}">
+                    <label th:for="${goal}" th:text="${goal}"></label>
+                    <input type="radio" th:field="*{weightGoal}" th:value="${goal}" th:id="${#strings.arraySplit(goal, ' ')[0]}">
+                </th:block>
+<!--                <label for="loseWeight">Lose Weight</label>-->
+<!--                <input type="radio" id='loseWeight' class='mr-1' name="loseWeight" value="loseWeight">-->
+<!--                <label for="maintainWeight">Maintain Current Weight</label>-->
+<!--                <input type="radio" id='maintainWeight' class="mr-1" name="maintainWeight" value="maintainWeight">-->
+<!--                <label for="gainWeight">Gain Weight</label>-->
+<!--                <input type="radio" id='gainWeight' class="mr-1" name="gainWeight" value="gainWeight">-->
             </div>
             </br>
             <div class="">
@@ -89,8 +105,8 @@
             </div>
             </br>
             <div class="">
-                <label class="mr-1" for="maintenanceCalories">Maintenance Calories:</label>
-                <input id="maintenanceCalories" class="mb-3 outline-none bg-blue-100" th:field="*{maintenanceCalories}"
+                <label class="mr-1" for="targetCalories">Target Calories for Meals Today:</label>
+                <input id="targetCalories" class="mb-3 outline-none bg-blue-100" th:field="*{targetCalories}"
                        required autofocus="autofocus" />
             </div>
             <div class="flex justify-center text-center mt-5">
