@@ -1,6 +1,6 @@
 package com.glenvasa.Fitness.App1.controller;
 
-import com.glenvasa.Fitness.App1.dto.FoodDto;
+import com.glenvasa.Fitness.App1.dto.SmsRequestDto;
 import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
@@ -9,6 +9,7 @@ import com.glenvasa.Fitness.App1.repository.HealthProfileRepository;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.UserService;
+import com.glenvasa.Fitness.App1.textUser.SmsRequest;
 import com.glenvasa.Fitness.App1.utilClass.SelectedDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,6 +97,7 @@ public class ProfileController {
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
 
+        model.addAttribute("smsRequestDto", new SmsRequestDto());
         //        System.out.println(dailyMeals);
 //        System.out.println(modalDailyCals);
         return "profile";
