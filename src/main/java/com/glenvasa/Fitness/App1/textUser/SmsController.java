@@ -1,12 +1,11 @@
 package com.glenvasa.Fitness.App1.textUser;
 
+import com.glenvasa.Fitness.App1.dto.SmsRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("api/v1/sms")
 public class SmsController {
     private final SmsService service;
@@ -17,8 +16,9 @@ public class SmsController {
     }
 
     @PostMapping         // add @Valid before @RequestBody to activate @NotBlank annotations for SMSRequest fields
-    public void sendSms(@RequestBody SmsRequest smsRequest){
-        service.sendSms(smsRequest);
+    public String sendSms(@ModelAttribute("smsRequestDto") SmsRequestDto smsRequestDto){
+        service.sendSms(smsRequestDto);
+        return "redirect:/profile";
     }
 
 
