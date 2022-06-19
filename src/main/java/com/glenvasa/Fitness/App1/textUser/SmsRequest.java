@@ -1,29 +1,42 @@
 package com.glenvasa.Fitness.App1.textUser;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class SmsRequest {
 
     //   @NotBlank  - look for comparable annotation / library jar
-    private final String phoneNumber; // destination phone number
+    private String phoneNumber; // destination phone number
 
     //   @NotBlank
-    private final String message;
+    private String message;
 
     // this is what client will be sending
-    public SmsRequest(@JsonProperty("phoneNumber") String phoneNumber,
-                      @JsonProperty("message") String message) {
+//    public SmsRequest(@JsonProperty("phoneNumber") String phoneNumber,
+//                      @JsonProperty("message") String message) {
+//         this.phoneNumber = phoneNumber;
+//        this.message = message;
+//    }
+
+    public SmsRequest(String phoneNumber, String message) {
         this.phoneNumber = phoneNumber;
         this.message = message;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public SmsRequest(){
+
     }
 
-    public String getMessage() {
-        return message;
-    }
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//
+//    public String getMessage() {
+//        return message;
+//    }
 
     @Override
     public String toString() {
