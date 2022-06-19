@@ -1,5 +1,6 @@
 package com.glenvasa.Fitness.App1.textUser;
 
+import com.glenvasa.Fitness.App1.dto.SmsRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -15,7 +16,8 @@ public class SmsService {
         this.smsSender = smsSender;
     }
 
-    public void sendSms(SmsRequest smsRequest) {
+    public void sendSms(SmsRequestDto smsRequestDto) {
+        SmsRequest smsRequest = new SmsRequest(smsRequestDto.getPhoneNumber(), smsRequestDto.getMessage());
         smsSender.sendSms(smsRequest);
     }
 
