@@ -3,17 +3,16 @@ package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.dto.SetsDto;
+import com.glenvasa.Fitness.App1.dto.SmsRequestDto;
 import com.glenvasa.Fitness.App1.dto.WorkoutDto;
-import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
-import com.glenvasa.Fitness.App1.model.Sets;
-import com.glenvasa.Fitness.App1.model.Workout;
+import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.ExerciseRepository;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.ExerciseService;
 import com.glenvasa.Fitness.App1.service.SetsService;
+import com.glenvasa.Fitness.App1.service.UserService;
 import com.glenvasa.Fitness.App1.service.WorkoutService;
 import com.glenvasa.Fitness.App1.textUser.SmsController;
 import com.glenvasa.Fitness.App1.utilClass.PRStats;
@@ -40,6 +39,7 @@ public class SetsController {
     private final WorkoutService workoutService;
     private final WorkoutRepository workoutRepository;
     private final SmsController smsController;
+    private final UserService userService;
 
 
     List<Exercise> exerciseList;
@@ -49,13 +49,14 @@ public class SetsController {
 
     @Autowired
     public SetsController(SetsService exerciseService, ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
-                          WorkoutService workoutService, SmsController smsController) {
+                          WorkoutService workoutService, SmsController smsController, UserService userService) {
         this.setsService = exerciseService;
 //        this.setsRepository = setsRepository;
         this.exerciseRepository = exerciseRepository;
         this.workoutRepository = workoutRepository;
         this.workoutService = workoutService;
         this.smsController = smsController;
+        this.userService = userService;
     }
 
     @GetMapping("/sets")
@@ -135,7 +136,12 @@ public class SetsController {
         // TODO: need to see if each key/exercise of workoutStats exists in personalRecords; if it does
         // check to see if value in workoutStats is > value in personalRecords. If it is, PR reached and
         // make call to smsController.sendSms which sends text to user informing PR reached.
-
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+        String phoneNumber = user.getPhone();
+        String message = "You just hit a new Personal Record!";
+        SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
+          smsController.sendSms(messageUser);
 
         return "redirect:/workouts";
 
