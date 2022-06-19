@@ -13,12 +13,14 @@ public class HealthProfileDto {
 
     private Float weight;
     private Double exerciseLevel;
-    private Double maintenanceCalories;
+    private Double targetCalories;
+    private String weightGoal;
 
-    public HealthProfileDto(Float weight, Double exerciseLevel, Double maintenanceCalories) {
+    public HealthProfileDto(Float weight, Double exerciseLevel, Double targetCalories, String weightGoal) {
         this.weight = weight;
         this.exerciseLevel = exerciseLevel;
-        this.maintenanceCalories = maintenanceCalories;
+        this.targetCalories = targetCalories;
+        this.weightGoal = weightGoal;
     }
 
 }
