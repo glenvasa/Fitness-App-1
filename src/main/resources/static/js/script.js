@@ -16,7 +16,7 @@ if(window.location.pathname === "/") {
     const dailyHp = document.getElementById("dailyHp")
     const currentDate = new Date().toISOString().split('T')[0]
 
-    if(dailyHp.innerText == "exists"){
+    if(dailyHp.innerText == "Click below to Create a Meal or Workout"){
         localStorage.setItem("hpDate", JSON.stringify(currentDate))
         createMeal.classList.remove("hidden")
         createWorkout.classList.remove("hidden")
@@ -117,7 +117,11 @@ const calorieCalculator = () => {
   const male= document.getElementById('male').checked
   const female= document.getElementById('female').checked
 
-  const maintenanceCalories = document.getElementById('maintenanceCalories')
+  const lose= document.getElementById('Lose').checked
+  const maintain = document.getElementById('Maintain').checked
+  const gain = document.getElementById('Gain').checked
+
+  const targetCalories = document.getElementById('targetCalories')
   let calories;
 
   if(male){
@@ -131,9 +135,23 @@ const calorieCalculator = () => {
      calories = 0
     }
 
-console.log(exerciseLevel)
 
-  maintenanceCalories.value = Math.round(calories)
+//  console.log("lose", lose, "maintain", maintain, "gain", gain)
+//console.log(exerciseLevel)
+  if(lose){
+    calories -= 500
+    console.log("lose")
+  } else if(gain){
+    calories += 500
+    console.log("gain")
+  } else {
+    calories = calories
+    console.log("maintain")
+  }
+
+
+
+  targetCalories.value = Math.round(calories)
 
 }
 
