@@ -55,7 +55,7 @@ public class ProfileController {
 
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
 
-        meals.forEach(meal -> dailyCals += meal.getMealCals());
+//        meals.forEach(meal -> dailyCals += meal.getMealCals());
 
         Set<LocalDate> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
 
@@ -85,11 +85,11 @@ public class ProfileController {
             currentHealthProfile = healthProfiles.get(healthProfiles.size() - 1);
 
         } else {
-            currentHealthProfile = new HealthProfile(LocalDate.now(), 0.00F, (double) 0, (double) 0, user);
+            currentHealthProfile = new HealthProfile(LocalDate.now(), 0.00F, (double) 0, (double) 0, "", user);
         }
         model.addAttribute("healthProfile", currentHealthProfile);
 
-      model.addAttribute("maintCals", currentHealthProfile.getMaintenanceCalories());
+      model.addAttribute("targetCals", currentHealthProfile.getTargetCalories());
 
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
