@@ -37,6 +37,8 @@ public class ProfileController {
   LocalDate workoutDate;
   List<HealthProfile> healthProfiles;
   HealthProfile currentHealthProfile;
+  HealthProfile dailyHealthProfile;
+  Double dailyTargetCals = 0.0;
 //  SelectedDate selectedDate;
 
     @Autowired
@@ -90,7 +92,7 @@ public class ProfileController {
         model.addAttribute("healthProfile", currentHealthProfile);
 
       model.addAttribute("targetCals", currentHealthProfile.getTargetCalories());
-
+        model.addAttribute("dailyTargetCals", dailyTargetCals);
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
 
@@ -124,34 +126,31 @@ public class ProfileController {
        //sets curentHealthProfile to the last of the list of hps created for a date (use most recent as user may create many for a day but last is one they stick with)
        // the only issue I need to address is if user didn't create an hp for that date, I should find most recent hp created before the date
         if(dailyHealthProfiles.size() > 0){
-            currentHealthProfile = dailyHealthProfiles.get(dailyHealthProfiles.size() - 1);
+            dailyHealthProfile = dailyHealthProfiles.get(dailyHealthProfiles.size() - 1);
+        } else {
+            dailyHealthProfile = currentHealthProfile;
         }
 
 
+        if(dailyHealthProfile.getTargetCalories() == null){
+            dailyTargetCals = 0.0;
+        } else {
+            dailyTargetCals = dailyHealthProfile.getTargetCalories();
+        }
+        model.addAttribute("dailyTargetCals", dailyTargetCals);
+
         System.out.println("hello from Profile Controller GET /profile/meals/");
-        System.out.println(currentHealthProfile); //accurately printing most recent hp but not updating
+//        System.out.println(currentHealthProfile); //accurately printing most recent hp but not updating
+//
+//
+//        System.out.println("dailyMeals" + dailyMeals);
+        System.out.println("dailyHealthProfile" + dailyHealthProfile);
+        System.out.println("dailyTargetCals" + dailyHealthProfile.getTargetCalories());
+        System.out.println("modalDailyCals" + modalDailyCals);
 
-
-        System.out.println("dailyMeals" + dailyMeals);
         return "redirect:/profile"; // may not need "redirect:/profile"
     }
 
-//
-//    @PostMapping("/profile/workouts")
-//    public String displayWorkoutsSummary(@ModelAttribute("selectedDate") SelectedDate selectedDate, Principal principal, Model model) {
-//        String email = principal.getName();
-//        User user = userService.loadUserByEmail(email);
-//        List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
-//        workoutDate = LocalDate.parse(selectedDate.getDate());
-//        dailyWorkouts = workouts.stream().filter(workout -> Objects.equals(workout.getDateOfWorkout(), workoutDate)).toList();
-//
-//        System.out.println("hello from Profile Controller GET /profile/workouts/{date}");
-//        System.out.println(workoutDate);
-//
-//
-//        System.out.println("dailyWorkouts" + dailyWorkouts);
-//        return "redirect:/profile"; // may not need "redirect:/profile"
-//    }
 
 
 
