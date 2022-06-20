@@ -25,7 +25,7 @@
             <p><span th:text="${meal.mealType}" class="text-red-700 font-semibold text-lg">none</span></p>
             <p>Date: <span th:text="${meal.date}" class="text-black"></span></p>
             <p>Time: <span th:text="${meal.time}" class="text-black"></span></p>
-            <br/>
+<!--         S-->
 <!--            <p th:with="mealCals=0">Total Calories: <span th:text="${mealCals}"></span></p>-->
 
 <!--            <br/>-->
@@ -33,7 +33,7 @@
                 <tr>
                     <th>Food</th>
                     <th>Servings</th>
-                    <th>Calories</th>
+                    <th>Total Cals</th>
                 </tr>
                 <tr th:each="serving : ${meal.servings}">
                     <td th:text="${serving.food.getName()}"></td>
@@ -46,7 +46,12 @@
 <!--                </tr>-->
             </table>
             <div class="mt-2">
-                <p class="font-semibold">Meal Calories: <span th:text="${meal.mealCals}" class="font-bold text-lg"></span></p>
+                <p class="font-semibold">Meal Calories: <span th:text="${meal.mealCals}" class="font-semibold text-lg"></span></p>
+                <div>
+                    <p class="font-semibold">Protein: <span th:text="${meal.mealProtein}" class="text-lg"></span>g</p>
+                    <p class="font-semibold">Carbs: <span th:text="${meal.mealCarbs}" class="text-lg"></span>g</p>
+                    <p class="font-semibold">Fat: <span th:text="${meal.mealFat}" class="text-lg"></span>g</p>
+                </div>
             </div>
 
         </div>
