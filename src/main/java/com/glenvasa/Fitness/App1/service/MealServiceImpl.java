@@ -71,7 +71,7 @@ public class MealServiceImpl implements MealService {
         LocalTime time = LocalTime.of(formattedHour, mealDto.getMinute(), 0);
 
         mealRepository.updateMealById(date, time, mealDto.getMealType(),
-                mealDto.getMealCals() ,meal.getId());
+                mealDto.getMealCals(), mealDto.getMealFat(), mealDto.getMealCarbs(), mealDto.getMealProtein(), meal.getId());
     }
 
 
