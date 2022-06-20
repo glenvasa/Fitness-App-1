@@ -112,16 +112,21 @@
                        required autofocus="autofocus" />
             </div>
             <div class="">
+
                 <label class="mr-1" for="food">Food</label>:
                 <select th:field="*{food}" id="food" class="bg-blue-100">
                     <option value="0"></option>
-                    <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.getName()}"></option>
+                    <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.name + ': ' + item.calories + ' calories'}" class="food"></option>
                 </select>
             </div>
 
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Serving</button>
             </div>
+        </form>
+        <form class="food-search">
+            <input type="search" id="food-search">
+
         </form>
     </div>
 </div>
