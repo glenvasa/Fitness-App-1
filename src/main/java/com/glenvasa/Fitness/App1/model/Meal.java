@@ -39,17 +39,23 @@ public class Meal {
 //    private MealType mealType;
     private String mealType;
     private Float mealCals;
+    private Float mealFat;
+    private Float mealCarbs;
+    private Float mealProtein;
 
     @JsonIgnore
     @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
     private Set<Servings> servings = new HashSet<>();
 
-    public Meal(LocalDate date, LocalTime time, String mealType, Float mealCals, User user, Set<Servings> servings) {
+    public Meal(LocalDate date, LocalTime time, String mealType, Float mealCals, Float mealFat, Float mealCarbs, Float mealProtein, User user, Set<Servings> servings) {
         this.date = date;
         this.time = time;
         this.user = user;
         this.mealType = mealType;
         this.mealCals = mealCals;
+        this.mealFat = mealFat;
+        this.mealCarbs = mealCarbs;
+        this.mealProtein = mealProtein;
         this.servings = servings;
     }
 
