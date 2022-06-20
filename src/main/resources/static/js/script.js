@@ -42,21 +42,21 @@ if(window.location.pathname === "/") {
 // only want "load" event listener to be added and call addServingsCalories if /servings route
 if(window.location.pathname === "/servings") {
 window.addEventListener("load", () => {
-    console.log(window.location.pathname)
-    addServingsCalories();
+//    console.log(window.location.pathname)
+    addServingsCaloriesMacros();
 })
 
 }
 
-// Add up Calories for each Serving on Meal Card and set = Total Meal Calories
-const addServingsCalories = () => {
+// Add up Calories, Protein, Fat, Carbs for each Serving on Meal Card and set = Total Meal Calories etc.
+const addServingsCaloriesMacros = () => {
     const servingsCals = document.querySelectorAll('#totalCals')
-    console.log(servingsCals)
     const mealCals = document.getElementById('mealCals')
     let totalMealCals = 0
     servingsCals.forEach(s => totalMealCals += Number(s.innerText));
-   console.log(totalMealCals)
    mealCals.value = totalMealCals
+
+
 }
 
 // Give user option to click button and auto input current date/time for Meal
@@ -154,6 +154,28 @@ const calorieCalculator = () => {
   targetCalories.value = Math.round(calories)
 
 }
+
+
+// search for food items in Add Serving Form
+
+ let nav = document.querySelector(".food-search");
+  nav.addEventListener("click", () => {
+    let search = document.querySelector("#food-search");
+    let li = Array.from(document.querySelectorAll(".food"));
+
+    search.addEventListener("keyup", () => {
+      value = search.value.toLowerCase();
+      for (i = 0; i < li.length; i++) {
+        txtAttrib = li[i].value;
+        if (txtAttrib.toLowerCase().indexOf(value) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    });
+  });
+
 
 
 //const saveMaintCals = () => {
