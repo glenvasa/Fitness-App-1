@@ -72,7 +72,7 @@ public class MainController {
             personalRecords.putIfAbsent(exerciseName, prStats);
 
             // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
-            personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() > weight ? value : prStats);
+            personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() >= weight ? value : prStats);
         });
 
 //       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
