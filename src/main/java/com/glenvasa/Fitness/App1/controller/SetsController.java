@@ -91,9 +91,12 @@ public class SetsController {
 
     @PostMapping("/workout/update")
     public String saveWorkout(@ModelAttribute("workout") WorkoutDto workoutDto, Principal principal) {
+        String email = principal.getName();
+        User user = userService.loadUserByEmail(email);
+
+
         Workout currentWorkout = workoutRepository.findTopByOrderByIdDesc();
         workoutService.update(workoutDto, currentWorkout);
-
 
         //After saves a workout creates PR Map
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
@@ -107,13 +110,14 @@ public class SetsController {
             Float weight = sets.getWeight();
             Integer repetitions = sets.getRepetitions();
             LocalDate dateOfWorkout = sets.getWorkout().getDateOfWorkout();
-            PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout);
+            Long workoutId = sets.getWorkout().getId();
+            PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout, workoutId);
 
             // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
             personalRecords.putIfAbsent(exerciseName, prStats);
 
             // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
-            personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() > weight ? value : prStats);
+            personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() >= weight ? value : prStats);
         });
 
 
@@ -124,7 +128,8 @@ public class SetsController {
             Float weight = sets.getWeight();
             Integer repetitions = sets.getRepetitions();
             LocalDate dateOfWorkout = sets.getWorkout().getDateOfWorkout();
-            PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout);
+            Long workoutId = sets.getWorkout().getId();
+            PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout, workoutId);
 
             // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
             workoutStats.putIfAbsent(exerciseName, prStats);
@@ -133,15 +138,25 @@ public class SetsController {
             workoutStats.computeIfPresent(exerciseName, (key, value) -> value.getWeight() > weight ? value : prStats);
         });
 
+        System.out.println(workoutStats);
+        System.out.println(personalRecords);
         // TODO: need to see if each key/exercise of workoutStats exists in personalRecords; if it does
         // check to see if value in workoutStats is > value in personalRecords. If it is, PR reached and
         // make call to smsController.sendSms which sends text to user informing PR reached.
-        String email = principal.getName();
-        User user = userService.loadUserByEmail(email);
-        String phoneNumber = user.getPhone();
-        String message = "You just hit a new Personal Record!";
-        SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
-          smsController.sendSms(messageUser);
+
+        workoutStats.forEach((k,v) -> {                                  // can likely replace >= with > and remove && id check
+            if(personalRecords.containsKey(k) && (workoutStats.get(k).getWeight() >= personalRecords.get(k).getWeight()) && (currentWorkout.getId() == personalRecords.get(k).getWorkoutId())){
+                String message = "Hey, " + user.getFirstName() +"! You just reached a new Personal Record for " + k + " with a weight of " + workoutStats.get(k).getWeight() + " lbs for " + workoutStats.get(k).getRepetitions() +  " repetitions. Keep up the great work!!!";
+                String phoneNumber = user.getPhone();
+//                String message = "You just hit a new Personal Record!";
+                SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
+                smsController.sendSms(messageUser);
+            }
+
+        });
+
+
+
 
         return "redirect:/workouts";
 
