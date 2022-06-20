@@ -34,6 +34,11 @@ public class ProfileController {
   List<Workout> dailyWorkouts;
   Double dailyCals = 0.0;
   Double modalDailyCals = 0.0;
+  Double modalDailyProtein = 0.0;
+  Double modalDailyCarbs = 0.0;
+  Double modalDailyFat = 0.0;
+
+
   LocalDate mealDate;
   LocalDate workoutDate;
   List<HealthProfile> healthProfiles;
@@ -76,7 +81,15 @@ public class ProfileController {
 
         model.addAttribute("dailyMeals", dailyMeals);
         model.addAttribute("dailyWorkouts", dailyWorkouts);
+
         model.addAttribute("modalDailyCals", modalDailyCals);
+        model.addAttribute("modalDailyProtein", Math.round(modalDailyProtein));
+        model.addAttribute("modalDailyCarbs", Math.round(modalDailyCarbs));
+        model.addAttribute("modalDailyFat", Math.round(modalDailyFat));
+
+
+
+
 
         model.addAttribute("mealDate", mealDate);
         model.addAttribute("workoutDate", workoutDate);
@@ -113,7 +126,17 @@ public class ProfileController {
         dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), mealDate)).toList();
 //        model.addAttribute("dailyMeals", dailyMeals);
         modalDailyCals = 0.0;
-        dailyMeals.forEach(meal -> modalDailyCals += meal.getMealCals());
+        modalDailyProtein = 0.0;
+        modalDailyCarbs = 0.0;
+        modalDailyFat = 0.0;
+
+        dailyMeals.forEach(meal -> {
+            modalDailyCals += meal.getMealCals();
+            modalDailyProtein += meal.getMealProtein();
+            modalDailyCarbs += meal.getMealCarbs();
+            modalDailyFat += meal.getMealFat();
+        });
+
 
         List<Workout> workouts = workoutRepository.findAllByUserId(user.getId());
 //        workoutDate = LocalDate.parse(selectedDate.getDate());
