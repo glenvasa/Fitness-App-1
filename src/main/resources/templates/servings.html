@@ -23,7 +23,7 @@
 <h1 class="grid place-items-center mt-5 mb-5">Create Servings - Add Meal Info</h1>
 <!--Meal Info Form-->
 <div class="grid place-items-center">
-<div class="border-2 border-black bg-yellow-100 p-5 rounded-md mt-5 grid place-items-center w-3/5" id="saveMealForm">
+<div class="border-2 border-black bg-yellow-100 p-5 rounded-md mt-5 grid place-items-center w-4/5" id="saveMealForm">
     <form th:action="@{/meal/update}" method="post" th:object="${meal}" class="flex">
         <div>
             <button onclick="currentDateTime()" class="text-white bg-green-800 rounded-md px-2 py-1.5 mr-5 mt-3" id="currentButton">Now</button>
@@ -35,7 +35,7 @@
         </div>
         <div class="">
             <label class="mr-1" for="day">Day:</label>
-            <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{day}"
+            <input id="day" class="mr-5 outline-none bg-blue-100 w-2/5" th:field="*{day}"
                    required autofocus="autofocus" />
         </div>
         <div class="">
@@ -61,12 +61,27 @@
 
         <div class="">
             <label class="mr-1" for="mealType">Meal Type:</label>
-            <input id="mealType" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{mealType}"
+            <input id="mealType" class="mb-3 mr-3 outline-none bg-blue-100 w-4/5" th:field="*{mealType}"
                    required autofocus="autofocus" />
         </div>
         <div class="">
-            <label class="mr-1" for="mealCals">Total Meal Calories:</label>
-            <input id="mealCals" class="mb-3 mr-3 outline-none bg-blue-100" th:field="*{mealCals}"
+            <label class="mr-1" for="mealProtein">Total Protein:</label>
+            <input id="mealProtein" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{mealProtein}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="mealFat">Total Fat:</label>
+            <input id="mealFat" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{mealFat}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="mealCarbs">Total Carbs:</label>
+            <input id="mealCarbs" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{mealCarbs}"
+                   required autofocus="autofocus" />
+        </div>
+        <div class="">
+            <label class="mr-1" for="mealCals">Meal Cals:</label>
+            <input id="mealCals" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{mealCals}"
                    required autofocus="autofocus" />
         </div>
         <div class="">
@@ -87,14 +102,14 @@
             <p th:text="${serving.food.getName()}" class="text-orange-600 text-lg font-semibold"></p>
             <p class="text-black font-semibold">Number of Servings</p>
             <p th:text="${serving.number}" class="text-black"></p>
-            <p class="text-black font-semibold">Total Calories</p>
+            <p class="text-black font-semibold">Calories</p>
             <p th:with="totalCals=${serving.number * serving.food.getCalories()}"> <span th:text="${totalCals}" class="text-black" id="totalCals"></span></p>
-            <p class="text-black font-semibold">Total Protein</p>
-            <p th:with="totalProtein=${serving.number * serving.food.getProtein()}"><span th:text="${totalProtein}" class="text-black"></span> grams</p>
-            <p class="text-black font-semibold">Total Fat</p>
-            <p th:with="totalFat=${serving.number * serving.food.getFat()}"> <span th:text="${totalFat}" class="text-black"></span> grams</p>
-            <p class="text-black font-semibold">Total Carbs</p>
-            <p th:with="totalCarbs=${serving.number * serving.food.getCarbs()}"> <span th:text="${totalCarbs}" class="text-black"></span> grams</p>
+            <p class="text-black font-semibold">Protein</p>
+            <p th:with="totalProtein=${serving.number * serving.food.getProtein()}"><span th:text="${totalProtein}" class="text-black" id="totalProtein"></span> grams</p>
+            <p class="text-black font-semibold">Fat</p>
+            <p th:with="totalFat=${serving.number * serving.food.getFat()}"> <span th:text="${totalFat}" class="text-black" id="totalFat"></span> grams</p>
+            <p class="text-black font-semibold">Carbs</p>
+            <p th:with="totalCarbs=${serving.number * serving.food.getCarbs()}"> <span th:text="${totalCarbs}" class="text-black" id="totalCarbs"></span> grams</p>
         </div>
     </div>
 
