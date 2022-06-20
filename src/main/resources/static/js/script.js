@@ -51,10 +51,33 @@ window.addEventListener("load", () => {
 // Add up Calories, Protein, Fat, Carbs for each Serving on Meal Card and set = Total Meal Calories etc.
 const addServingsCaloriesMacros = () => {
     const servingsCals = document.querySelectorAll('#totalCals')
+    const servingsProtein = document.querySelectorAll('#totalProtein')
+    const servingsFat = document.querySelectorAll('#totalFat')
+    const servingsCarbs = document.querySelectorAll('#totalCarbs')
+
+
     const mealCals = document.getElementById('mealCals')
+    const mealProtein = document.getElementById('mealProtein')
+    const mealFat = document.getElementById('mealFat')
+    const mealCarbs = document.getElementById('mealCarbs')
+
     let totalMealCals = 0
+    let totalMealProtein = 0
+    let totalMealFat = 0
+    let totalMealCarbs = 0
+
     servingsCals.forEach(s => totalMealCals += Number(s.innerText));
+    servingsProtein.forEach(s => totalMealProtein += Number(s.innerText));
+    servingsFat.forEach(s => totalMealFat += Number(s.innerText));
+    servingsCarbs.forEach(s => totalMealCarbs += Number(s.innerText));
+
+
+
    mealCals.value = totalMealCals
+   mealProtein.value = totalMealProtein
+   mealFat.value = totalMealFat
+   mealCarbs.value = totalMealCarbs
+
 
 
 }
