@@ -31,7 +31,13 @@
                     <div class="text-center">You have been logged out.</div>
                 </div>
 
-                <h1 class="font-sans mt-40 text-center text-lg text-underline">Login Page </h1>
+<!--            After successful registration and redirected-->
+            <div th:if="${param.reg_success}">
+                <div class="text-center">You have successfully registered. Please log in below.</div>
+            </div>
+
+
+            <h1 class="font-sans mt-40 text-center text-lg text-underline">Login Page </h1>
 
 
                 <div class="grid place-items-center mt-20 text-center border-2 border-black p-3 rounded-md">
