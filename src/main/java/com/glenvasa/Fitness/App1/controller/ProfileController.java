@@ -1,15 +1,14 @@
 package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.SmsRequestDto;
-import com.glenvasa.Fitness.App1.model.HealthProfile;
-import com.glenvasa.Fitness.App1.model.Meal;
-import com.glenvasa.Fitness.App1.model.User;
-import com.glenvasa.Fitness.App1.model.Workout;
+import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.HealthProfileRepository;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
+import com.glenvasa.Fitness.App1.service.SetsService;
 import com.glenvasa.Fitness.App1.service.UserService;
 import com.glenvasa.Fitness.App1.textUser.SmsRequest;
+import com.glenvasa.Fitness.App1.utilClass.PRStats;
 import com.glenvasa.Fitness.App1.utilClass.SelectedDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,7 @@ public class ProfileController {
   private final MealRepository mealRepository;
   private final WorkoutRepository workoutRepository;
   private final HealthProfileRepository healthProfileRepository;
+  private final SetsService setsService;
 
   List<Meal> dailyMeals;
   List<Workout> dailyWorkouts;
@@ -48,11 +48,13 @@ public class ProfileController {
 //  SelectedDate selectedDate;
 
     @Autowired
-    public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository, HealthProfileRepository healthProfileRepository){
+    public ProfileController(UserService userService, MealRepository mealRepository, WorkoutRepository workoutRepository,
+                             HealthProfileRepository healthProfileRepository, SetsService setsService){
         this.userService = userService;
         this.mealRepository = mealRepository;
         this.workoutRepository = workoutRepository;
         this.healthProfileRepository = healthProfileRepository;
+        this.setsService = setsService;
     }
 
     @GetMapping("/profile")
@@ -110,9 +112,35 @@ public class ProfileController {
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
 
-        model.addAttribute("smsRequestDto", new SmsRequestDto());
+//        model.addAttribute("smsRequestDto", new SmsRequestDto());
         //        System.out.println(dailyMeals);
 //        System.out.println(modalDailyCals);
+
+        //Code to get User's Personal Records
+//        List<Sets> allSets = setsService.loadSetsByUserId(principal);
+//
+//        // ExerciseStats is util class containing 3 fields (weight / repetitions / dateOfWorkout)
+//        Map<String, PRStats> personalRecords = new HashMap<>();
+//
+//        allSets.forEach(sets -> {
+//            String exerciseName = sets.getExercise().getName();
+//            Float weight = sets.getWeight();
+//            Integer repetitions = sets.getRepetitions();
+//            LocalDate dateOfWorkout = sets.getWorkout().getDateOfWorkout();
+//            PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout);
+//
+//            // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
+//            personalRecords.putIfAbsent(exerciseName, prStats);
+//
+//            // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
+//            personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() >= weight ? value : prStats);
+//        });
+//
+////       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
+//
+//        model.addAttribute("personalRecords", personalRecords);
+
+
         return "profile";
     }
 
