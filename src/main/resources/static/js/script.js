@@ -180,8 +180,8 @@ const calorieCalculator = () => {
 
 
 // search for food items in Add Serving Form
-
- let nav = document.querySelector(".food-search");
+if(window.location.pathname === "/servings"){
+let nav = document.querySelector(".food-search");
   nav.addEventListener("click", () => {
     let search = document.querySelector("#food-search");
     let li = Array.from(document.querySelectorAll(".food"));
@@ -198,6 +198,30 @@ const calorieCalculator = () => {
       }
     });
   });
+}
+
+
+
+// search for exercise names is Add Sets Form
+if(window.location.pathname === "/sets"){
+let nav1 = document.querySelector(".exercise-search");
+  nav1.addEventListener("click", () => {
+    let search1 = document.querySelector("#exercise-search");
+    let li1 = Array.from(document.querySelectorAll(".exercise"));
+
+    search1.addEventListener("keyup", () => {
+      value = search1.value.toLowerCase();
+      for (i = 0; i < li1.length; i++) {
+        txtAttrib = li1[i].value;
+        if (txtAttrib.toLowerCase().indexOf(value) > -1) {
+          li1[i].style.display = "";
+        } else {
+          li1[i].style.display = "none";
+        }
+      }
+    });
+  });
+}
 
 
 
