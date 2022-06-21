@@ -1,21 +1,19 @@
 package com.glenvasa.Fitness.App1.controller;
 
-import com.glenvasa.Fitness.App1.dto.MealDto;
-import com.glenvasa.Fitness.App1.dto.ServingsDto;
-import com.glenvasa.Fitness.App1.dto.SetsDto;
-import com.glenvasa.Fitness.App1.dto.WorkoutDto;
+import com.glenvasa.Fitness.App1.dto.*;
 import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.*;
-import com.glenvasa.Fitness.App1.service.MealService;
-import com.glenvasa.Fitness.App1.service.ServingsService;
-import com.glenvasa.Fitness.App1.service.SetsService;
-import com.glenvasa.Fitness.App1.service.WorkoutService;
+import com.glenvasa.Fitness.App1.service.*;
+import com.glenvasa.Fitness.App1.textUser.SmsController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,19 +24,26 @@ public class ServingsController {
         private final FoodRepository foodRepository;
         private final MealService mealService;
         private final MealRepository mealRepository;
+        private final UserService userService;
+        private final HealthProfileRepository healthProfileRepository;
+        private final SmsController smsController;
 
         List<Food> foodList;
         //    List<Sets> currentWorkoutSets;
         List<Servings> servingsList;
-
+        Double totalDailyCals;
 
         @Autowired
         public ServingsController(ServingsService servingsService, FoodRepository foodRepository,
-                                  MealService mealService, MealRepository mealRepository) {
+                                  MealService mealService, MealRepository mealRepository, UserService userService,
+                                  HealthProfileRepository healthProfileRepository, SmsController smsController) {
             this.servingsService = servingsService;
             this.foodRepository = foodRepository;
             this.mealService = mealService;
             this.mealRepository = mealRepository;
+            this.userService = userService;
+            this.healthProfileRepository = healthProfileRepository;
+            this.smsController = smsController;
         }
 
         @GetMapping("/servings")
@@ -76,8 +81,44 @@ public class ServingsController {
         }
 
         @PostMapping("/meal/update")
-        public String saveMeal(@ModelAttribute("meal") MealDto mealDto){
+        public String saveMeal(@ModelAttribute("meal") MealDto mealDto, Principal principal){
             Meal currentMeal = mealRepository.findTopByOrderByIdDesc(); // retrieves the meal just created
+
+            // Before Saving the New meal, Get ALl meals AND Target Calories from Today and see if within 10%. If yes, text user
+            String email = principal.getName();
+            User user = userService.loadUserByEmail(email);
+            List<Meal> meals = mealRepository.findAllByUserId(user.getId());
+            LocalDate mealDate = LocalDate.now();
+            List<Meal> dailyMeals = meals.stream().filter(meal -> Objects.equals(meal.getDate(), mealDate)).toList();
+
+            totalDailyCals = 0.0;
+
+            dailyMeals.forEach(meal -> {
+                totalDailyCals += meal.getMealCals();
+            });
+
+            List<HealthProfile> healthProfiles = healthProfileRepository.findAll().stream().filter(healthProfile1 -> healthProfile1.getUser().getId() == user.getId()).collect(Collectors.toList());
+
+             Double targetCalories = healthProfiles.get(healthProfiles.size() - 1).getTargetCalories();
+
+             // target cals - total Cals from meals eaten today - current meal cals
+
+            Double overUnderCals = targetCalories - totalDailyCals - mealDto.getMealCals();
+            System.out.println("Target Calories" + targetCalories);
+            System.out.println("Total Daily Calories So Far" + totalDailyCals);
+            System.out.println("Current Meal Calories" + mealDto.getMealCals());
+            System.out.println("If + you have this remaining. If - you are over by this amount: " + overUnderCals);
+
+            // if current meal takes user over target calories amount for today, send a text
+            if(overUnderCals < 0){
+                String message = "Hey, " + user.getFirstName() +"! This message is to inform you that you have gone over you Target Calories amount for today by " + overUnderCals * -1 + " calories. Changing your eating habits is tough, but a healthy life it worth it!!!";
+                String phoneNumber = user.getPhone();
+//                String message = "You just hit a new Personal Record!";
+                SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
+                smsController.sendSms(messageUser);
+            }
+
+
             mealService.update(mealDto, currentMeal);
             return "redirect:/meals";
         }
