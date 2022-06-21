@@ -135,15 +135,18 @@
                     <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.name + ': ' + item.calories + ' calories'}" class="food"></option>
                 </select>
             </div>
+            <div class="ml-12 mt-2">
+                <input type="search" id="food-search" placeholder="Filter food items">
+            </div>
 
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">Add Serving</button>
             </div>
         </form>
-        <form class="food-search">
-            <input type="search" id="food-search">
+<!--        <form class="food-search">-->
+<!--          -->
 
-        </form>
+<!--        </form>-->
     </div>
 </div>
 
