@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{css/styles.css}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Fitness App</title>
+    <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
 <body class="bg-blue-200">
 <div>
@@ -13,7 +14,7 @@
 </div>
 <div class="grid place-items-center mt-8">
 
-    <h1 class="text-lg font-semibold">Welcome <span sec:authentication="principal.username"></span></h1>
+    <h1 class="text-lg font-semibold">Welcome <span sec:authentication="principal.username" class="logged_in"></span></h1>
     <p th:text="${dailyHp}" id="dailyHp" class="text-lg font semibold">Create Your Daily Target Calories Below</p>
     <div class="flex mt-2">
 
@@ -70,7 +71,7 @@
                 <p>Your Weight Goal</p>
                 <th:block th:each="goal : ${weightGoals}">
                     <label th:for="${goal}" th:text="${goal}"></label>
-                    <input type="radio" th:field="*{weightGoal}" th:value="${goal}" th:id="${#strings.arraySplit(goal, ' ')[0]}">
+                    <input type="radio" th:field="*{weightGoal}" th:value="${goal}" th:id="${#strings.arraySplit(goal, ' ')[0]}" required>
                 </th:block>
 <!--                <label for="loseWeight">Lose Weight</label>-->
 <!--                <input type="radio" id='loseWeight' class='mr-1' name="loseWeight" value="loseWeight">-->
@@ -82,8 +83,8 @@
             </br>
             <div class="">
                 <label class="" for="exerciseLevel">Exercise Level</label>:
-                <select th:field="*{exerciseLevel}" id="exerciseLevel">
-                    <option value="0"></option>
+                <select th:field="*{exerciseLevel}" id="exerciseLevel" required>
+                    <option value=null></option>
                     <option th:text="${levelOne}" th:value="1.2"></option>
                     <option th:text="${levelTwo}" th:value="1.375"></option>
                     <option th:text="${levelThree}" th:value="1.55"></option>
