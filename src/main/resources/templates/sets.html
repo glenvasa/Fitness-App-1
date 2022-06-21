@@ -60,7 +60,7 @@
                 <label class="" for="exercise">Exercise</label>:
                 <select th:field="*{exercise}" id="exercise" class="ml-1">
                     <option value="0"></option>
-                    <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}"></option>
+                    <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}" class="exercise"></option>
                 </select>
             </div>
 
@@ -68,6 +68,10 @@
                 <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5">Add Set</button>
 <!--                <button type="button" class="text-white bg-green-800 rounded-md px-2 py-1.5" onclick="displaySaveWorkout()">Save Workout</button>-->
             </div>
+        </form>
+        <form class="exercise-search">
+            <input type="search" id="exercise-search">
+
         </form>
     </div>
 </div>
