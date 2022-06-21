@@ -21,11 +21,14 @@ if(window.location.pathname === "/") {
         createMeal.classList.remove("hidden")
         createWorkout.classList.remove("hidden")
     }
-    console.log(window.location.pathname)
+//    console.log(window.location.pathname)
 
 
      const hpDate = JSON.parse(localStorage.getItem("hpDate"))
-    if (!hpDate == currentDate || hpDate == null ) {// checks if hpDate stored in LocalStorage == currentDate
+//     console.log("hpDate", hpDate)
+//     console.log("currentDate", currentDate)
+     console.log(hpDate == currentDate)
+    if (hpDate != currentDate || hpDate == null ) {// checks if hpDate stored in LocalStorage == currentDate
          console.log("false")
           createMeal.classList.add("hidden")
           createWorkout.classList.add("hidden")
@@ -136,7 +139,23 @@ const calorieCalculator = () => {
   const weight = document.getElementById('calcWeight').value
   const height = document.getElementById('calcHeight').value
   const age = document.getElementById('calcAge').value
+
   const exerciseLevel = document.getElementById('exerciseLevel').value
+console.log(typeof weight)
+
+  if(exerciseLevel == "null"){
+    alert("Please choose Exercise Level for Calorie Calculator")
+  }
+  if(weight == ""){
+      alert("Please enter Weight for Calorie Calculator")
+    }
+  if(height == null){
+      alert("Please enter Height for Calorie Calculator")
+    }
+    if(age == null){
+        alert("Please choose Age for Calorie Calculator")
+      }
+
   const male= document.getElementById('male').checked
   const female= document.getElementById('female').checked
 
@@ -154,12 +173,12 @@ const calorieCalculator = () => {
     calories = exerciseLevel * (655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)) - 120
       console.log("female")
     } else {
-     alert("Please choose gender for Calorie Calculator")
+     alert("Please choose Gender for Calorie Calculator")
      calories = 0
     }
 
 
-//  console.log("lose", lose, "maintain", maintain, "gain", gain)
+  console.log("lose", lose, "maintain", maintain, "gain", gain)
 //console.log(exerciseLevel)
   if(lose){
     calories -= 500
@@ -167,9 +186,11 @@ const calorieCalculator = () => {
   } else if(gain){
     calories += 500
     console.log("gain")
-  } else {
+  } else if(maintain) {
     calories = calories
     console.log("maintain")
+  } else {
+     alert("Please choose a Weight Goal for Calorie Calculator")
   }
 
 
