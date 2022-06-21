@@ -1,8 +1,12 @@
 package com.glenvasa.Fitness.App1.dto;
 
 
-import lombok.*;
+import com.sun.istack.NotNull;
 
+import lombok.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 // Data that user enters in Registration Page UI Form
@@ -12,17 +16,39 @@ import java.util.Date;
 @ToString
 public class UserRegistrationDto {
 
+        @NotNull
+        @NotEmpty
         private String firstName;
+
+        @NotNull
+        @NotEmpty
         private String lastName;
+
         private String streetAddress;
         private String city;
         private String state;
         private String zipCode;
+
+        @NotNull
+        @NotEmpty
         private String phone;
+
+        @NotNull
+        @NotEmpty
+        @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+                flags = Pattern.Flag.CASE_INSENSITIVE)   // will consider valid if lower or uppercase letters used
         private String email;
+
+        @NotNull
+        @NotEmpty
         private String password;
+
+        @NotNull
+        @NotEmpty
         private Float height;
-//        private Float weight;
+
+        @NotNull
+        @NotEmpty
         private String dateOfBirth;
 
 
