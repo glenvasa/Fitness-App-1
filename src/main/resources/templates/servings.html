@@ -135,8 +135,8 @@
                     <option th:each="item : ${food}" th:value="${item.getName()}" th:text="${item.name + ': ' + item.calories + ' calories'}" class="food"></option>
                 </select>
             </div>
-            <div class="ml-12 mt-2">
-                <input type="search" id="food-search" placeholder="Filter food items">
+            <div class="mt-3 w-[250px]">
+                <input type="search" id="food-search" placeholder="Filter food by category or name..." class="w-[250px]">
             </div>
 
             <div class="text-center mt-5">
