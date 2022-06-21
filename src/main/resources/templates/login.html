@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Login</title>
+    <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
 <body class="bg-blue-200">
 <!--<div th:replace="fragments/navbar :: navbar"></div>-->
@@ -37,15 +38,15 @@
             </div>
 
 
-            <h1 class="font-sans mt-40 text-center text-lg text-underline">Login Page </h1>
+            <h1 class="login font-sans mt-40 text-center text-lg text-underline">Login Page </h1>
 
 
                 <div class="grid place-items-center mt-20 text-center border-2 border-black p-3 rounded-md">
                     <form th:action="@{/login}" method="post" >
                     <label for ="username"> Username</label>:
-                    <input type="text" class = "mb-3 outline-none" id ="username" name = "username" placeholder="Enter Email" autofocus="autofocus"><br/>
+                    <input type="text" class = "mb-3 outline-none" id ="username" name = "username" placeholder="Enter Email" autofocus="autofocus" required><br/>
                     <label for="password">Password</label>:
-                    <input type="password" id="password" name="password" class="mb-3 outline-none" placeholder="Enter Password" /><br>
+                    <input type="password" id="password" name="password" class="mb-3 outline-none" placeholder="Enter Password" autofocus="autofocus" required/><br>
                         <button type="submit" name="login-submit" id="login-submit" class="bg-blue-500 border-black text-white rounded-md h-8 px-2 m-3 hover:text-blue-500 hover:bg-white">
                                 LOGIN
                             </button>
