@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Registration Page</title>
+    <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
 <body class="bg-blue-200">
 
@@ -44,9 +45,9 @@
                             autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="password"> Password </label>:
+                        <label class="" for="password"> Password (5-9 characters)</label>:
                         <input id="password" class="mb-3 outline-none" type="password"
-                            th:field="*{password}" required autofocus="autofocus" />
+                            th:field="*{password}" required minlength="5" maxlength="9" autofocus="autofocus" />
                     </div>
                     <div class="">
                         <label class="" for="street_address">Street Address</label>:
