@@ -64,16 +64,18 @@
                     <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}" class="exercise"></option>
                 </select>
             </div>
-
+            <div class="ml-12 mt-2">
+                <input type="search" id="exercise-search" placeholder="Filter exercises">
+            </div>
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5">Add Set</button>
 <!--                <button type="button" class="text-white bg-green-800 rounded-md px-2 py-1.5" onclick="displaySaveWorkout()">Save Workout</button>-->
             </div>
         </form>
-        <form class="exercise-search">
-            <input type="search" id="exercise-search">
+<!--        <form class="exercise-search">-->
+<!--            <input type="search" id="exercise-search">-->
 
-        </form>
+<!--        </form>-->
     </div>
 </div>
 <!--    // Save Workout Form-->
@@ -109,15 +111,15 @@
             <div class="">
                 <h1 class="font-sans text-center font-semibold text-lg mb-3">Save Workout</h1>
                 <div class="">
-                    <button onclick="currentDate()" class="text-white bg-green-800 rounded-md px-1 mr-5 mt-3 mb-4" id="currentButton">Now</button>
+                    <button onclick="currentDate()" class="text-white bg-green-800 rounded-md px-1 mr-5 mt-3 mb-4" id="currentButton">Today</button>
                         <label class="mr-1" for="month">Month:</label>
-                        <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{month}"
+                        <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px]" th:field="*{month}"
                                required autofocus="autofocus" />
                         <label class="mr-1" for="day">Day:</label>
-                        <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-2/5" th:field="*{day}"
+                        <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px]" th:field="*{day}"
                                required autofocus="autofocus" />
                         <label class="mr-1" for="year">Year:</label>
-                        <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-3/5" th:field="*{year}"
+                        <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-[40px]" th:field="*{year}"
                                required autofocus="autofocus" />
                 </div>
 <!--                <label class="" for="dateOfWorkout">Date</label>:-->
