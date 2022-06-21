@@ -64,8 +64,8 @@
                     <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}" class="exercise"></option>
                 </select>
             </div>
-            <div class="ml-12 mt-2">
-                <input type="search" id="exercise-search" placeholder="Filter exercises">
+            <div class="mt-3 w-[280px]">
+                <input type="search" id="exercise-search" placeholder="Filter exercises by category or name..." class="w-[280px]">
             </div>
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5">Add Set</button>
