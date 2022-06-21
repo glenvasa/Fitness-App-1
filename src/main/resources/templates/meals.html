@@ -19,7 +19,7 @@
 <!-- Show Meals-->
 <div class="grid place-items-center">
     <div class="grid grid-cols-4">
-        <div th:each="meal : ${meals}" class="relative border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-64 bg-cyan-300">
+        <div th:each="meal : ${meals}" class="relative border-2 border-black p-5 rounded-md mt-3 ml-5 text-center w-66 bg-cyan-200">
             <form th:action="@{'/meal/delete/{mealId}'(mealId=${meal.id})}" th:method="post">
                 <button type="submit" class="absolute top-1 right-4 text-slate-500 text-2xl font-bold cursor-pointer" id="deleteMeal">&times;</button>
             </form>
@@ -30,7 +30,7 @@
 <!--            <p th:with="mealCals=0">Total Calories: <span th:text="${mealCals}"></span></p>-->
 
 <!--            <br/>-->
-            <table>
+            <table class="mt-2 w-[250px]">
                 <tr>
                     <th>Food</th>
                     <th>Servings</th>
@@ -46,13 +46,14 @@
 <!--                    <td>Total Calories: <span th:text="${#aggregates.sum(totalCals)}"></span></td>-->
 <!--                </tr>-->
             </table>
-            <div class="mt-2">
-                <p class="font-semibold">Meal Calories: <span th:text="${meal.mealCals}" class="font-semibold text-lg"></span></p>
+            <div class="mt-3 text-left ml-6">
+
                 <div>
-                    <p class="font-semibold">Protein: <span th:text="${meal.mealProtein}" class="text-lg"></span>g</p>
-                    <p class="font-semibold">Carbs: <span th:text="${meal.mealCarbs}" class="text-lg"></span>g</p>
-                    <p class="font-semibold">Fat: <span th:text="${meal.mealFat}" class="text-lg"></span>g</p>
+                    <p class="font-semibold">Protein: <span th:text="${meal.mealProtein}" class=""></span>g</p>
+                    <p class="font-semibold">Carbohydrates: <span th:text="${meal.mealCarbs}" class=""></span>g</p>
+                    <p class="font-semibold">Fat: <span th:text="${meal.mealFat}" class=""></span>g</p>
                 </div>
+                <p class="font-semibold">Meal Calories: <span th:text="${meal.mealCals}" class=""></span></p>
             </div>
 
         </div>
