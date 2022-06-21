@@ -37,7 +37,7 @@ public class Food {
     @OneToMany(mappedBy = "food")
     private Set<Servings> servings = new HashSet<>();
 
-    public Food(String name, Float servingSize, Integer calories, Float fat, Float carbs, Float protein,
+    public Food(String name, Float servingSize, Integer calories, Float fat, Float carbs, Float protein, FoodCategory foodCategory,
                 Set<Servings> servings) {
         this.name = name;
         this.servingSize = servingSize;
@@ -45,6 +45,7 @@ public class Food {
         this.fat = fat;
         this.carbs = carbs;
         this.protein = protein;
+        this.foodCategory = foodCategory;
         this.servings = servings;
     }
 }
