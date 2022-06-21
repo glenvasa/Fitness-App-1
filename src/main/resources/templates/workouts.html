@@ -26,11 +26,11 @@
 <!-- Show Workouts-->
 <div class="grid place-items-center">
     <div class="grid grid-cols-4">
-        <div th:each="workout : ${workouts}" class="relative border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
+        <div th:each="workout : ${workouts}" class="relative border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-200">
             <form th:action="@{'/workout/delete/{workoutId}'(workoutId=${workout.id})}" th:method="post">
                 <button type="submit" class="absolute top-1 right-4 text-slate-500 text-2xl font-bold cursor-pointer" id="deleteWorkout">&times;</button>
             </form>
-           <p><span th:text="${workout.workoutName}" class="text-green-800 font-semibold text-lg">none</span></p>
+           <p><span th:text="${workout.workoutName}" class="text-black font-semibold text-lg">none</span></p>
             <p>Date: <span th:text="${workout.dateOfWorkout}" class="text-black"></span></p>
             <p>Duration: <span th:text="${workout.duration}" class="text-black"></span> minutes</p>
             <br/>
