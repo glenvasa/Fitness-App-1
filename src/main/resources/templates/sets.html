@@ -49,60 +49,33 @@
             <h1 class="font-sans font-semibold text-center text-lg mb-3">Add Set</h1>
             <div class="">
                 <label class="" for="repetitions">Repetitions</label>:
-                <input id="repetitions" class="mb-3 ml-1 outline-none" th:field="*{repetitions}"
+                <input id="repetitions" class="mb-3 ml-1 outline-none pl-1" th:field="*{repetitions}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
                 <label class="" for="weight">Weight</label>:
-                <input id="weight" class="mb-3 ml-1 outline-none" th:field="*{weight}"
+                <input id="weight" class="mb-3 ml-1 outline-none pl-1" th:field="*{weight}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
                 <label class="" for="exercise">Exercise</label>:
-                <select th:field="*{exercise}" id="exercise" class="ml-1">
+                <select th:field="*{exercise}" id="exercise" class="ml-1 pl-1">
                     <option value="0"></option>
-                    <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}" class="exercise"></option>
+                    <option th:each="exercise : ${exercises}" th:value="${exercise.getName()}" th:text="${exercise.getName()}" class="exercise pl-1"></option>
                 </select>
             </div>
             <div class="mt-3 w-[280px]">
-                <input type="search" id="exercise-search" placeholder="Filter exercises by category or name..." class="w-[280px]">
+                <input type="search" id="exercise-search" placeholder="Filter exercises by category or name..." class="w-[280px] pl-2">
             </div>
             <div class="text-center mt-5">
                 <button type="submit" class="text-white bg-green-700 rounded-md px-2 py-1.5">Add Set</button>
 <!--                <button type="button" class="text-white bg-green-800 rounded-md px-2 py-1.5" onclick="displaySaveWorkout()">Save Workout</button>-->
             </div>
         </form>
-<!--        <form class="exercise-search">-->
-<!--            <input type="search" id="exercise-search">-->
 
-<!--        </form>-->
     </div>
 </div>
-<!--    // Save Workout Form-->
-<!--    <div class="border-2 border-black p-5 rounded-md mt-5 hidden" id="saveWorkoutForm">-->
-<!--        <form th:action="@{/workout/create}" method="patch" th:object="${workout}">-->
-<!--            <h1 class="font-sans text-center text-lg mb-3">Save Workout</h1>-->
-<!--            <div class="">-->
-<!--                <label class="" for="repetitions">Date</label>:-->
-<!--                <input id="workoutDate" class="mb-3 outline-none" th:field="*{dateOfWorkout}"-->
-<!--                       required autofocus="autofocus" />-->
-<!--            </div>-->
-<!--            <div class="">-->
-<!--                <label class="" for="weight">Duration</label>:-->
-<!--                <input id="workoutDuration" class="mb-3 outline-none" th:field="*{duration}"-->
-<!--                       required autofocus="autofocus" />-->
-<!--            </div>-->
-<!--            <div class="">-->
-<!--                <label class="" for="exercise">Workout Name</label>:-->
-<!--                <input id="workoutName" class="mb-3 outline-none" th:field="*{workoutName}"-->
-<!--                       required autofocus="autofocus" />-->
-<!--            </div>-->
 
-<!--            <div class="text-center mt-5">-->
-<!--                <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5" >Save Workout</button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
 <!--Workout Info Form-->
 <div class="grid place-items-center" id="saveWorkoutForm">
     <div class="border-2 border-black bg-blue-200 p-5 rounded-md mt-5 flex justify-center">
@@ -111,15 +84,15 @@
             <div class="">
                 <h1 class="font-sans text-center font-semibold text-lg mb-3">Save Workout</h1>
                 <div class="">
-                    <button onclick="currentDate()" class="text-white bg-green-800 rounded-md px-1 mr-5 mt-3 mb-4" id="currentButton">Today</button>
+                    <button onclick="currentDate()" class="text-white bg-green-800 rounded-md p-1 mr-5 mt-3 mb-4" id="currentButton">Today</button>
                         <label class="mr-1" for="month">Month:</label>
-                        <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px]" th:field="*{month}"
+                        <input id="month" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px] pl-1" th:field="*{month}"
                                required autofocus="autofocus" />
                         <label class="mr-1" for="day">Day:</label>
-                        <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px]" th:field="*{day}"
+                        <input id="day" class="mb-3 mr-3 outline-none bg-blue-100 w-[35px] pl-1" th:field="*{day}"
                                required autofocus="autofocus" />
                         <label class="mr-1" for="year">Year:</label>
-                        <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-[40px]" th:field="*{year}"
+                        <input id="year" class="mb-3 mr-3 outline-none bg-blue-100 w-[40px] pl-1" th:field="*{year}"
                                required autofocus="autofocus" />
                 </div>
 <!--                <label class="" for="dateOfWorkout">Date</label>:-->
@@ -128,12 +101,12 @@
             </div>
             <div class="">
                 <label class="" for="duration">Duration</label>:
-                <input id="duration" class="outline-none ml-1 mb-3" th:field="*{duration}"
+                <input id="duration" class="outline-none ml-1 mb-3 pl-1" th:field="*{duration}"
                        required autofocus="autofocus" />
             </div>
             <div class="">
                 <label class="" for="workoutName">Workout Name</label>:
-                <input id="workoutName" class="outline-none ml-1" th:field="*{workoutName}"
+                <input id="workoutName" class="outline-none ml-1 pl-1" th:field="*{workoutName}"
                        required autofocus="autofocus" />
             </div>
 
