@@ -32,7 +32,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 //        System.out.println("Ex Serv Impl" + exerciseDto.getName() + exerciseDto.getDescription() + exerciseDto.getExerciseCategory());
           ExerciseCategory category = exerciseCategoryRepository.findByName(exerciseDto.getExerciseCategory());
          System.out.println(category.toString()); // this Correctly prints Category object
-          Exercise exercise = new Exercise(exerciseDto.getName(), exerciseDto.getDescription(), category, new HashSet<Sets>());
+        String exercisePlusCatName = exerciseDto.getExerciseCategory() + "-" + exerciseDto.getName();
+          Exercise exercise = new Exercise(exercisePlusCatName, exerciseDto.getDescription(), category, new HashSet<Sets>());
 //        Exercise exercise = new Exercise("Bicep curls", "Workout with dumbbells", new ExerciseCategory("arm exercises", "biceps, triceps, etc."));
         System.out.println(exerciseDto.getName() + exerciseDto.getDescription() + category); // THIs correctly prints the name, description and category
           System.out.println(exercise.toString());// BUT this shows all fields in Exercise object as Null
