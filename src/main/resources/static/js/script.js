@@ -202,9 +202,10 @@ console.log(typeof weight)
 
 // search for food items in Add Serving Form
 if(window.location.pathname === "/servings"){
-let nav = document.querySelector(".food-search");
-  nav.addEventListener("click", () => {
-    let search = document.querySelector("#food-search");
+//let nav = document.querySelector(".food-search");
+let search = document.querySelector("#food-search");
+  search.addEventListener("click", () => {
+
     let li = Array.from(document.querySelectorAll(".food"));
 
     search.addEventListener("keyup", () => {
@@ -225,9 +226,10 @@ let nav = document.querySelector(".food-search");
 
 // search for exercise names is Add Sets Form
 if(window.location.pathname === "/sets"){
-let nav1 = document.querySelector(".exercise-search");
-  nav1.addEventListener("click", () => {
-    let search1 = document.querySelector("#exercise-search");
+//let nav1 = document.querySelector(".exercise-search");
+let search1 = document.querySelector("#exercise-search");
+  search1.addEventListener("click", () => {
+
     let li1 = Array.from(document.querySelectorAll(".exercise"));
 
     search1.addEventListener("keyup", () => {
