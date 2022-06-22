@@ -15,7 +15,7 @@
 <div class="grid grid-cols-3 mt-2 place-items-center">
 
 
-        <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10 mb-5 -mt-[147px]">
+        <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10 mb-5 -mt-[135px]">
             <h1 class="text-center text-lg font-semibold mb-3">Today's Health Profile</h1>
             <p>
             <label for="weight" class="w-[150px] pr-[20px] inline-block mb-1">Weight: </label>
@@ -36,11 +36,11 @@
 
 
         </div>
-    <div class="-mt-[263px]" id="mealList">
+    <div class="-mt-[271px]" id="mealList">
         <h1 class="mb-2 text-center text-lg"><span sec:authentication="principal.username" class="underline underline-offset-1"></span></h1>
         <div class="border-2 border-black p-5 rounded-md bg-red-100 9/10" id="mList">
 
-            <h1 class="mb-10 text-center text-lg">Select Date to View Meals/Workouts</h1>
+            <h1 class="mb-5 text-center text-lg">Select Date to View Meals/Workouts</h1>
             <form th:action="@{/profile/meals}" method="post" th:object="${selectedDate}" class="text-center">
                 <input type="date" th:name="date" th:value="*{date}" onchange="this.form.submit()"/>
 <!--                <select th:field="*{date}" id="mealDateList">-->
@@ -57,7 +57,7 @@
     </div>
     <div class="" id="profileInfo">
 
-        <div class="border-2 border-black bg-stone-200 p-5 rounded-md w-full h-[400px] mt-[40px]" >
+        <div class="border-2 border-black bg-stone-200 p-5 rounded-md w-full h-[400px] mt-[50px]" >
             <form th:action="@{/profile/update}" method="post" th:object="${user}" class="mt-[]">
                 <p>
                     <label for="firstName" class="w-[150px] pr-[20px] inline-block mb-1">First Name: </label>
