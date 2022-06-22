@@ -27,7 +27,7 @@ public class FoodCategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping()
+    @GetMapping
     public String displayFoodCategoryPage(Model model) {
         model.addAttribute("category", new FoodCategoryDto()); // binds "category" attribute to the model
 
