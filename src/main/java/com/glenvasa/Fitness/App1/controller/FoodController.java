@@ -40,7 +40,7 @@ public class FoodController {
         this.foodCategoryRepository = foodCategoryRepository;
     }
 
-    @GetMapping()
+    @GetMapping
     public String displayFoodPage(Model model) {
         model.addAttribute("food", new FoodDto()); // binds "food" attribute to the model
 
