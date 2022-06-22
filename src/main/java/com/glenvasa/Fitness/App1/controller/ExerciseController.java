@@ -36,7 +36,7 @@ public class ExerciseController {
         this.exerciseRepository = exerciseRepository;
     }
 
-    @GetMapping()
+    @GetMapping
     public String displayExercisePage(Model model) {
         model.addAttribute("exercise", new ExerciseDto()); // binds "exercise" attribute to the model
 
