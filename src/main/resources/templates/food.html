@@ -7,7 +7,7 @@
     <title>Food</title>
     <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
-<body class="bg-blue-200">
+<body class="">
 
 <!--Insert NavBar Fragment-->
 
@@ -42,8 +42,8 @@
 
 <!--  Add Food Form -->
 <div class="grid place-items-center">
-    <div class="bg-white border-2 border-black p-5 rounded-md mt-5">
-        <form th:action="@{/food}" method="post" th:object="${food}" class="bg-white">
+    <div class="bg-blue-200 border-2 border-black p-5 rounded-md mt-5">
+        <form th:action="@{/food}" method="post" th:object="${food}" class="bg-blue-200">
             <h1 class="font-sans text-center text-lg mb-3">Add Food</h1>
             <div class="">
                 <label class="" for="name">Food Name</label>:
