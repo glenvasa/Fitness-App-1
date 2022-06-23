@@ -94,15 +94,14 @@ public class SetsController {
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
 
-
+        // retrieves empty Workout created when User clicked "Create Workout" button and updates it with Sets just created.
         Workout currentWorkout = workoutRepository.findTopByOrderByIdDesc();
         workoutService.update(workoutDto, currentWorkout);
 
-        //After saves a workout creates PR Map
+        //After saves a workout creates Personal Record Map by retrieving all of User's Sets in DB
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
 
-        // ExerciseStats is util class containing 3 fields (weight / repetitions / dateOfWorkout)
-        // This creates a map of current Personal Records
+        // This instantiates a map of current Personal Records
         Map<String, PRStats> personalRecords = new HashMap<>();
 
         allSets.forEach(sets -> {
@@ -111,17 +110,18 @@ public class SetsController {
             Integer repetitions = sets.getRepetitions();
             LocalDate dateOfWorkout = sets.getWorkout().getDateOfWorkout();
             Long workoutId = sets.getWorkout().getId();
+
+            // PRStats is util class containing 4 fields (weight / repetitions / dateOfWorkout / workoutId)
             PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout, workoutId);
 
-            // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
+            // If key/exerciseName doesn't exist in Map, create it with a value of prStats
             personalRecords.putIfAbsent(exerciseName, prStats);
 
-            // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
+            // If key exists, compare value(prStats).getWeight() with current Set weight and replace value with current prStats if less
             personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() >= weight ? value : prStats);
         });
 
-
-        // This creates a map of best weights for current workout
+        // This instantiates a map of best weights for current workout
         Map<String, PRStats> workoutStats = new HashMap<>();
         currentWorkout.getSets().forEach(sets -> {
             String exerciseName = sets.getExercise().getName();
@@ -131,34 +131,28 @@ public class SetsController {
             Long workoutId = sets.getWorkout().getId();
             PRStats prStats = new PRStats(weight, repetitions, dateOfWorkout, workoutId);
 
-            // if key/exerciseName doesn't exist in Map, create it value ExerciseStats(weight / repetitions)
+            // If key/exerciseName doesn't exist in Map, create it with value prStats
             workoutStats.putIfAbsent(exerciseName, prStats);
 
-            // if key exists, compare value(exerciseStats).getWeight() with current set weight and replace value with current exerciseStats if less
+            // If key exists, compare its value (prStats.getWeight()) with current Set's weight and replace value with prStats if less
             workoutStats.computeIfPresent(exerciseName, (key, value) -> value.getWeight() > weight ? value : prStats);
         });
 
-        System.out.println(workoutStats);
-        System.out.println(personalRecords);
-        // TODO: need to see if each key/exercise of workoutStats exists in personalRecords; if it does
-        // check to see if value in workoutStats is > value in personalRecords. If it is, PR reached and
-        // make call to smsController.sendSms which sends text to user informing PR reached.
-
-        workoutStats.forEach((k,v) -> {                                  // can likely replace >= with > and remove && id check
-            if(personalRecords.containsKey(k) && (workoutStats.get(k).getWeight() >= personalRecords.get(k).getWeight()) && (currentWorkout.getId() == personalRecords.get(k).getWorkoutId())){
-                String message = "Hey, " + user.getFirstName() +"! You just reached a new Personal Record for " + k + " with a weight of " + workoutStats.get(k).getWeight() + " lbs for " + workoutStats.get(k).getRepetitions() +  " repetitions. Keep up the great work!!!";
+        // Checks if each key/exercise of workoutStats exists in personalRecords;
+        // If it exists, check to see if value's weight field in workoutStats is > weight field in personalRecords.
+        // If it is, a new PR has been reached, smsController.sendSms method is called, and a text message sent to user w/in 3-4 seconds.
+        workoutStats.forEach((k,v) -> {
+            if(personalRecords.containsKey(k) && (workoutStats.get(k).getWeight() >= personalRecords.get(k).getWeight())
+                    && (currentWorkout.getId() == personalRecords.get(k).getWorkoutId())){
+                String message = "Hey, " + user.getFirstName() +"! You just reached a new Personal Record for " + k +
+                        " with a weight of " + workoutStats.get(k).getWeight() + " lbs for " + workoutStats.get(k).getRepetitions() +
+                        " repetitions. Keep up the great work!!!";
                 String phoneNumber = user.getPhone();
-//                String message = "You just hit a new Personal Record!";
                 SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
                 smsController.sendSms(messageUser);
             }
-
         });
 
-
-
-
         return "redirect:/workouts";
-
     }
 }
