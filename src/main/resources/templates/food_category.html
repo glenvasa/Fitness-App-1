@@ -7,7 +7,7 @@
     <title>Food Category</title>
     <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
-<body class="bg-blue-200">
+<body class="">
 
 <!--Insert NavBar Fragment-->
 
@@ -26,7 +26,7 @@
 <!-- Show Food Categories-->
 <div class="grid place-items-center">
     <div class="grid grid-cols-4">
-        <div th:each="category : ${categories}" class="border-2 border-black bg-white p-5 rounded-md mt-3 mr-2 text-center w-72">
+        <div th:each="category : ${categories}" class="border-2 border-black bg-blue-200 p-5 rounded-md mt-3 mr-2 text-center w-72">
             <p th:text="${category.name}" class="text-purple-800 font-semibold text-lg"></p>
             <div th:text="${category.description}" class="text-black"></div>
 
@@ -38,7 +38,7 @@
 
 <!--  Add Category Form -->
 <div class="grid place-items-center">
-    <div class="border-2 border-black p-5 rounded-md mt-5 bg-white">
+    <div class="border-2 border-black p-5 rounded-md mt-5 bg-blue-200">
         <form th:action="@{/food/category}" method="post" th:object="${category}">
             <h1 class="font-sans text-center text-lg mb-3">Add Food Category</h1>
             <div class="">
