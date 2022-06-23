@@ -161,4 +161,35 @@ public class UserRepositoryTests {
 //        expected: "James"
 //        but was: "John",  why???? it is updated in DB as "James"
     }
+
+
+    @Test
+    public void deleteUserByIdTest(){
+
+        User user1 = new User();
+        user1.setFirstName("John");
+        user1.setLastName("Smith");
+        user1.setStreetAddress("12345 Main Street");
+        user1.setCity("Boston");
+        user1.setState("MA");
+        user1.setZipCode("02121");
+        user1.setPhone("16175551212");
+        user1.setEmail("jsmith3@test.com");
+        user1.setPassword("12345");
+        user1.setHeight(72F);
+        user1.setDateOfBirth("1982-12-16");
+        user1.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user1.setWorkout(new HashSet<Workout>());
+        user1.setMeal(new HashSet<Meal>());
+        user1.setHealthProfiles(new HashSet<HealthProfile>());
+
+        User savedUser = userRepository.save(user1);
+
+        userRepository.deleteById(user1.getId());
+
+        User retrievedUser = userRepository.findByEmail("jsmith3@test.com");
+
+        Assertions.assertThat(retrievedUser).isNull();
+
+    }
 }
