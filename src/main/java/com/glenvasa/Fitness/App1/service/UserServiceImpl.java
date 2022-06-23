@@ -26,16 +26,19 @@ public class UserServiceImpl implements UserService{
     private final MealRepository mealRepository;
     private final SetsRepository setsRepository;
     private final ServingsRepository servingsRepository;
+    private final HealthProfileRepository healthProfileRepository;
 
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, WorkoutRepository workoutRepository,
-                           MealRepository mealRepository, SetsRepository setsRepository, ServingsRepository servingsRepository) {
+                           MealRepository mealRepository, SetsRepository setsRepository,
+                           ServingsRepository servingsRepository, HealthProfileRepository healthProfileRepository) {
         this.userRepository = userRepository;
         this.workoutRepository = workoutRepository;
         this.mealRepository = mealRepository;
         this.setsRepository = setsRepository;
         this.servingsRepository = servingsRepository;
+        this.healthProfileRepository = healthProfileRepository;
     }
 
     @Override
@@ -81,10 +84,12 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findByEmail(email);
         Set<Workout> workouts = user.getWorkout();
         Set<Meal> meals = user.getMeal();
+        Set<HealthProfile> healthProfiles = user.getHealthProfiles();
         workouts.forEach(workout -> workout.getSets().forEach(sets -> setsRepository.deleteById(sets.getId())));
         meals.forEach(meal -> meal.getServings().forEach(serving -> servingsRepository.deleteById(serving.getId())));
         workouts.forEach(workout -> workoutRepository.deleteWorkoutById(workout.getId()));
         meals.forEach(meal -> mealRepository.deleteMealById(meal.getId()));
+        healthProfiles.forEach(healthProfile -> healthProfileRepository.deleteById(healthProfile.getId()));
 
         //        workouts.forEach(workout -> workoutRepository.deleteById(workout.getId()));
         userRepository.deleteById(user.getId());
