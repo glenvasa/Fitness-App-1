@@ -7,27 +7,27 @@
   <title>Exercise</title>
   <link th:href="@{css/styles.css}" rel="stylesheet" />
 </head>
-<body class="bg-blue-200">
+<body class="">
 
 <!--Insert NavBar Fragment-->
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <!-- success message -->
-<div th:if="${param.success}" class="">
-  <div class="grid place-items-center">
-    <p>
-      You've successfully added an Exercise!
-    </p>
-  </div>
-</div>
+<!--<div th:if="${param.success}" class="">-->
+<!--  <div class="grid place-items-center">-->
+<!--    <p>-->
+<!--      You've successfully added an Exercise!-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</div>-->
 <h1 class="grid place-items-center mt-5 mb-5">Exercises</h1>
 
 <!-- Show Exercises-->
 <div class="grid place-items-center">
   <div class="grid grid-cols-4">
     <div th:each="exercise : ${exercises}" class="border-2 border-black p-5 rounded-md mt-3 mr-2 text-center w-72 bg-green-300">
-      <p th:text="${exercise.name}" class="text-green-800 font-semibold text-lg"></p>
+      <p th:text="${exercise.name}" class="text-black font-semibold text-lg"></p>
       <div th:text="${exercise.description}" class="text-black"></div>
 <!--      <div th:text="${exercise.exerciseCategory}" class="text-black"></div>-->
     </div>
@@ -38,8 +38,8 @@
 
 <!--  Add Exercise Form -->
 <div class="grid place-items-center">
-  <div class="bg-white border-2 border-black p-5 rounded-md mt-5">
-    <form th:action="@{/exercise}" method="post" th:object="${exercise}" class="bg-white">
+  <div class="bg-blue-200 border-2 border-black p-5 rounded-md mt-5">
+    <form th:action="@{/exercise}" method="post" th:object="${exercise}" class="bg-blue-200">
       <h1 class="font-sans text-center text-lg mb-3">Add Exercise</h1>
       <div class="">
         <label class="" for="name">Exercise Name</label>:
