@@ -45,6 +45,7 @@ public class ProfileController {
   HealthProfile currentHealthProfile;
   HealthProfile dailyHealthProfile;
   Double dailyTargetCals = 0.0;
+  Double dailyWeight = 0.0;
 //  SelectedDate selectedDate;
 
     @Autowired
@@ -109,6 +110,7 @@ public class ProfileController {
 
       model.addAttribute("targetCals", currentHealthProfile.getTargetCalories());
         model.addAttribute("dailyTargetCals", dailyTargetCals);
+        model.addAttribute("dailyWeight", dailyWeight);
         System.out.println("Inside GET /profile");
         System.out.println(currentHealthProfile);
 
@@ -190,7 +192,10 @@ public class ProfileController {
         } else {
             dailyTargetCals = dailyHealthProfile.getTargetCalories();
         }
+        dailyWeight = Double.valueOf(dailyHealthProfile.getWeight());
+        System.out.println("Your daily weight is" + dailyHealthProfile.getWeight());
         model.addAttribute("dailyTargetCals", dailyTargetCals);
+        model.addAttribute("dailyWeight", dailyWeight);
 
         System.out.println("hello from Profile Controller GET /profile/meals/");
 //        System.out.println(currentHealthProfile); //accurately printing most recent hp but not updating
