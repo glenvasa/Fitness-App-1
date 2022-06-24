@@ -34,7 +34,7 @@
                 <tr>
                     <th>Food</th>
                     <th>Servings</th>
-                    <th>Total Cals</th>
+                    <th>Cals</th>
                 </tr>
                 <tr th:each="serving : ${meal.servings}">
                     <td th:text="${serving.food.getName()}"></td>
