@@ -11,7 +11,7 @@
 <!--            <span class="text-slate-500 text-2xl font-bold float-right cursor-pointer" id="closeMealModal">&times;</span>-->
 <!--            <h1 class="text-black-500">Total Calories for <span th:text="${selectedDate}">:</span></h1>-->
             <p>Total Calories consumed on <span th:text="${mealDate}"></span> = <span th:text="${modalDailyCals}" class="text-semibold"></span><span>. Total Protein: <span th:text="${modalDailyProtein}"></span>g. Total Carbs: <span th:text="${modalDailyCarbs}"></span>g. Total Fat: <span th:text="${modalDailyFat}"></span>g.</span></p>
-           <p>Your daily Target Calories are <span th:text="${dailyTargetCals}"></span> so you are in a <span th:text ="${dailyTargetCals} - ${modalDailyCals} > 0 ? 'deficit' : 'surplus'"></span> of <span th:text = "${modalDailyCals} - ${dailyTargetCals}"></span> calories.</p>
+           <p>You weight today is: <span th:text="${dailyWeight}"></span> pounds. Your daily Target Calories are <span th:text="${dailyTargetCals}"></span> so you are in a <span th:text ="${dailyTargetCals} - ${modalDailyCals} > 0 ? 'deficit' : 'surplus'"></span> of <span th:text = "${modalDailyCals} - ${dailyTargetCals}"></span> calories.</p>
             <div class="grid grid-cols-3" id="dailyMealCards">
             <div th:each="meal : ${dailyMeals}" class="border-2 border-black p-5 pr-9 rounded-md mt-3 mr-2 text-center w-66 bg-cyan-200">
                 <p class="font-semibold">Meal Type: <span th:text="${meal.mealType}" class="text-black"></span></p>
