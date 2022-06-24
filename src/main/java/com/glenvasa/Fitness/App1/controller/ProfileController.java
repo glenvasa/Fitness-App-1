@@ -192,7 +192,7 @@ public class ProfileController {
         } else {
             dailyTargetCals = dailyHealthProfile.getTargetCalories();
         }
-        dailyWeight = Double.valueOf(dailyHealthProfile.getWeight());
+        dailyWeight = Double.valueOf(Math.round(dailyHealthProfile.getWeight()));
         System.out.println("Your daily weight is" + dailyHealthProfile.getWeight());
         model.addAttribute("dailyTargetCals", dailyTargetCals);
         model.addAttribute("dailyWeight", dailyWeight);
