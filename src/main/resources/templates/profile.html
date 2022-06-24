@@ -43,14 +43,6 @@
             <h1 class="mb-5 text-center text-lg">Select Date to View Meals/Workouts</h1>
             <form th:action="@{/profile/meals}" method="post" th:object="${selectedDate}" class="text-center">
                 <input type="date" th:name="date" th:value="*{date}" onchange="this.form.submit()"/>
-<!--                <select th:field="*{date}" id="mealDateList">-->
-<!--                    <option value="0">Select Date</option>-->
-<!--                    <option th:each="mealDate : ${mealDates}" th:text="${mealDate}" th:value="${mealDate}" class=""></option>-->
-<!--                </select>-->
-
-<!--                <div class="text-center mt-5">-->
-<!--                    <button type="submit" class="text-white bg-green-800 rounded-md px-2 py-1.5">View Meals</button>-->
-<!--                </div>-->
             </form>
 
         </div>
@@ -114,7 +106,7 @@
 <!--                </p>-->
 
             <div class="text-center mt-5">
-                <button type="submit" class="text-white border-2 border-black rounded-md p-1 bg-stone-500 mb-1">Update Profile</button>
+                <button type="submit" class="text-white border-2 border-black rounded-md p-1 bg-blue-800 mb-1">Update Profile</button>
             </div>
        </form>
             <form onsubmit="return confirm('Do you really want to delete your account?');" th:action="@{/profile/delete}" method="post" class="text-center mt-1">
