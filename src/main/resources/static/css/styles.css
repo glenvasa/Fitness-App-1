@@ -1,7 +1,40 @@
-.login {
-    color: red;
+
+.login_group {
+ margin-top: 250px;
+}
+
+.login_title {
+    font-size: 44px;
+    margin-top: 150px;
+    margin-bottom: -200px;
+    text-shadow: .5px .5px .5px black;
+}
+
+.reg_title {
+     font-size: 44px;
+     margin-bottom: 20px;
+     text-shadow: .5px .5px .5px black;
+}
+
+.login_main {
+    color: black;
+    font-size: 26px;
+
+}
+
+.login_main_sub {
+    font-size: 20px;
 }
 
 .logged_in {
     color: red;
+}
+
+.login_label {
+    color: white;
+}
+
+#reg_form label {
+    color: white;
+    padding-top: 8px;
 }
