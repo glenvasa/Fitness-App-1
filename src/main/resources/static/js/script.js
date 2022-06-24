@@ -8,6 +8,9 @@
 //          localStorage.setItem("hpDate", JSON.stringify(currentDate))
 //      }
 //}
+if(window.location.pathname === '/login'){
+    localStorage.clear()
+}
 
 
 if(window.location.pathname === "/") {
