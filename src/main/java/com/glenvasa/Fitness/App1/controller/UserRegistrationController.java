@@ -2,8 +2,11 @@ package com.glenvasa.Fitness.App1.controller;
 
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.dto.WorkoutDto;
+import com.glenvasa.Fitness.App1.exception.UserAlreadyExistsException;
 import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import java.security.Principal;
 @Controller
 public class UserRegistrationController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationController.class);
     private final UserService userService;
 
     @Autowired
@@ -28,8 +32,9 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto){
+    public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto) throws UserAlreadyExistsException {
         userService.save(userRegistrationDto);
+        LOGGER.info("User " + userRegistrationDto.getEmail() + " has been created.");
          return "login";
     }
 
