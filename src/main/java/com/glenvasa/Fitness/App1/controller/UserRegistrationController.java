@@ -32,8 +32,13 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto) throws UserAlreadyExistsException {
-        userService.save(userRegistrationDto);
+    public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto, Model model) throws UserAlreadyExistsException {
+        try{
+            userService.save(userRegistrationDto);
+        } catch (UserAlreadyExistsException e){
+            return "redirect:/registration?failed";
+        }
+
         LOGGER.info("User " + userRegistrationDto.getEmail() + " has been created.");
          return "login";
     }
