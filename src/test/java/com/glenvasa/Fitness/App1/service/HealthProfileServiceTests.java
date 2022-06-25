@@ -1,0 +1,39 @@
+package com.glenvasa.Fitness.App1.service;
+
+import com.glenvasa.Fitness.App1.dto.HealthProfileDto;
+import com.glenvasa.Fitness.App1.model.HealthProfile;
+import com.glenvasa.Fitness.App1.model.User;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+
+import java.security.Principal;
+
+@SpringBootTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Rollback(false)
+public class HealthProfileServiceTests {
+
+
+    @Autowired
+    private HealthProfileServiceImpl healthProfileService;
+
+    @Test //passes
+    public void testSaveHealthProfile() {
+        HealthProfileDto healthProfileDto = new HealthProfileDto();
+        Principal principal = new Principal() {
+            @Override
+            public String getName() {
+                return "John";
+            }
+        };
+
+
+        HealthProfile savedHealthProfile = healthProfileService.save(healthProfileDto, principal);
+        Assertions.assertThat(savedHealthProfile.getId()).isNotNull();
+    }
+
+}
