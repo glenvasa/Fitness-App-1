@@ -21,12 +21,21 @@
         </p>
     </div>
 </div>
+<!--registration failed due to duplicate email address-->
+<div th:if="${param.failed}">
+    <div class="grid place-items-center mt-10 -mb-[60px]">
+        <p class="text-red-600">
+            An account with this email address already exists. Please try again with a different email address.
+        </p>
+    </div>
+</div>
 
 
 <!--Create Registration Form-->
 <div class="grid place-content-center h-screen">
     <h1 class="reg_title font-semibold text-blue-800 font-sans text-center">Your Fitness / Your Life</h1>
-    <div class="bg-blue-800 border-2 border-black p-5 pt-8 rounded-md">
+
+    <div class="bg-blue-800 border-2 border-black p-5 pt-8 pl-10 rounded-md">
                 <form th:action="@{/registration}" method="post" th:object="${user}" id="reg_form">
 <!--                        <h1 class="font-sans text-center text-white text-lg mb-3">Register</h1>-->
                     <div class="">
@@ -41,7 +50,7 @@
                     </div>
                     <div class="">
                         <label class="" for="email"> Email: </label>
-                        <input id="email" class="pl-1 ml-2 mb-3 outline-none" th:field="*{email}" required
+                        <input id="email" class="pl-1 ml-2 mb-3 outline-none" th:field="*{email}" type="email" required
                             autofocus="autofocus" />
                     </div>
                     <div class="">
@@ -63,27 +72,27 @@
                     <div class="">
                         <label class="" for="state">State:</label>
                         <input id="state" class="pl-1 ml-2 mb-3 outline-none" type="text"
-                            th:field="*{state}" required autofocus="autofocus" />
+                            th:field="*{state}" required minlength="2" maxlength="2" autofocus="autofocus" />
                     </div>
                     <div class="">
                         <label class="" for="zip_code">Zip Code:</label>
                         <input id="zip_code" class="pl-1 ml-2 mb-3 outline-none" type="text"
-                            th:field="*{zipCode}" required autofocus="autofocus" />
+                            th:field="*{zipCode}" required minlength="5" maxlength="5" autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="phone">Phone:</label>
+                        <label class="" for="phone">Phone (1 + 10 digits):</label>
                         <input id="phone" class="pl-1 ml-2 mb-3 outline-none" type="text"
-                            th:field="*{phone}" required autofocus="autofocus" />
+                            th:field="*{phone}" required minlength="11" maxlength="11" autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="dateOfBirth">Date of Birth:</label>
+                        <label class="" for="dateOfBirth">Date of Birth (YYYY-MM-DD):</label>
                         <input id="dateOfBirth" class="pl-1 ml-2 mb-3 outline-none" type="text"
-                            th:field="*{dateOfBirth}" required autofocus="autofocus" />
+                            th:field="*{dateOfBirth}" required minlength="10" maxlength="10" autofocus="autofocus" />
                     </div>
                     <div class="">
-                        <label class="" for="height">Height:</label>
+                        <label class="" for="height">Height (inches):</label>
                         <input id="height" class="pl-1 ml-2 mb-3 outline-none" type="text"
-                            th:field="*{height}" required autofocus="autofocus" />
+                            th:field="*{height}" required minlength="2" maxlength="2" autofocus="autofocus" />
                     </div>
                     <div class="text-center mt-5">
                         <button type="submit" class="text-white bg-[#800000] rounded-md px-2 py-1">REGISTER</button>
