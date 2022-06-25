@@ -1,8 +1,11 @@
 package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
+import com.glenvasa.Fitness.App1.exception.UserAlreadyExistsException;
 import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
     private final WorkoutRepository workoutRepository;
@@ -42,16 +46,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User save(UserRegistrationDto registrationDto) {
+    public User save(UserRegistrationDto registrationDto) throws UserAlreadyExistsException {
 
-        User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-                registrationDto.getStreetAddress(), registrationDto.getCity(),
-                registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone(),
-                registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
-                registrationDto.getHeight(), registrationDto.getDateOfBirth(),
-                Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>(),
-                new HashSet<HealthProfile>());
-        return userRepository.save(user);
+        String checkEmailExists = registrationDto.getEmail();
+        User checkUserExists = userRepository.findByEmail(checkEmailExists);
+        if(checkUserExists == null){
+            User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
+                    registrationDto.getStreetAddress(), registrationDto.getCity(),
+                    registrationDto.getState(), registrationDto.getZipCode(), registrationDto.getPhone(),
+                    registrationDto.getEmail(), new BCryptPasswordEncoder().encode(registrationDto.getPassword()),
+                    registrationDto.getHeight(), registrationDto.getDateOfBirth(),
+                    Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>(),
+                    new HashSet<HealthProfile>());
+//            LOGGER.info("User with email address " + registrationDto.getEmail() + " created.");
+            return userRepository.save(user);
+        } else {
+            throw new UserAlreadyExistsException("User with email " + checkEmailExists + " already exists. Please enter a unique email");
+        }
+
     }
 
     @Override
@@ -67,15 +79,8 @@ public class UserServiceImpl implements UserService{
         userRepository.updateUserById(userRegistrationDto.getFirstName(), userRegistrationDto.getLastName(), userRegistrationDto.getStreetAddress(),
                 userRegistrationDto.getCity(), userRegistrationDto.getState(), userRegistrationDto.getZipCode(), userRegistrationDto.getPhone(),
                 userRegistrationDto.getHeight(), userRegistrationDto.getDateOfBirth(), userId);
-
+        LOGGER.info("User " + email + " updated.");
     }
-
-//    @Override
-//    public void updateUserMaintCals(Integer maintCals, Principal principal) {
-//        String email = principal.getName();
-//        Long userId = userRepository.findByEmail(email).getId();
-//        userRepository.updateUserMaintCals(maintCals, userId);
-//    }
 
 
     @Override
@@ -93,6 +98,7 @@ public class UserServiceImpl implements UserService{
 
         //        workouts.forEach(workout -> workoutRepository.deleteById(workout.getId()));
         userRepository.deleteById(user.getId());
+        LOGGER.info("User " + email + " has been deleted.");
     }
 
 
