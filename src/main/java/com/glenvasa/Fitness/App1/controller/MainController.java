@@ -8,12 +8,11 @@ import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.PersonalRecords;
 import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.model.User;
-import com.glenvasa.Fitness.App1.service.HealthProfileService;
-import com.glenvasa.Fitness.App1.service.SetsService;
-import com.glenvasa.Fitness.App1.service.UserService;
-import com.glenvasa.Fitness.App1.service.WorkoutService;
+import com.glenvasa.Fitness.App1.service.*;
 
 import com.glenvasa.Fitness.App1.utilClass.PRStats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +29,7 @@ import java.util.*;
 @Controller
 public class MainController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
     SetsService setsService;
     UserService userService;
     HealthProfileService healthProfileService;
@@ -112,7 +112,9 @@ public class MainController {
 
     @PostMapping("/user/healthProfile")
     public String createHealthProfile(@ModelAttribute("healthProfile") HealthProfileDto healthProfileDto, Principal principal){
+        String email = principal.getName();
         healthProfileService.save(healthProfileDto, principal);
+        LOGGER.info("Health Profile for User: " + email + " has been created.");
         return "redirect:/profile";
     }
 
