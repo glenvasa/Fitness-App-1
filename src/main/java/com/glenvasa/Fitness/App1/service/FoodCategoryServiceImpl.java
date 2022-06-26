@@ -1,12 +1,8 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.ExerciseCategoryDto;
 import com.glenvasa.Fitness.App1.dto.FoodCategoryDto;
-import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
 import com.glenvasa.Fitness.App1.model.Food;
 import com.glenvasa.Fitness.App1.model.FoodCategory;
-import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import com.glenvasa.Fitness.App1.repository.FoodCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
+// Saves/Loads Food Categories
 @Service
 public class FoodCategoryServiceImpl implements FoodCategoryService{
 
