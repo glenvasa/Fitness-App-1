@@ -9,7 +9,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,9 +33,6 @@ public class Meal {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "mealType_id", referencedColumnName = "id")
-//    private MealType mealType;
     private String mealType;
     private Float mealCals;
     private Float mealFat;
