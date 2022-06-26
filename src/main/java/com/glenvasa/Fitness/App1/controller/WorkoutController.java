@@ -17,28 +17,27 @@ import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//Class contains logic to display all User's Workouts in DB, create an empty Workout
+// by clicking "Create a Workout" button on Homepage which redirects to Sets Page, and to delete a Workout.
 @Controller
 public class WorkoutController {
 
     private final WorkoutService workoutService;
-    private final WorkoutRepository workoutRepository;
     private final UserService userService;
 
     @Autowired
-    public WorkoutController(WorkoutService workoutService, WorkoutRepository workoutRepository, UserService userService) {
+    public WorkoutController(WorkoutService workoutService, UserService userService) {
         this.workoutService = workoutService;
-        this.workoutRepository = workoutRepository;
         this.userService = userService;
     }
 
-    @GetMapping("/workouts") // should display only workouts for logged in user
+    // displays all Workouts in DB for logged-in user
+    @GetMapping("/workouts")
     public String displayWorkoutsPage(Model model, Principal principal){
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
         List<Workout> workouts = workoutService.loadWorkouts().stream().filter(wo -> wo.getUser().getId() == user.getId()).collect(Collectors.toList());
-//        Workout workout = workoutRepository.findTopByOrderByIdDesc();
-//        System.out.println(workout.toString());
-//        List<Workout> filteredWorkouts = workouts.stream().filter(wo -> wo.getId() == workout.getId()).collect(Collectors.toList());
+
         model.addAttribute("workouts", workouts); // binds "workouts" attribute to the model right before page loads
 
         return "workouts";
