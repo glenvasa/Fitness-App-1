@@ -12,14 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+// Class dictates which parts of application are accessible to all vs authenticated users and
+// sets various paths/pages related to log-in/log-out functionality.
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
-
-
 
     // Authentication related to using Hibernate with Spring Security
     @Bean
@@ -35,6 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    //permits all to view registration page, js, css and image folder files
+    //requires any request to be from authenticated, logged-in user
+    //sets login page, logout page, and successful logout routes
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
