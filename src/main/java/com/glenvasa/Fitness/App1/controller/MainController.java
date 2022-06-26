@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.*;
 
-
+// Class contains routes/logic to display "login" page, "homepage" ("/" route), and to create/save a Daily Health Profile
 @Controller
 public class MainController {
 
@@ -46,14 +46,7 @@ public class MainController {
         return "login";
     }
 
-
-//@GetMapping("/")
-//    public String home(Principal principal){
-//            PersonalRecords personalRecords = workoutService.getPersonalRecords(principal);
-//            System.out.println(personalRecords);
-//            return "index";
-//}
-
+    //Binds attributes to Daily Health Profile Form and to create User's Personal Exercise Record Table on page load
     @GetMapping("/")
     public String home(Model model, Principal principal) {
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
@@ -75,11 +68,10 @@ public class MainController {
             personalRecords.computeIfPresent(exerciseName, (key, value) -> value.getWeight() >= weight ? value : prStats);
         });
 
-//       personalRecords.forEach((key,value) -> System.out.println(key + value.getWeight()));
 
         model.addAttribute("personalRecords", personalRecords);
 
-        //Retrieve User's Height and dateOfBirth from User and auto input to Maintenance Calories Form
+        //Retrieve User's Height and dateOfBirth (to calculate age) from User object and auto inputs to Daily Health Profile Form
         User user = userService.loadUserByEmail(principal.getName());
         Integer age = Period.between(LocalDate.parse(user.getDateOfBirth()), LocalDate.now()).getYears();
         System.out.println("You are " + age + " years old.");
@@ -101,13 +93,11 @@ public class MainController {
         List<HealthProfile> todayHealthProfiles = healthProfileService.findTodayProfiles(principal, today);
         System.out.println(todayHealthProfiles.size() > 0);
 
-//        model.addAttribute("dailyHp", "not-exists");
         if(todayHealthProfiles.size() > 0){
             model.addAttribute("dailyHp", "Click below to Create a Meal or Workout");
         }
 
         return "index";
-
     }
 
     @PostMapping("/user/healthProfile")
@@ -117,18 +107,6 @@ public class MainController {
         LOGGER.info("Health Profile for User: " + email + " has been created.");
         return "redirect:/profile";
     }
-
-//    checks to see if any healthProfiles created by user for current date
-
-//    @GetMapping("/user/healthProfile/today")
-//    public String getDailyHealthProfile(Principal principal){
-//        LocalDate today = LocalDate.now();
-//        List<HealthProfile> todayHealthProfiles = healthProfileService.findTodayProfiles(principal, today);
-//        System.out.println("Today's Health Profiles");
-//         System.out.println(todayHealthProfiles);
-//        return "redirect:/profile";
-//    }
-
 
 }
 
