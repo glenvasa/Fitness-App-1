@@ -18,7 +18,12 @@ public class SmsService {
 
     public void sendSms(SmsRequestDto smsRequestDto) {
         SmsRequest smsRequest = new SmsRequest(smsRequestDto.getPhoneNumber(), smsRequestDto.getMessage());
-        smsSender.sendSms(smsRequest);
+        try {
+            smsSender.sendSms(smsRequest);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to send a text message to the User: " + e.getMessage());
+        }
+
     }
 
 }
