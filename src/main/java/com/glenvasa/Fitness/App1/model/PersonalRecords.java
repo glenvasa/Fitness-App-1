@@ -9,9 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PersonalRecords {
 
-//    String dateOfWorkout;
-    Float weight;
-    String name;
+    private Float weight;
+    private String name;
 
       PersonalRecords(Float weight, String name){
           this.weight = weight;
