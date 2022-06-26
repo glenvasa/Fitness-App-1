@@ -25,13 +25,11 @@ import java.util.stream.Collectors;
 public class MealController {
 
     private final MealService mealService;
-    private final MealRepository mealRepository;
     private final UserService userService;
 
     @Autowired
-    public MealController(MealService mealService, MealRepository mealRepository, UserService userService) {
+    public MealController(MealService mealService, UserService userService) {
         this.mealService = mealService;
-        this.mealRepository = mealRepository;
         this.userService = userService;
     }
 
@@ -50,13 +48,23 @@ public class MealController {
 
     @PostMapping("/meal/create")
     public String createMeal(Principal principal) {
-        mealService.save(principal);
+        try {
+            mealService.save(principal);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to create and save a Meal to the Database: " + e.getMessage());
+        }
+
         return "redirect:/servings";
     }
 
     @PostMapping("/meal/delete/{mealId}")
     public String deleteMeal(@PathVariable Long mealId){
-        mealService.deleteMeal(mealId);
+        try {
+            mealService.deleteMeal(mealId);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to delete a Meal from the Database: " + e.getMessage());
+        }
+
         return "redirect:/meals";
     }
 
