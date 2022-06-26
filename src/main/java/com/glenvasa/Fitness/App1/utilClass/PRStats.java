@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
+// used in HomePage to calculate/display Personal Records and when Workout Saved to check if any current Workout
+// Sets have become new Personal Records
 @Getter
 @Setter
 @ToString
