@@ -42,11 +42,6 @@ public class User {
     private String password;
     private Float height;
 
-    //moving this to Health Profile entity
-//    private Float weight;
-
-    // moving this to Health Profile entity
-//    private Integer maintCals;
 
     @Column(name = "date_of_birth")
     private String dateOfBirth;
@@ -76,8 +71,6 @@ public class User {
     private Set<HealthProfile> healthProfiles = new HashSet<>();
 
 
-
-
    public User(String firstName, String lastName, String streetAddress, String city,
                 String state, String zipCode, String phone, String email, String password,
                 Float height, String dateOfBirth, Collection<Role> roles, Set<Workout> workout,
@@ -92,17 +85,12 @@ public class User {
         this.email = email;
         this.password = password;
         this.height = height;
-//        this.weight = weight;
         this.dateOfBirth = dateOfBirth;
         this.roles = roles;
         this.workout = workout;
         this.meal = meal;
         this.healthProfiles = healthProfiles;
-//        this.maintCals = 0;
     }
-
-
-
 
 
 }
