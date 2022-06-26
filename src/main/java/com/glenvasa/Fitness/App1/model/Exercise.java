@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -43,8 +42,5 @@ public class Exercise {
         this.exerciseCategory = exerciseCategory;
         this.sets = sets;
     }
-
-
-
 
 }
