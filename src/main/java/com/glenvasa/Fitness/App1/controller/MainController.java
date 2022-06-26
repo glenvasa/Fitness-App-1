@@ -46,7 +46,7 @@ public class MainController {
         return "login";
     }
 
-    //Binds attributes to Daily Health Profile Form and to create User's Personal Exercise Record Table on page load
+    //Bind attributes to Daily Health Profile Form and to create User's Personal Exercise Record Table on page load
     @GetMapping("/")
     public String home(Model model, Principal principal) {
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
@@ -103,7 +103,12 @@ public class MainController {
     @PostMapping("/user/healthProfile")
     public String createHealthProfile(@ModelAttribute("healthProfile") HealthProfileDto healthProfileDto, Principal principal){
         String email = principal.getName();
-        healthProfileService.save(healthProfileDto, principal);
+        try {
+            healthProfileService.save(healthProfileDto, principal);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save a Health Profile to the Database: " + e.getMessage());
+        }
+
         LOGGER.info("Health Profile for User: " + email + " has been created.");
         return "redirect:/profile";
     }
