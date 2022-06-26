@@ -8,8 +8,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,11 +27,9 @@ public class Workout {
     private String workoutName;
 
     @Column(name = "date_of_workout")
-    // will change to Date type or DateTime to incorporate time of day as well
     private LocalDate dateOfWorkout;
 
     @Column(name = "duration")
-    // will change to Time type
     private Float duration;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
