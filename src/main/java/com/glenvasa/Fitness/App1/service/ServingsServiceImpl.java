@@ -4,7 +4,6 @@ import com.glenvasa.Fitness.App1.dto.ServingsDto;
 import com.glenvasa.Fitness.App1.model.Food;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.Servings;
-import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.repository.FoodRepository;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.ServingsRepository;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Saves, loads, and deletes Servings
 @Service
 public class ServingsServiceImpl implements ServingsService {
     private final ServingsRepository servingsRepository;
@@ -29,10 +29,9 @@ public class ServingsServiceImpl implements ServingsService {
 
 
     @Override
-
     public Servings save(ServingsDto servingsDto) {
         Food food = foodRepository.findByName(servingsDto.getFood());
-        // Need to use Meal Id from user workout / retrieve existing Meal object instead of creating new one
+        // Need to use Meal id from user Meal just created instead of creating new one
         Meal meal = mealRepository.findTopByOrderByIdDesc();
         Servings servings = new Servings(servingsDto.getNumber(), meal, food);
 
