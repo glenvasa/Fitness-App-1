@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface SetsRepository extends JpaRepository<Sets, Long> {
 
+    // Retrieves all Sets from DB linked to a specific User through Workout Entity connection
     @Query("from Sets s join Workout w on s.workout.id = w.id where w.user.id = ?1")
     List<Sets> findAllByUserId(Long id);
 
