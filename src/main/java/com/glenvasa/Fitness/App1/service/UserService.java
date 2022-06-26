@@ -7,14 +7,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.security.Principal;
 
-
-public interface UserService extends UserDetailsService { // UserDetailsService is part of Spring Security used to
-    // protect User credentials
+// UserDetailsService is part of Spring Security used to protect User credentials
+public interface UserService extends UserDetailsService {
 
     User save(UserRegistrationDto registrationDto) throws UserAlreadyExistsException;
     User loadUserByEmail(String email);
 
     void update(UserRegistrationDto userRegistrationDto, Principal principal);
-//    void updateUserMaintCals(Integer maintCals, Principal principal);
     void delete(Principal principal);
 }
