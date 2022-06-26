@@ -12,12 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email); // Spring data JPA creates a query based on method name
 
-//    @Modifying
-//    @Transactional
-//    @Query("update User u set u.maintCals = ?1 where u.id = ?2")
-//    void updateUserMaintCals(Integer maintCals, Long id);
-
-
+   // All User Registration Data auto displayed in Profile Page Form; User can edit some or all of
+   // this data, and click "Update" which sends all data in current form for updating User object.
     @Modifying
     @Transactional
     @Query("update User u set u.firstName = ?1, u.lastName = ?2, u.streetAddress = ?3, u.city = ?4, u.state = ?5, " +
