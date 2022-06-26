@@ -29,12 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+// Class creates/saves/displays all Sets User created for current Workout; Allows User to delete Sets
+// Upon saving of Workout checks to see if any Set/Exercise has become new Personal Record for User and sends text message that occurs
 @Controller
 @RequestMapping
 public class SetsController {
 
     private final SetsService setsService;
-    //    private final SetsRepository setsRepository;
     private final ExerciseRepository exerciseRepository;
     private final WorkoutService workoutService;
     private final WorkoutRepository workoutRepository;
@@ -43,7 +44,6 @@ public class SetsController {
 
 
     List<Exercise> exerciseList;
-    //    List<Sets> currentWorkoutSets;
     List<Sets> setsList;
 
 
@@ -51,7 +51,6 @@ public class SetsController {
     public SetsController(SetsService exerciseService, ExerciseRepository exerciseRepository, WorkoutRepository workoutRepository,
                           WorkoutService workoutService, SmsController smsController, UserService userService) {
         this.setsService = exerciseService;
-//        this.setsRepository = setsRepository;
         this.exerciseRepository = exerciseRepository;
         this.workoutRepository = workoutRepository;
         this.workoutService = workoutService;
