@@ -7,6 +7,7 @@ import com.glenvasa.Fitness.App1.model.FoodCategory;
 import com.glenvasa.Fitness.App1.service.ExerciseCategoryService;
 import com.glenvasa.Fitness.App1.service.FoodCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,12 @@ public class FoodCategoryController {
 
     @PostMapping
     public String saveCategory(@ModelAttribute("category") FoodCategoryDto categoryDto){
-        categoryService.save(categoryDto);
+        try {
+            categoryService.save(categoryDto);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save a Food Category to the Database: " + e.getMessage());
+        }
+
         return "redirect:/food/category?success";
     }
 }
