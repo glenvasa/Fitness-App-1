@@ -1,3 +1,15 @@
+#bg-image {
+    opacity: .3;
+    position: absolute;
+    left: 0;
+    top: -40;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+
+
 
 .login_group {
  margin-top: 250px;
