@@ -36,6 +36,7 @@ public class UserRegistrationController {
     public String registerUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto, Model model) throws UserAlreadyExistsException {
         try{
             userService.save(userRegistrationDto);
+            // redirects User to registration?failed which displays a message that Email already Exists for a User
         } catch (UserAlreadyExistsException e){
             return "redirect:/registration?failed";
         }
@@ -46,13 +47,23 @@ public class UserRegistrationController {
 
     @PostMapping("/profile/update")
     public String updateUser(@ModelAttribute("user") UserRegistrationDto userRegistrationDto, Principal principal){
-        userService.update(userRegistrationDto, principal);
+        try {
+            userService.update(userRegistrationDto, principal);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to update the User's Profile (User object) in the Database: " + e.getMessage());
+        }
+
         return "redirect:/profile";
     }
 
     @PostMapping("/profile/delete")
     public String deleteUser(Principal principal){
-        userService.delete(principal);
+        try {
+            userService.delete(principal);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to delete a User from the Database: " + e.getMessage());
+        }
+
         return "redirect:/login?deleted";
     }
 
