@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// Class contains routes/logic to display all Food objects stored in DB and to create/save a new Food object.
 @Controller
 @RequestMapping("/food")
 public class FoodController {
-
 
     private final FoodService foodService;
     private final FoodRepository foodRepository;
