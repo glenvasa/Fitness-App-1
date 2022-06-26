@@ -1,14 +1,10 @@
 package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.MealDto;
-import com.glenvasa.Fitness.App1.dto.WorkoutDto;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
-import com.glenvasa.Fitness.App1.model.Workout;
 import com.glenvasa.Fitness.App1.repository.MealRepository;
 import com.glenvasa.Fitness.App1.repository.ServingsRepository;
-import com.glenvasa.Fitness.App1.repository.SetsRepository;
-import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +13,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+// Saves empty Meal object upon User clicking "Create Meal" button on Homepage
+// Updates Meal w/user inputted data after User Creates/Adds Servings and "Saves Meal"
+// Loads all Meals for display and allows User to delete a Meal
 @Service
 public class MealServiceImpl implements MealService {
 
@@ -32,7 +31,7 @@ public class MealServiceImpl implements MealService {
         this.servingsRepository = servingsRepository;
     }
 
-    // to create workout before adding sets, other data; just user object and auto created id
+    // to create Meal before adding Servings, other data; just user object and auto created id
     @Override
     public Meal save(Principal principal) {
         String email = principal.getName();
@@ -41,13 +40,9 @@ public class MealServiceImpl implements MealService {
         return mealRepository.save(meal);
     }
 
-    // don't believe using this method; will likely delete
-    @Override
-    public Meal save(MealDto mealDto, Principal principal) {
-        return null;
-    }
 
-    // save workout after adding name,duration, date info AFTER creating/adding all Sets
+
+    // saves Meal after adding name, date, time info AFTER creating/adding all Servings
     @Override
     public void update(MealDto mealDto, Meal meal) {
         int formattedHour;
@@ -61,11 +56,6 @@ public class MealServiceImpl implements MealService {
         } else {
             formattedHour = 0;
         }
-
-
-//        if(dayNight.toLowerCase().startsWith("p") && hour == 12){
-//            formattedHour = hour;
-//        }
 
         LocalDate date = LocalDate.of(mealDto.getYear(), mealDto.getMonth(), mealDto.getDay());
         LocalTime time = LocalTime.of(formattedHour, mealDto.getMinute(), 0);
