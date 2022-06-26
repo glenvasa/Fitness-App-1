@@ -34,6 +34,5 @@ public class FoodCategory {
         this.food = food;
     }
 
-
 }
 
