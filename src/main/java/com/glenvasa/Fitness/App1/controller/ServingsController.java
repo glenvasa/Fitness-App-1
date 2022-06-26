@@ -71,13 +71,23 @@ public class ServingsController {
 
         @PostMapping("/servings")
         public String saveServing(@ModelAttribute("servings") ServingsDto servingsDto){
-            servingsService.save(servingsDto);
+            try {
+                servingsService.save(servingsDto);
+            } catch (Exception e){
+                System.out.println("The following error occurred when attempting to save a Servings to the Database: " + e.getMessage());
+            }
+
             return "redirect:/servings?success";
         }
 
         @PostMapping("/servings/delete/{servingId}")
         public String deleteServing(@PathVariable Long servingId) {
-        servingsService.deleteServing(servingId);
+            try {
+                servingsService.deleteServing(servingId);
+            } catch (Exception e){
+                System.out.println("The following error occurred when attempting to delete a Servings from the Database: " + e.getMessage());
+            }
+
         return "redirect:/servings";
         }
 
@@ -114,11 +124,21 @@ public class ServingsController {
                 String message = "Hey, " + user.getFirstName() +"! This message is to inform you that you have gone over you Target Calories amount for today by " + overUnderCals * -1 + " calories. Changing your eating habits is tough, but a healthy life it worth it!!!";
                 String phoneNumber = user.getPhone();
                 SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
-                smsController.sendSms(messageUser);
+
+                try {
+                    smsController.sendSms(messageUser);
+                } catch (Exception e){
+                    System.out.println("The following error occurred when attempting to send a text message to the User: " + e.getMessage());
+                }
+
             }
 
+            try {
+                mealService.update(mealDto, currentMeal);
+            } catch (Exception e){
+                System.out.println("The following error occurred when attempting to update a Meal in the Database: " + e.getMessage());
+            }
 
-            mealService.update(mealDto, currentMeal);
             return "redirect:/meals";
         }
     }
