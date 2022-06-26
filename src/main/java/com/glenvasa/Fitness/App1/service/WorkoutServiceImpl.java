@@ -3,17 +3,14 @@ package com.glenvasa.Fitness.App1.service;
 import com.glenvasa.Fitness.App1.dto.WorkoutDto;
 import com.glenvasa.Fitness.App1.model.*;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
-import com.glenvasa.Fitness.App1.repository.UserRepository;
 import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
+// Creates, Updates, Deletes, and Loads Workouts
 @Service
 public class WorkoutServiceImpl implements WorkoutService {
 
@@ -37,26 +34,13 @@ public class WorkoutServiceImpl implements WorkoutService {
         return workoutRepository.save(workout);
     }
 
-    // don't believe using this method; will likely delete
-    @Override
-    public Workout save(WorkoutDto workoutDto, Principal principal) {
-        return null;
-    }
 
     // save workout after adding name,duration, date info AFTER creating/adding all Sets
     @Override
     public void update(WorkoutDto workoutDto, Workout workout) {
-//        User user = workout.getUser();
-//        Workout updatedWorkout = new Workout(workoutDto.getWorkoutName(), workoutDto.getDateOfWorkout(),
-//               workoutDto.getDuration(), user, workout.getSets());
-//            LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(workoutDto.getYear(), workoutDto.getMonth(), workoutDto.getDay());
         workoutRepository.updateWorkoutById(date, workoutDto.getDuration(), workoutDto.getWorkoutName(), workout.getId());
-
-
     }
-
-
 
     @Override
     public List<Workout> loadWorkouts() {
