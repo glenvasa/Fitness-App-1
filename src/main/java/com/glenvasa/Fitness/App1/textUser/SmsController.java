@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+// sendSms conditionally called directly from SetsController and ServingsController when User Saves a Workout
+// that contains a new Personal Record OR when User saves a Meal whose calories total causes daily total calories
+// consumed amount to exceed daily target calories amount calculated in Daily Health Profile form each day.
 @Controller
 @RequestMapping("api/v1/sms")
 public class SmsController {
@@ -15,10 +18,9 @@ public class SmsController {
         this.service = service;
     }
 
-    @PostMapping         // add @Valid before @RequestBody to activate @NotBlank annotations for SMSRequest fields
-    public String sendSms(SmsRequestDto smsRequestDto){
+    @PostMapping
+    public void sendSms(SmsRequestDto smsRequestDto){
         service.sendSms(smsRequestDto);
-        return "redirect:/profile";
     }
 
 
