@@ -1,7 +1,6 @@
 package com.glenvasa.Fitness.App1.dto;
 
-import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
