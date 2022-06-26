@@ -19,8 +19,10 @@ import java.util.List;
 @Repository
 public interface WorkoutRepository extends JpaRepository<Workout, Long> {
 
+    //Retrieves Workout object most recently created in DB overall
     Workout findTopByOrderByIdDesc();
 
+    // Updates Workout with User inputted info in Save Workout Form, after Sets created/link to Workout
     @Modifying
     @Transactional
     @Query("update Workout w set w.dateOfWorkout = ?1, w.duration = ?2, w.workoutName = ?3 where w.id = ?4")
