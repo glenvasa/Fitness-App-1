@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// Class contains routes to display all existing Exercise Categories to screen and to create/save a new EC.
 @Controller
 @RequestMapping("/exercise/category")
 public class ExerciseCategoryController {
