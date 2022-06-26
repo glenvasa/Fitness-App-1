@@ -39,9 +39,6 @@ public class TwilioSmsSender implements SmsSender{
     //checks if phoneNumber is 10 digits, all numbers, no leading 0
     private boolean isPhoneNumberValid(String phoneNumber) {
         String strPattern = "^[1-9][0-9]{9}$";
-        if(phoneNumber.matches(strPattern)){
-            return true;
-        }
-        return false;
+        return phoneNumber.matches(strPattern);
     }
 }
