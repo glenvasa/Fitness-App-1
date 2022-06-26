@@ -63,7 +63,7 @@ public class ProfileController {
 
         List<Meal> meals = mealRepository.findAllByUserId(user.getId());
 
-        Set<LocalDate> mealDates = meals.stream().map(meal -> meal.getDate()).collect(Collectors.toSet());
+        Set<LocalDate> mealDates = meals.stream().map(Meal::getDate).collect(Collectors.toSet());
 
 
         model.addAttribute("selectedDate", new SelectedDate());
