@@ -23,7 +23,7 @@ public class TwilioSmsSender implements SmsSender{
     @Override
     public void sendSms(SmsRequest smsRequest) {
         if (isPhoneNumberValid(smsRequest.getPhoneNumber())){
-            PhoneNumber to = new PhoneNumber(smsRequest.getPhoneNumber());
+            PhoneNumber to = new PhoneNumber("1" + smsRequest.getPhoneNumber());
             PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
             String message = smsRequest.getMessage();
             MessageCreator creator = Message.creator(to, from, message);
@@ -36,8 +36,12 @@ public class TwilioSmsSender implements SmsSender{
 
     }
 
+    //checks if phoneNumber is 10 digits, all numbers, no leading 0
     private boolean isPhoneNumberValid(String phoneNumber) {
-        // TODO: Implement phone number validator - Can use Google's libary
-        return true;
+        String strPattern = "^[1-9][0-9]{9}$";
+        if(phoneNumber.matches(strPattern)){
+            return true;
+        }
+        return false;
     }
 }
