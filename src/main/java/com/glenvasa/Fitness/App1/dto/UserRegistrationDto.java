@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-// Data that user enters in Registration Page UI Form
+// Data that user enters in Registration Page Form
 @NoArgsConstructor
 @Getter
 @Setter
