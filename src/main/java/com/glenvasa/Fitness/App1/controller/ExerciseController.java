@@ -52,7 +52,12 @@ public class ExerciseController {
 
     @PostMapping
     public String saveExercise(@ModelAttribute("exercise") ExerciseDto exerciseDto){
-        exerciseService.save(exerciseDto);
+        try {
+            exerciseService.save(exerciseDto);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save an Exercise to the Database: " + e.getMessage());
+        }
+
         return "redirect:/exercise?success";
     }
 }
