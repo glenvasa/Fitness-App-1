@@ -11,11 +11,12 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
+// Saves Health Profile and Retrieves Health Profiles created Today
 @Service
 public class HealthProfileServiceImpl implements HealthProfileService{
 
-    private HealthProfileRepository healthProfileRepository;
-    private UserRepository userRepository;
+    private final HealthProfileRepository healthProfileRepository;
+    private final UserRepository userRepository;
 
     public HealthProfileServiceImpl(HealthProfileRepository healthProfileRepository, UserRepository userRepository) {
         this.healthProfileRepository = healthProfileRepository;
@@ -32,6 +33,7 @@ public class HealthProfileServiceImpl implements HealthProfileService{
         return healthProfileRepository.save(healthProfile);
     }
 
+    // finds User's Health Profiles created today
     @Override
     public List<HealthProfile> findTodayProfiles(Principal principal, LocalDate today) {
         String email = principal.getName();
@@ -39,7 +41,6 @@ public class HealthProfileServiceImpl implements HealthProfileService{
         return healthProfileRepository.findDailyByUserId(user.getId(), today);
     }
 
-    //query HealthProfile db to see if user has created a profile for today
 
 
 }
