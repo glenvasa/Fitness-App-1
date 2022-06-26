@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
+// Used in Profile page when user selects caledar date and Meals/Workouts for that date are retrieved/displayed
 @Getter
 @Setter
 @ToString
