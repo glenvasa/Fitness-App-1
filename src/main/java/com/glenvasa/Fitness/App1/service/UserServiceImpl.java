@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+// Class Saves, Updates, Loads, and Deletes a User
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -47,7 +48,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(UserRegistrationDto registrationDto) throws UserAlreadyExistsException {
-
         String checkEmailExists = registrationDto.getEmail();
         User checkUserExists = userRepository.findByEmail(checkEmailExists);
         if(checkUserExists == null){
@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService{
                     registrationDto.getHeight(), registrationDto.getDateOfBirth(),
                     Arrays.asList(new Role("ROLE_USER")), new HashSet<Workout>(), new HashSet<Meal>(),
                     new HashSet<HealthProfile>());
-//            LOGGER.info("User with email address " + registrationDto.getEmail() + " created.");
             return userRepository.save(user);
         } else {
             throw new UserAlreadyExistsException("User with email " + checkEmailExists + " already exists. Please enter a unique email");
