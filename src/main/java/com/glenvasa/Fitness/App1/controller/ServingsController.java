@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+// Class creates/saves/deletes Servings that are saved/linked to the Meal User just created.
+// Upon saving Meal (which is an update of empty Meal just created), checks to see if current Meal Calories takes User over
+// Target Daily Calories amount, and if it does, sends a text message to User.
 @Controller
 @RequestMapping
 public class ServingsController {
@@ -29,7 +32,6 @@ public class ServingsController {
         private final SmsController smsController;
 
         List<Food> foodList;
-        //    List<Sets> currentWorkoutSets;
         List<Servings> servingsList;
         Double totalDailyCals;
 
@@ -50,10 +52,9 @@ public class ServingsController {
         public String displayServings(Model model) {
             model.addAttribute("serving", new ServingsDto()); // binds "serving" attribute to the model
             model.addAttribute("meal", new MealDto()); // binds "meal" object
-            // want to only display Sets that have just been created and linked to newly created Workout
+            // want to only display Sets that have just been created and linked to newly created Meal
             servingsList =  servingsService.loadServings();
             Meal currentMeal = mealRepository.findTopByOrderByIdDesc();
-//            System.out.println(currentMeal.getId());
 
 
                 List<Servings> currentMealServings = servingsList.stream()
@@ -84,7 +85,7 @@ public class ServingsController {
         public String saveMeal(@ModelAttribute("meal") MealDto mealDto, Principal principal){
             Meal currentMeal = mealRepository.findTopByOrderByIdDesc(); // retrieves the meal just created
 
-            // Before Saving the New meal, Get ALl meals AND Target Calories from Today and see if within 10%. If yes, text user
+            // Before Saving the New meal, Get ALl meals AND Target Calories from Today and see if current Meal Calories takes User over Target Calories amount. If yes, text user
             String email = principal.getName();
             User user = userService.loadUserByEmail(email);
             List<Meal> meals = mealRepository.findAllByUserId(user.getId());
@@ -101,8 +102,7 @@ public class ServingsController {
 
              Double targetCalories = healthProfiles.get(healthProfiles.size() - 1).getTargetCalories();
 
-             // target cals - total Cals from meals eaten today - current meal cals
-
+             // Target calories - Total Calories from meals eaten today - Current Meal Calories
             Double overUnderCals = targetCalories - totalDailyCals - mealDto.getMealCals();
             System.out.println("Target Calories" + targetCalories);
             System.out.println("Total Daily Calories So Far" + totalDailyCals);
@@ -113,7 +113,6 @@ public class ServingsController {
             if(overUnderCals < 0){
                 String message = "Hey, " + user.getFirstName() +"! This message is to inform you that you have gone over you Target Calories amount for today by " + overUnderCals * -1 + " calories. Changing your eating habits is tough, but a healthy life it worth it!!!";
                 String phoneNumber = user.getPhone();
-//                String message = "You just hit a new Personal Record!";
                 SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
                 smsController.sendSms(messageUser);
             }
