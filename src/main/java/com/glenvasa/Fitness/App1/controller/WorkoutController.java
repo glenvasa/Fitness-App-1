@@ -1,13 +1,9 @@
 package com.glenvasa.Fitness.App1.controller;
 
-import com.glenvasa.Fitness.App1.dto.ExerciseDto;
-import com.glenvasa.Fitness.App1.dto.UserRegistrationDto;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
-import com.glenvasa.Fitness.App1.repository.WorkoutRepository;
 import com.glenvasa.Fitness.App1.service.UserService;
 import com.glenvasa.Fitness.App1.service.WorkoutService;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,14 +41,24 @@ public class WorkoutController {
 
     @PostMapping("/workout/create")
     public String createWorkout(Principal principal) {
-        workoutService.save(principal);
+       try {
+           workoutService.save(principal);
+       } catch (Exception e){
+           System.out.println("The following error occurred when attempting to create/save a Workout to the Database: " + e.getMessage());
+       }
+
         return "redirect:/sets";
 
     }
 
     @PostMapping("/workout/delete/{workoutId}")
     public String deleteWorkout(@PathVariable Long workoutId){
-        workoutService.deleteWorkout(workoutId);
+        try {
+            workoutService.deleteWorkout(workoutId);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to delete a Workout from the Database: " + e.getMessage());
+        }
+
         return "redirect:/workouts";
     }
 
