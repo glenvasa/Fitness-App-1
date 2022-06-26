@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+// Class contains routes/logic to display Registration page, allows User to Register, update and delete their profile.
 @Controller
 public class UserRegistrationController {
 
@@ -28,7 +29,7 @@ public class UserRegistrationController {
     @GetMapping("/registration")
     public String displayRegistrationPage(Model model){
         model.addAttribute("user", new UserRegistrationDto()); // binds "user" attribute to the model right before page loads
-        return "registration"; // returns registration.html
+        return "registration";
     }
 
     @PostMapping("/registration")
