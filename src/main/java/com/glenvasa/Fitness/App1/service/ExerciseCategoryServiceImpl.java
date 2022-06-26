@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+// Saves/Loads Exercise Categories
 @Service
 public class ExerciseCategoryServiceImpl implements ExerciseCategoryService{
 
