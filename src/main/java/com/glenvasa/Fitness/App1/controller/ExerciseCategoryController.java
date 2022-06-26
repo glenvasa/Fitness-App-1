@@ -36,7 +36,12 @@ public class ExerciseCategoryController {
 
     @PostMapping
     public String saveCategory(@ModelAttribute("category") ExerciseCategoryDto categoryDto){
-        categoryService.save(categoryDto);
+        try {
+            categoryService.save(categoryDto);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save an Exercise Category to the Database: " + e.getMessage());
+        }
+
         return "redirect:/exercise/category?success";
     }
 }
