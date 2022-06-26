@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// Class contains routes to display all existing Exercises in DB and to create/save a new Exercise
 @Controller
 @RequestMapping("/exercise")
 public class ExerciseController {
