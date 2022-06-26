@@ -19,6 +19,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Class contains routes/logic to display all of a User's Meal Cards, create an empty Meal upon clicking "Create a Meal" button on Homepage,
+// and to delete a Meal from Meals Page.
 @Controller
 public class MealController {
 
@@ -33,7 +35,8 @@ public class MealController {
         this.userService = userService;
     }
 
-    @GetMapping("/meals") // should display only meals for logged in user
+    // displays only meals for logged-in user
+    @GetMapping("/meals")
     public String displayMealsPage(Model model, Principal principal){
         String email = principal.getName();
         User user = userService.loadUserByEmail(email);
