@@ -78,13 +78,23 @@ public class SetsController {
 
     @PostMapping("/sets")
     public String saveSet(@ModelAttribute("sets") SetsDto setsDto) {
-        setsService.save(setsDto);
+        try {
+            setsService.save(setsDto);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save a Sets object to the Database: " + e.getMessage());
+        }
+
         return "redirect:/sets?success";
     }
 
     @PostMapping("/sets/delete/{setId}")
     public String deleteSet(@PathVariable Long setId) {
-        setsService.deleteSet(setId);
+        try {
+            setsService.deleteSet(setId);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to delete a Sets object from the Database: " + e.getMessage());
+        }
+
         return "redirect:/sets";
     }
 
@@ -95,7 +105,13 @@ public class SetsController {
 
         // retrieves empty Workout created when User clicked "Create Workout" button and updates it with Sets just created.
         Workout currentWorkout = workoutRepository.findTopByOrderByIdDesc();
-        workoutService.update(workoutDto, currentWorkout);
+
+        try {
+            workoutService.update(workoutDto, currentWorkout);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to update a Workout in the Database: " + e.getMessage());
+        }
+
 
         //After saves a workout creates Personal Record Map by retrieving all of User's Sets in DB
         List<Sets> allSets = setsService.loadSetsByUserId(principal);
@@ -148,7 +164,13 @@ public class SetsController {
                         " repetitions. Keep up the great work!!!";
                 String phoneNumber = user.getPhone();
                 SmsRequestDto messageUser = new SmsRequestDto(phoneNumber, message);
-                smsController.sendSms(messageUser);
+
+                try {
+                    smsController.sendSms(messageUser);
+                } catch (Exception e){
+                    System.out.println("The following error occurred when attempting to send a text message to the User: " + e.getMessage());
+                }
+
             }
         });
 
