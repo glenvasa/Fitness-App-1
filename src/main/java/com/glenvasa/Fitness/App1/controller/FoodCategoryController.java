@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+// Class contains routes to display all existing Food Categories in DB and to create/save a new Food Category
 @Controller
 @RequestMapping("/food/category")
 public class FoodCategoryController {
