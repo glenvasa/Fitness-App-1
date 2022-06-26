@@ -55,7 +55,11 @@ public class FoodController {
 
     @PostMapping
     public String saveFood(@ModelAttribute("food") FoodDto foodDto){
-        foodService.save(foodDto);
+        try {
+            foodService.save(foodDto);
+        } catch (Exception e){
+            System.out.println("The following error occurred when attempting to save a Food to the Database: " + e.getMessage());
+        }
         return "redirect:/food?success";
     }
 }
