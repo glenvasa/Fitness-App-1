@@ -10,7 +10,7 @@
 - Data access: Spring Data JPA, MariaDb.
 - SMS messaging: Twilio API.
 - Version control: GitHub.
-
+- <a href="https://app.ora.pm/p/431810" target="_blank">Ora.pm Backlog/Kanban Board</a>
 
 
 ## User Flow / App Functionality
