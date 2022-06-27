@@ -63,3 +63,14 @@
 - As a User, I want to create Sets of individual Exercises and save them as a Workout.
 - As a User, after I save a Workout, I want to view instant data re: all Workouts and my Personal Records for each Exercise.
 - As User, I want to receive a text message alert when I achieve a new personal record for a particular exercise as this is motivation to continue my health journey.
+
+## Challenges Faced in Developing "Your Fitness / Your Life"
+
+- Deciding if I should use React.js/Next.js for the frontend instead of Thymeleaf. I had used React several times in the past and earlier this year began to appreciate the benefits of using Next.js on top of React. For this project, as was the case for most of my Java Developer's journey, I was interested in using technology that I hadn't used before. I ended up liking how seemlessly Thymeleaf integrated with Spring Boot and, while recognizing the benefits of using a front-end framework, 
+decided that for this project Thymeleaf was a fine choice. 
+
+- Overthinking the number of features and pieces of functionality I should complete by the project deadline. There are always features I will want to implement, however, with a limited time frame, I recognized that priorities must be set.
+
+- Learning how to implement most, if not all, of the technologies used in this project on my own. Since I decided to start this project well in advance of the scheduled curriculum, I needed to learn how to utilize the core technologies (i.e. Spring Boot, Thymeleaf, Spring JPA) on my own through tutorials and documentation.
+
+- Forcing myself to stay disciplined in maintaining a daily running log of all project thoughts, failures, and successes so I could encapsulate my experience and learn from mistakes along the way. The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
