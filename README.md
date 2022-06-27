@@ -73,4 +73,7 @@ decided that for this project Thymeleaf was a fine choice.
 
 - Learning how to implement most, if not all, of the technologies used in this project on my own. Since I decided to start this project well in advance of the scheduled curriculum, I needed to learn how to utilize the core technologies (i.e. Spring Boot, Thymeleaf, Spring JPA) on my own through tutorials and documentation.
 
-- Forcing myself to stay disciplined in maintaining a daily running log of all project thoughts, failures, and successes so I could encapsulate my experience and learn from mistakes along the way. The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
+- Forcing myself to stay disciplined in maintaining a daily running log of all project thoughts, failures, and successes so I could encapsulate my experience and learn from mistakes along the way. 
+
+-The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
+- <a href="https://docs.google.com/document/d/1XVsCNAHUEtn8aLoBlODDAnaLUgyORKsBk3hhkGWGm5U/edit?usp=sharing" target="_blank">Development Log - Google Doc</a>
