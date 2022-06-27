@@ -94,7 +94,7 @@ public class MainController {
         System.out.println(todayHealthProfiles.size() > 0);
 
         if(todayHealthProfiles.size() > 0){
-            model.addAttribute("dailyHp", "Click below to Create a Meal or Workout");
+            model.addAttribute("dailyHp", "Click Below to Create a Meal or Workout");
         }
 
         return "index";
