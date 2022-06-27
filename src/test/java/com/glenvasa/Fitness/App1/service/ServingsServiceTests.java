@@ -1,6 +1,6 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.ServingsDto;
+
 import com.glenvasa.Fitness.App1.model.Food;
 import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.Servings;
@@ -27,7 +27,7 @@ public class ServingsServiceTests {
     @Autowired
     private ServingsRepository servingsRepository;
 
-    @Test // passes
+    @Test
     public void testLoadServings() {
 
 
