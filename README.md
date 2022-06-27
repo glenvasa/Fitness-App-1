@@ -31,6 +31,10 @@
 - If User’s Daily Target Calories are exceeded (upon saving a new Meal), User receives a detailed text message containing words of encouragement within 3-4 seconds informing of same so the User can stay on track with their weight goal.
 - If User achieves a new Personal Record for any Exercise (upon saving a new Workout), User recieves a detailed text message of congratulations within 3-4 seconds.
 
+## Description of Functionality For All Controller Classes
+
+<a href="https://docs.google.com/document/d/1NfciJLEmpYaysyvyymCTEvvb_erk786KrhxmxelmN4k/edit?usp=sharing" target="_blank">Controllers Description - Google Doc</a>
+
 ## Wireframes
 
 <img src="src/main/resources/static/img/wireframe-1.jpg"> 
