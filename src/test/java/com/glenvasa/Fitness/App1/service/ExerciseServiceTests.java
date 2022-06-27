@@ -1,10 +1,7 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.ExerciseCategoryDto;
 import com.glenvasa.Fitness.App1.dto.ExerciseDto;
 import com.glenvasa.Fitness.App1.model.Exercise;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
-import com.glenvasa.Fitness.App1.repository.ExerciseCategoryRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +21,7 @@ public class ExerciseServiceTests {
     private ExerciseServiceImpl exerciseService;
 
 
-
-    @Test // passes
+    @Test
     public void testLoadExercises(){
         ExerciseDto exerciseDto = new ExerciseDto();
         Exercise exercise = exerciseService.save(exerciseDto); //saves a new Exercise to DB
