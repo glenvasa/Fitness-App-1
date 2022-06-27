@@ -22,7 +22,7 @@ public class FoodServiceTests {
     @Autowired
     private FoodServiceImpl foodService;
 
-    @Test // passes
+    @Test
     public void testLoadExercises(){
         FoodDto foodDto = new FoodDto();
         Food food = foodService.save(foodDto); //saves a new Food to DB
