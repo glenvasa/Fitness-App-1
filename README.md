@@ -32,6 +32,9 @@
 - If User’s Daily Target Calories are exceeded (upon saving a new Meal), User receives a detailed text message containing words of encouragement within 3-4 seconds informing of same so the User can stay on track with their weight goal.
 - If User achieves a new Personal Record for any Exercise (upon saving a new Workout), User recieves a detailed text message of congratulations within 3-4 seconds.
 
+## Project Package Structure
+- <a href="https://docs.google.com/document/d/1OWlJJMIApz1-o1R4irmv0iQxc7-APSjyZn7vA-5sK3s/edit?usp=sharing" target="_blank">Project Package Structure - Google Doc</a>
+
 ## Description of Functionality in Controller Classes
 - This document details all HTTP requests/routes in all Controllers including: where requests originated in the View, data sent/retrieved to/from database through service method calls, all data attributes added to model, html pages returned, and reasons for the forgoing activity based on User experience considerations.
 - <a href="https://docs.google.com/document/d/1NfciJLEmpYaysyvyymCTEvvb_erk786KrhxmxelmN4k/edit?usp=sharing" target="_blank">Controllers Description - Google Doc</a>
