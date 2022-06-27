@@ -1,12 +1,8 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.ServingsDto;
-import com.glenvasa.Fitness.App1.dto.SetsDto;
 import com.glenvasa.Fitness.App1.model.*;
-import com.glenvasa.Fitness.App1.repository.ServingsRepository;
 import com.glenvasa.Fitness.App1.repository.SetsRepository;
 import org.assertj.core.api.Assertions;
-import org.hibernate.jdbc.Work;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,7 +23,7 @@ public class SetsServiceTests {
     @Autowired
     private SetsRepository setsRepository;
 
-    @Test // passes
+    @Test
     public void testLoadSets() {
         Exercise exercise = new Exercise();
         Workout workout = new Workout();
