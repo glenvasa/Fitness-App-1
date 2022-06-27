@@ -1,11 +1,14 @@
-#bg-image {
-    opacity: .3;
+.login_background {
     position: absolute;
-    left: 0;
-    top: -40;
-    width: 100%;
-    height: auto;
-    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    opacity: .20;
+    z-index: -100;
+}
+
+.login_background img {
+  width: 770px;
 }
 
 
@@ -15,7 +18,7 @@
 
 .login_title {
     font-size: 44px;
-    margin-top: 150px;
+    margin-top: 130px;
     margin-bottom: -200px;
     text-shadow: .5px .5px .5px black;
 }
