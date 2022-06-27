@@ -1,5 +1,6 @@
 # Your Fitness / Your Life
 
+- <a href="https://github.com/glenvasa/Fitness-App-1" target="_blank">GitHub Repository</a>
 - Fitness tracking web appliction for people serious about improving their health.
 - Application tracks all aspects of User's daily food intake and exercise regimen.
 
