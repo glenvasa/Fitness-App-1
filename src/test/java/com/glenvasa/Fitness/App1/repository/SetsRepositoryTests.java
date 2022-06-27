@@ -1,6 +1,5 @@
 package com.glenvasa.Fitness.App1.repository;
 
-import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.Sets;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
@@ -11,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @DataJpaTest
@@ -29,7 +26,7 @@ public class SetsRepositoryTests {
     @Autowired
     private WorkoutRepository workoutRepository;
 
-    @Test //passes // Sets are saved w/workout_id field // Workouts are saved with user_id field
+    @Test  // Sets are saved w/workout_id field // Workouts are saved with user_id field
     public void testFindAllSetsByUserId() {
 
         User user = new User();
