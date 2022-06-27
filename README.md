@@ -35,7 +35,10 @@
 - This document details all HTTP requests/routes in all Controllers including: where requests originated in the View, data sent/retrieved to/from database through service method calls, all data attributes added to model, html pages returned, and reasons for the forgoing activity based on User experience considerations.
 - <a href="https://docs.google.com/document/d/1NfciJLEmpYaysyvyymCTEvvb_erk786KrhxmxelmN4k/edit?usp=sharing" target="_blank">Controllers Description - Google Doc</a>
 
-## Wireframes
+## Database Entity Relationship Diagram
+<img src="src/main/resources/static/img/Fitness-App-1.png"> 
+
+## Web Application Wireframes
 
 <img src="src/main/resources/static/img/wireframe-1.jpg"> 
 <img src="src/main/resources/static/img/wireframe-2.jpg"> 
