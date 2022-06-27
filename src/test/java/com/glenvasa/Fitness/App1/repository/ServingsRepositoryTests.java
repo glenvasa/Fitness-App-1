@@ -1,8 +1,6 @@
 package com.glenvasa.Fitness.App1.repository;
 
 
-import com.glenvasa.Fitness.App1.model.Food;
-import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.Servings;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,7 @@ public class ServingsRepositoryTests {
 
 
 
-    @Test // passes
+    @Test
     public void testDeleteServingsById() {
 
         Servings servings = new Servings();
