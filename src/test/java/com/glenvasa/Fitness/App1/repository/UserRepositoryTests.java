@@ -28,19 +28,8 @@ public class UserRepositoryTests {
     @Autowired
     private TestEntityManager entityManager;
 
-//    private User user1;
-//    private Long userId;
-//    private String userEmail;
 
-//    private void setup(){
-//        user1 = new User();
-//        user1.setFirstName("John");
-//        user1.setLastName("Smith");
-//        user1.setStreetAddress("12345 Main Street");
-
-
-
-    @Test //passes
+    @Test
     public void testCreateUser() {
 
         User user = new User();
@@ -62,8 +51,6 @@ public class UserRepositoryTests {
 
         User savedUser = userRepository.save(user);
 
-
-
         User existUser = entityManager.find(User.class, savedUser.getId());
 
         assertThat(existUser.getEmail()).isEqualTo(user.getEmail());
@@ -72,7 +59,7 @@ public class UserRepositoryTests {
 
 
 
-    @Test //passes
+    @Test
     public void findUserByEmailTest(){
 
         User user = new User();
@@ -94,9 +81,9 @@ public class UserRepositoryTests {
 
         User savedUser = userRepository.save(user);
 
-        User retrievedUser = userRepository.findByEmail(savedUser.getEmail()); //userEmail was set to class field in testCreateUser Test
+        User retrievedUser = userRepository.findByEmail(savedUser.getEmail());
 
-        Assertions.assertThat(retrievedUser.getEmail()).isEqualTo(savedUser.getEmail()); // this says the user Id for the retrieved user here is = to the userId set to class field in testCrateUser Test
+        Assertions.assertThat(retrievedUser.getEmail()).isEqualTo(savedUser.getEmail());
 
 
     }
@@ -123,10 +110,6 @@ public class UserRepositoryTests {
 
         User savedUser = userRepository.save(user);
 
-//        savedUser.setFirstName("James");
-//
-//        User updatedUser = userRepository.save(savedUser);
-
         String newFirstName = "James";
 
        userRepository.updateUserById(newFirstName, savedUser.getLastName(), savedUser.getStreetAddress(), savedUser.getCity(),
@@ -136,8 +119,6 @@ public class UserRepositoryTests {
 
         Assertions.assertThat(retrievedUser.getFirstName()).isEqualTo("James");
 
-//        expected: "James"
-//        but was: "John",  why???? it is updated in DB as "James"
     }
 
 
