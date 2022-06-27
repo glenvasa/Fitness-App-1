@@ -2,7 +2,6 @@ package com.glenvasa.Fitness.App1.service;
 
 import com.glenvasa.Fitness.App1.dto.HealthProfileDto;
 import com.glenvasa.Fitness.App1.model.HealthProfile;
-import com.glenvasa.Fitness.App1.model.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class HealthProfileServiceTests {
     @Autowired
     private HealthProfileServiceImpl healthProfileService;
 
-    @Test //passes
+    @Test
     public void testSaveHealthProfile() {
         HealthProfileDto healthProfileDto = new HealthProfileDto();
         Principal principal = new Principal() {
