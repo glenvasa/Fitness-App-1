@@ -1,8 +1,6 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.ExerciseCategoryDto;
 import com.glenvasa.Fitness.App1.dto.FoodCategoryDto;
-import com.glenvasa.Fitness.App1.model.ExerciseCategory;
 import com.glenvasa.Fitness.App1.model.FoodCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,7 +18,7 @@ public class FoodCategoryServiceTests {
     private FoodCategoryServiceImpl foodCategoryService;
 
 
-    @Test // passes
+    @Test
     public void testSaveFoodCategory(){
         FoodCategoryDto foodCategoryDto = new FoodCategoryDto();
         FoodCategory savedFoodCategory = foodCategoryService.save(foodCategoryDto);
