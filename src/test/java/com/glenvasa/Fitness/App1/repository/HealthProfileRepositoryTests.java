@@ -24,7 +24,7 @@ public class HealthProfileRepositoryTests {
     private UserRepository userRepository;
 
 
-    @Test // passes
+    @Test
     public void testFindNewestHealthProfileInDb() {
 
         HealthProfile healthProfile1 = new HealthProfile();
@@ -37,7 +37,7 @@ public class HealthProfileRepositoryTests {
         Assertions.assertThat(newestHealthProfileInDb.getId()).isEqualTo(savedHealthProfile2.getId());
     }
 
-    @Test // passes
+    @Test
     public void testFindDailyHealthProfilesByUserId() {
 
         User user = new User();
