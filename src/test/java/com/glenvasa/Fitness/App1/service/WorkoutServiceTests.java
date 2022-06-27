@@ -1,6 +1,5 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.Workout;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class WorkoutServiceTests {
     @Autowired
     private WorkoutServiceImpl workoutService;
 
-    @Test // passes
+    @Test
     public void testSaveWorkout() {
 
         Principal principal = new Principal() {
