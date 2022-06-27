@@ -9,7 +9,7 @@ logging:
     com.glenvasa.Fitness.App1: DEBUG
     org.hibernate: ERROR
   file:
-    name: C:/Users/glenv/Documents/Projects/Fitness-App-1/log/fitnessApp2.log
+    name: C:/Users/glenv/Documents/Projects/Fitness-App-1/log/fitnessApp.log
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
