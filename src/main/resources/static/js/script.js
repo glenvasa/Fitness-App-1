@@ -1,16 +1,33 @@
+// clears localStorage so that old hpDate data deleted
+if(window.location.pathname === '/login'){
+    localStorage.clear()
+}
 
-//GetMapping to "/" checks if User already created a Health Profile for today.
-// "dailyHp" attribute "Click Below to Create a Meal or Workout" is added to model HP for today is found.
-// Initially hidden "Create a Meal" and "Create a Workout" buttons are then displayed.
+// Homepage checks if hpDate is set to Today's date in LocalStorage and displays Create Meal / Create Workout buttons if it is
 if(window.location.pathname === "/") {
     const createMeal = document.getElementById("createMeal")
     const createWorkout = document.getElementById("createWorkout")
     const dailyHp = document.getElementById("dailyHp")
+    const currentDate = new Date().toISOString().split('T')[0]
 
     if(dailyHp.innerText == "Click below to Create a Meal or Workout"){
+        localStorage.setItem("hpDate", JSON.stringify(currentDate))
         createMeal.classList.remove("hidden")
         createWorkout.classList.remove("hidden")
     }
+
+     const hpDate = JSON.parse(localStorage.getItem("hpDate"))
+
+    //If hpDate stored in LocalStorage != currentDate then createMeal / createWorkout buttons are hidden
+    if (hpDate != currentDate || hpDate == null ) {
+         console.log("false")
+          createMeal.classList.add("hidden")
+          createWorkout.classList.add("hidden")
+        } else {
+          console.log("true")
+        }
+
+
 }
 
 
