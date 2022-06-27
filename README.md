@@ -75,5 +75,5 @@ decided that for this project Thymeleaf was a fine choice.
 
 - Forcing myself to stay disciplined in maintaining a daily running log of all project thoughts, failures, and successes so I could encapsulate my experience and learn from mistakes along the way. 
 
--The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
+- The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
 - <a href="https://docs.google.com/document/d/1XVsCNAHUEtn8aLoBlODDAnaLUgyORKsBk3hhkGWGm5U/edit?usp=sharing" target="_blank">Development Log - Google Doc</a>
