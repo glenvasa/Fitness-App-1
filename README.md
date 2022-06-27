@@ -42,7 +42,11 @@
 ## Database Entity Relationship Diagram
 <img src="src/main/resources/static/img/Fitness-App-1.png"> 
 
-## Web Pages - Wireframes
+## Landing/Login Page Screenshot
+
+<img src="src/main/resources/static/img/screenshot-login-page.png"> 
+
+## Website Pages - Wireframes
 
 <img src="src/main/resources/static/img/wireframe-1.jpg"> 
 <img src="src/main/resources/static/img/wireframe-2.jpg"> 
