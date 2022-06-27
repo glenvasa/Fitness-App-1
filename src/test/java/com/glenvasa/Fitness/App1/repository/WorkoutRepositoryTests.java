@@ -1,6 +1,5 @@
 package com.glenvasa.Fitness.App1.repository;
 
-import com.glenvasa.Fitness.App1.model.Meal;
 import com.glenvasa.Fitness.App1.model.User;
 import com.glenvasa.Fitness.App1.model.Workout;
 import org.assertj.core.api.Assertions;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @DataJpaTest
@@ -33,7 +31,6 @@ public class WorkoutRepositoryTests {
         Workout savedWorkout = workoutRepository.save(workout);
 
         //retrieves savedWorkout from DB by id
-//        Workout existWorkout = WorkoutRepository.findWorkoutById(savedWorkout.getId());
         Workout retrievedWorkout = workoutRepository.findWorkoutById(savedWorkout.getId());
 
         LocalDate today = LocalDate.now();
@@ -44,11 +41,11 @@ public class WorkoutRepositoryTests {
 
         //tests that the savedWorkout and existWorkout that was updated and retrieved has the same date
         Assertions.assertThat(retrievedWorkout.getDateOfWorkout()).isEqualTo(today);
-       // Fails???; not sure why b/c in DB the workout with id 25, contains the date, duration, and name as inputted above
+
     }
 
 
-    @Test // passes
+    @Test
     public void testRetrieveMostRecentWorkoutInDb() {
         //creates a new "empty" Workout object w/2 fields: id, user_id and saves to DB
         Workout Workout = new Workout(new User());
@@ -62,7 +59,7 @@ public class WorkoutRepositoryTests {
 
     }
 
-    @Test // passes
+    @Test
     public void testFindAllWorkoutsByUserId() {
 
         User user = new User();
@@ -78,7 +75,7 @@ public class WorkoutRepositoryTests {
 
     }
 
-    @Test // passes
+    @Test
     public void testDeleteWorkoutById() {
         Workout Workout = new Workout();
         Workout savedWorkout = workoutRepository.save(Workout);
