@@ -39,3 +39,20 @@
 <img src="src/main/resources/static/img/wireframe-4.jpg"> 
 <img src="src/main/resources/static/img/wireframe-5.jpg"> 
 <img src="src/main/resources/static/img/wireframe-6.jpg"> 
+
+## User Stories
+
+- As a User, I want to create a daily health profile in which I input my weight, weight goal, and exercise level to calculate my daily target caloric intake.
+- As a User, I want to track all of the specific food items I consume each day.
+- As a User, I want to track the total number of calories, fat, protein, and carbohydrates consumed each day.
+- As a User, I want to be able to create/store food items for later use in Servings/Meals.
+- As a User, I want to create Servings of individual food items and save them as a Meal.
+- As a User, after I save a Meal, I want to view instant data re: all calories, fat, protein, and carbohydrates consumed so far that day AND how many calories I am either below or above my daily target caloric intake amount.
+- As User, I want to receive a text message alert when I have exceeded my daily target caloric amount so I can refrain from additional consumption and stay on track with my weight goals.
+- As a User, I want to have access to my daily meal information for any date I select and have the ability to compare my past health profile information with today’s.
+- As a User, I want to track all of the Workouts of exercises I perform each day.
+- As a User, I want to track the specific sets of exercises contained in each Workout, including name, weight and repetitions.
+- As a User, I want to be able to create/store exercises for later use in Sets/Workouts.
+- As a User, I want to create Sets of individual Exercises and save them as a Workout.
+- As a User, after I save a Workout, I want to view instant data re: all Workouts and my Personal Records for each Exercise.
+- As User, I want to receive a text message alert when I achieve a new personal record for a particular exercise as this is motivation to continue my health journey.
