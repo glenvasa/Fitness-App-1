@@ -81,3 +81,10 @@ decided that for this project Thymeleaf was a fine choice.
 
 - The link to my 50-page document "Building Your Fitness / Your Life: Capstone Project" is below.
 - <a href="https://docs.google.com/document/d/1XVsCNAHUEtn8aLoBlODDAnaLUgyORKsBk3hhkGWGm5U/edit?usp=sharing" target="_blank">Development Log - Google Doc</a>
+
+## Goals for future of "Your Fitness / Your Life"
+
+- Utilize a Food (and perhaps Exercise) API to reduce the number of Food/Exercise Items the User manually inputs.
+- Redevelop client-side with Next.js on top of React.js to improve page rendering, aid in loading of images (also a future feature), provide reusable components, and offer quality state management tools.
+- Ensure application is responsive for mobile devices.
+- Add Amin role/dashboard, especially if app is used in a gym context where members pay membership fees, purchase products and other admin maintenance required.
