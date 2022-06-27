@@ -1,7 +1,5 @@
 package com.glenvasa.Fitness.App1.service;
 
-import com.glenvasa.Fitness.App1.dto.HealthProfileDto;
-import com.glenvasa.Fitness.App1.model.HealthProfile;
 import com.glenvasa.Fitness.App1.model.Meal;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,10 +19,10 @@ public class MealServiceTests {
  @Autowired
  private MealServiceImpl mealService;
 
- @Test // passes
+ @Test
  public void testSaveMeal() {
 
-  Principal principal = new Principal() {
+   Principal principal = new Principal() {
    @Override
    public String getName() {
     return "Jim";
