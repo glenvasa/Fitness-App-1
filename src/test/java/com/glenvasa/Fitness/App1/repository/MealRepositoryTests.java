@@ -1,23 +1,16 @@
 package com.glenvasa.Fitness.App1.repository;
 
 import com.glenvasa.Fitness.App1.model.*;
-import com.glenvasa.Fitness.App1.repository.MealRepository;
-import com.glenvasa.Fitness.App1.repository.UserRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 import org.assertj.core.api.Assertions;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -30,10 +23,6 @@ public class MealRepositoryTests {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private TestEntityManager entityManager;
-//
-//    private Meal meal;
 
     @Test
     public void testUpdateMeal() {
@@ -42,7 +31,6 @@ public class MealRepositoryTests {
         Meal savedMeal = mealRepository.save(meal);
 
         //retrieves savedMeal from DB by id
-//        Meal existMeal = mealRepository.findMealById(savedMeal.getId());
         Meal retrievedMeal = mealRepository.findMealById(savedMeal.getId());
 
         LocalDate today = LocalDate.now();
@@ -53,11 +41,11 @@ public class MealRepositoryTests {
 
         //tests that the savedMeal and existMeal that was updated and retrieved has the same date
         Assertions.assertThat(retrievedMeal.getDate()).isEqualTo(today);
-        // expected 2022-06-25; actual null BUT in DB the Meal has all updated fields WHY?????
+
     }
 
 
-    @Test // passes
+    @Test
     public void testRetrieveMostRecentMealInDb() {
         //creates a new "empty" Meal object w/2 fields: id, user_id and saves to DB
         Meal meal = new Meal(new User());
@@ -71,7 +59,7 @@ public class MealRepositoryTests {
 
     }
 
-    @Test // passes
+    @Test
     public void testFindAllMealsByUserId() {
 
         User user = new User();
@@ -87,7 +75,7 @@ public class MealRepositoryTests {
 
     }
 
-    @Test // passes
+    @Test
     public void testDeleteMealById() {
         Meal meal = new Meal();
         Meal savedMeal = mealRepository.save(meal);
