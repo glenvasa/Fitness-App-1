@@ -1,7 +1,7 @@
 # Your Fitness / Your Life
 
 - <a href="https://github.com/glenvasa/Fitness-App-1" target="_blank">GitHub Repository</a>
-- Fitness tracking web appliction for people serious about improving their health.
+- Fitness tracking web application for people serious about improving their health.
 - Application tracks all aspects of User's daily food intake and exercise regimen.
 
 ## Technologies Used in Development
@@ -21,7 +21,7 @@
 - To Create/Save a Meal, User creates/adds Servings of individual Food Items. Saved Servings/Meals are deletable.
 - To Create/Save a Workout, User creates/adds Sets of individual Exercises. Saved Sets/Workouts are deletable.
 - All Users can add any Food Items or Exercises stored in the DB regardless of which User created it.
-- Users have ability to Create new Food Categories, Food Items, Exercise Categories, and Exercises.
+- Users have the ability to Create new Food Categories, Food Items, Exercise Categories, and Exercises.
 
 - Profile Page allows User to select a date and view all Meal/Workout Cards pertaining to that date.
 - User is shown the Total Calories, Protein, Carbohydrates, and Fat amounts consumed for all meals on the selected date. 
@@ -29,8 +29,8 @@
 - Profile Page displays Today’s weight, exercise level, target calories, and weight goal for comparison to the selected date.
 - Profile Page allows User to update any data originally inputted at time of registration.  User may also delete their account.
 
-- If User’s Daily Target Calories are exceeded (upon saving a new Meal), User receives a detailed text message containing words of encouragement within 3-4 seconds informing of same so the User can stay on track with their weight goal.
-- If User achieves a new Personal Record for any Exercise (upon saving a new Workout), User recieves a detailed text message of congratulations within 3-4 seconds.
+- If User’s Daily Target Calories are exceeded (upon saving a new Meal), User receives a detailed text message containing words of encouragement within 3-4 seconds informing them of same so the User can stay on track with their weight goal.
+- If User achieves a new Personal Record for any Exercise (upon saving a new Workout), User receives a detailed text message of congratulations within 3-4 seconds.
 <img src="src/main/resources/static/img/sms-examples.png"> 
 
 ## Project Package Structure
@@ -75,7 +75,7 @@
 
 ## Challenges Faced in Developing "Your Fitness / Your Life"
 
-- Deciding if I should use React.js/Next.js for the frontend instead of Thymeleaf. I had used React several times in the past and earlier this year began to appreciate the benefits of using Next.js on top of React. For this project, as was the case for most of my Java Developer's journey, I was interested in using technology that I hadn't used before. I ended up liking how seemlessly Thymeleaf integrated with Spring Boot and, while recognizing the benefits of using a front-end framework, 
+- Deciding if I should use React.js/Next.js for the frontend instead of Thymeleaf. I had used React several times in the past and earlier this year began to appreciate the benefits of using Next.js on top of React. For this project, as was the case for most of my Java Developer's journey, I was interested in using technology that I hadn't used before. I ended up liking how seamlessly Thymeleaf integrated with Spring Boot and, while recognizing the benefits of using a front-end framework, 
 decided that for this project Thymeleaf was a fine choice. 
 
 - Overthinking the number of features and pieces of functionality I should complete by the project deadline. There are always features I will want to implement, however, with a limited time frame, I recognized that priorities must be set.
@@ -91,5 +91,5 @@ decided that for this project Thymeleaf was a fine choice.
 
 - Utilize a Food (and perhaps Exercise) API to reduce the number of Food/Exercise Items the User manually inputs.
 - Redevelop client-side with Next.js on top of React.js to improve page rendering, aid in loading of images (also a future feature), provide reusable components, and offer quality state management tools.
-- Ensure application is responsive for mobile devices.
-- Add Amin role/dashboard, especially if app is used in a gym context where members pay membership fees, purchase products and other admin maintenance required.
+- Ensure the application is responsive for mobile devices.
+- Add an Amin role/dashboard, especially if the app is used in a gym context where members pay membership fees, purchase products and other admin maintenance required.
